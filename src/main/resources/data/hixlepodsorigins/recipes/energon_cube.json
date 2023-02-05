@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:refined_energon"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:energon_cube",
+    "count": 1
+  }
+}

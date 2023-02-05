@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:items/refined_synth_en",
+    "particle": "hixlepodsorigins:items/refined_synth_en"
+  }
+}

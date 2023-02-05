@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:refined_synth_en"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:synth_en_cube",
+    "count": 1
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "za_warudo_activate": {
+    "subtitle": "sounds.hixlepodsorigins.za_warudo_activate",
+    "sounds": [
+      "hixlepodsorigins:za_warudo_activate"
+    ]
+  },
+
+  "za_warudo_deactivate": {
+    "subtitle": "sounds.hixlepodsorigins.za_warudo_deactivate",
+    "sounds": [
+      "hixlepodsorigins:za_warudo_deactivate"
+    ]
+  },
+
+  "ground_bridge_pumps": {
+    "subtitle": "sounds.hixlepodsorigins.ground_bridge_pumps",
+    "sounds": [
+      "hixlepodsorigins:ground_bridge_pumps"
+    ]
+  },
+
+  "ground_bridge_humming_begins": {
+    "subtitle": "sounds.hixlepodsorigins.ground_bridge_humming_begins",
+    "sounds": [
+      "hixlepodsorigins:ground_bridge_humming_begins"
+    ]
+  },
+
+  "ground_bridge_humming": {
+    "subtitle": "sounds.hixlepodsorigins.ground_bridge_humming",
+    "sounds": [
+      "hixlepodsorigins:ground_bridge_humming"
+    ]
+  },
+
+  "ninja": {
+    "subtitle": "sounds.hixlepodsorigins.ninja",
+    "sounds": [
+      "hixlepodsorigins:ninja"
+    ]
+  }
+}

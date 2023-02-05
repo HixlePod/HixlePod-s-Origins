@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "hixlepodsorigins:energon_ore_block",
+    "hixlepodsorigins:synth_en_ore_block",
+    "hixlepodsorigins:dark_energon_ore_block"
+  ]
+}

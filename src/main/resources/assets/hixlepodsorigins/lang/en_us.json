@@ -1,0 +1,51 @@
+{
+  "itemGroup.hixlepodsOriginsTab": "HixlePod's Origins",
+
+  "item.hixlepodsorigins.example_item": "Example Item",
+  "item.hixlepodsorigins.the_holy_lyre": "The Holy Lyre",
+  "item.hixlepodsorigins.ninja": "Ninja",
+  "item.hixlepodsorigins.dragon_scale": "Dragon Scale",
+  "item.hixlepodsorigins.maxwell": "MAXWELL",
+
+
+  "item.hixlepodsorigins.energon_ore_block": "Energon Ore",
+  "item.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore",
+  "item.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore",
+
+  "item.hixlepodsorigins.unrefined_energon": "Unrefined Energon",
+  "item.hixlepodsorigins.unrefined_synth_en": "Unrefined Synth-En",
+  "item.hixlepodsorigins.unrefined_dark_energon": "Unrefined Dark Energon",
+
+  "item.hixlepodsorigins.refined_energon": "Refined Energon",
+  "item.hixlepodsorigins.refined_synth_en": "Refined Synth-En",
+  "item.hixlepodsorigins.refined_dark_energon": "Refined Dark Energon",
+
+  "item.hixlepodsorigins.energon_cube": "Energon Cube",
+  "item.hixlepodsorigins.synth_en_cube": "Synth-En Cube",
+  "item.hixlepodsorigins.dark_energon_cube": "Dark Energon Cube",
+
+
+  "block.hixlepodsorigins.energon_ore_block": "Energon Ore",
+  "block.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore",
+  "block.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore",
+
+  "block.hixlepodsorigins.ground_bridge": "Ground Bridge",
+
+  "entity.hixlepodsorigins.echo": "Echo",
+  "entity.hixlepodsorigins.compass": "Compass",
+  "entity.hixlepodsorigins.rune": "Rune",
+
+  "sounds.hixlepodsorigins.ninja": "Ninja",
+  "sounds.hixlepodsorigins.za_warudo_activate": "Za Warudo Activate",
+  "sounds.hixlepodsorigins.za_warudo_deactivate": "Za Warudo Deactivate",
+
+  "sounds.hixlepodsorigins.ground_bridge_pumps": "Ground Bridge Pumps",
+  "sounds.hixlepodsorigins.ground_bridge_humming_begins": "Ground Bidge Hums",
+  "sounds.hixlepodsorigins.ground_bridge_humming": "Ground Bidge Hums",
+
+  "key.category.hixlepodsorigins": "HixlePod's Origins",
+  "key.hixlepodsorigins.ability_1": "Ability 1",
+  "key.hixlepodsorigins.ability_2": "Ability 2",
+  "key.hixlepodsorigins.ability_3": "Ability Toggle",
+  "key.hixlepodsorigins.pet_menu": "Pet menu"
+}

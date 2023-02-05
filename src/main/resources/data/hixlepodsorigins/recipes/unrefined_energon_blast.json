@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "hixlepodsorigins:unrefined_energon"
+  },
+  "result": "hixlepodsorigins:refined_energon",
+  "experience": 1,
+  "cookingtime": 300
+}
