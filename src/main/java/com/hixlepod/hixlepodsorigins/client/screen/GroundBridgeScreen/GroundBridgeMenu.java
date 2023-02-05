@@ -62,10 +62,10 @@ public class GroundBridgeMenu extends AbstractContainerMenu {
 
     public int getScaledProgress() {
         int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-        int progressArrowSize = 26;
+        //int maxProgress = this.data.get(1);  // Max Progress
+        int progressArrowSize = 26; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        return 50000 != 0 && progress != 0 ? progress * progressArrowSize / 50000 : 0;
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

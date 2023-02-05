@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,22 +25,21 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class GroundBridgeEntityBlock extends BlockEntity implements MenuProvider {
-
-    private final ItemStackHandler itemStackHandler = new ItemStackHandler(1) {
+    private final ItemStackHandler itemStackHandler  = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
         }
     };
 
-    private LazyOptional<IItemHandler> lazyOptionalHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int fuel = 0;
     private int maxFuel = 50000;
 
-    public GroundBridgeEntityBlock(BlockPos blockPos, BlockState blockState) {
-        super(BlockEntityInit.GROUND_BRIDGE.get(), blockPos, blockState);
+    public GroundBridgeEntityBlock(BlockPos pos, BlockState state) {
+        super(BlockEntityInit.GROUND_BRIDGE.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -78,9 +78,8 @@ public class GroundBridgeEntityBlock extends BlockEntity implements MenuProvider
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyOptionalHandler.cast();
+            return lazyItemHandler.cast();
         }
 
         return super.getCapability(cap, side);
@@ -89,19 +88,19 @@ public class GroundBridgeEntityBlock extends BlockEntity implements MenuProvider
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyOptionalHandler = LazyOptional.of(() -> itemStackHandler);
+        lazyItemHandler = LazyOptional.of(() -> itemStackHandler);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        lazyOptionalHandler.invalidate();
+        lazyItemHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(CompoundTag nbt) {
-
         nbt.put("inventory", itemStackHandler.serializeNBT());
+
 
         super.saveAdditional(nbt);
     }
@@ -133,7 +132,7 @@ public class GroundBridgeEntityBlock extends BlockEntity implements MenuProvider
         } else {
 
             if (Energon(entity)) {
-                entity.itemStackHandler.getStackInSlot(0).shrink(1);
+                entity.itemStackHandler.extractItem(0, 1, false);
                 entity.fuel += 10000;
                 setChanged(level, blockPos, blockState);
             }
@@ -151,8 +150,17 @@ public class GroundBridgeEntityBlock extends BlockEntity implements MenuProvider
             inventory.setItem(i, entity.itemStackHandler.getStackInSlot(i));
         }
 
-        boolean hasEnergonInFirstSlot = entity.itemStackHandler.getStackInSlot(0).getItem() == ItemInit.ENERGON_CUBE.get();
+        boolean hasRawGemInFirstSlot = entity.itemStackHandler.getStackInSlot(0).getItem() == ItemInit.ENERGON_CUBE.get();
 
-        return hasEnergonInFirstSlot;
+        return hasRawGemInFirstSlot && canInsertAmountIntoOutputSlot(inventory) &&
+                canInsertItemIntoOutputSlot(inventory, new ItemStack(ItemInit.ENERGON_CUBE.get(), 1));
+    }
+
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
+        return inventory.getItem(0).getItem() == stack.getItem() || inventory.getItem(0).isEmpty();
+    }
+
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
+        return inventory.getItem(0).getMaxStackSize() > inventory.getItem(0).getCount();
     }
 }
