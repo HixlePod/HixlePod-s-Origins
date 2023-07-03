@@ -3,37 +3,100 @@
 
   "item.hixlepodsorigins.example_item": "Example Item",
   "item.hixlepodsorigins.the_holy_lyre": "The Holy Lyre",
-  "item.hixlepodsorigins.ninja": "Ninja",
-  "item.hixlepodsorigins.dragon_scale": "Dragon Scale",
-  "item.hixlepodsorigins.maxwell": "MAXWELL",
 
+  "item.hixlepodsorigins.ninja": "Ninja",
+  "item.hixlepodsorigins.maxwell": "MAXWELL",
+  "item.hixlepodsorigins.among_us": "Amogus",
+  "item.hixlepodsorigins.azzip_nogrene": "azziP nogrenE",
+
+  "item.hixlepodsorigins.dragon_scale": "Dragon Scale",
+  "item.hixlepodsorigins.blood_bone": "Blood bone",
+  "item.hixlepodsorigins.battle_burrito": "Battle Burrito",
+
+
+  "block.hixlepodsorigins.energon_decoration_block": "Energon Decoration Block",
+  "block.hixlepodsorigins.synth_en_decoration_block": "Synth-En Decoration Block",
+  "block.hixlepodsorigins.dark_energon_decoration_block": "Dark Energon Decoration Block",
+  "block.hixlepodsorigins.red_energon_decoration_block": "Red Energon Decoration Block",
+
+  "block.hixlepodsorigins.energon_ore_block": "Energon Ore Block",
+  "block.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore Block",
+  "block.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore Block",
+  "block.hixlepodsorigins.red_energon_ore_block": "Red Energon Ore Block",
 
   "item.hixlepodsorigins.energon_ore_block": "Energon Ore",
   "item.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore",
   "item.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore",
+  "item.hixlepodsorigins.red_energon_ore_block": "Red Energon Ore",
 
   "item.hixlepodsorigins.unrefined_energon": "Unrefined Energon",
   "item.hixlepodsorigins.unrefined_synth_en": "Unrefined Synth-En",
   "item.hixlepodsorigins.unrefined_dark_energon": "Unrefined Dark Energon",
+  "item.hixlepodsorigins.unrefined_red_energon": "Unrefined Red Energon",
 
   "item.hixlepodsorigins.refined_energon": "Refined Energon",
   "item.hixlepodsorigins.refined_synth_en": "Refined Synth-En",
   "item.hixlepodsorigins.refined_dark_energon": "Refined Dark Energon",
+  "item.hixlepodsorigins.refined_red_energon": "Refined Red Energon",
 
   "item.hixlepodsorigins.energon_cube": "Energon Cube",
   "item.hixlepodsorigins.synth_en_cube": "Synth-En Cube",
   "item.hixlepodsorigins.dark_energon_cube": "Dark Energon Cube",
+  "item.hixlepodsorigins.red_energon_cube": "Red Energon Cube",
 
+  "item.hixlepodsorigins.energon_bits": "Energon Bits",
+  "item.hixlepodsorigins.synth_en_bits": "Synth-En Bits",
+  "item.hixlepodsorigins.dark_energon_bits": "Dark Energon Bits",
+  "item.hixlepodsorigins.red_energon_bits": "Red Energon Bits",
 
-  "block.hixlepodsorigins.energon_ore_block": "Energon Ore",
-  "block.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore",
-  "block.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore",
+  "item.hixlepodsorigins.sugar_cube": "Sugar Cube",
+  "item.hixlepodsorigins.energon_cream": "Energon Cream",
+  "item.hixlepodsorigins.ambergon_bucket": "Ambergon Bucket",
+  "item.hixlepodsorigins.ambergon_cream": "Ambergon Cream",
+
+  "item.hixlepodsorigins.battle_donut": "Battle Donut",
+  "item.hixlepodsorigins.energon_pizza": "Energon Pizza",
+  "item.hixlepodsorigins.enerjolly": "Enerjolly",
+  "item.hixlepodsorigins.hyper_enerjolly": "Hyper Enerjolly",
+
+  "item.hixlepodsorigins.energon_low_grade_drink": "Energon Low-Grade Drink",
+
+  "item.hixlepodsorigins.energon_mid_grade_drink": "Energon Mid-Grade Drink",
+  "item.hixlepodsorigins.synth_en_mid_grade_drink": "Synth-En Mid-Grade Drink",
+  "item.hixlepodsorigins.dark_mid_grade_drink": "Dark Mid-Grade Drink",
+  "item.hixlepodsorigins.red_mid_grade_drink": "Red Mid-Grade Drink",
+
+  "item.hixlepodsorigins.energon_high_grade_drink": "Energon High-Grade Drink",
+  "item.hixlepodsorigins.dark_high_grade_drink": "Dark High-Grade Drink",
+
+  "item.hixlepodsorigins.energon_lighter": "Energon Lighter",
+  "item.hixlepodsorigins.weed": "Weed",
+
+  "item.hixlepodsorigins.rust": "Rust",
+
+  "item.hixlepodsorigins.the_stringless": "The Stringless",
 
   "block.hixlepodsorigins.ground_bridge": "Ground Bridge",
 
   "entity.hixlepodsorigins.echo": "Echo",
   "entity.hixlepodsorigins.compass": "Compass",
   "entity.hixlepodsorigins.rune": "Rune",
+  "entity.hixlepodsorigins.pumkin": "Pumkin",
+  "entity.hixlepodsorigins.dragon_slayer": "Dragon Slayer",
+
+  "entity.hixlepodsorigins.cybertron_pig": "Cybertron Pig",
+  "entity.hixlepodsorigins.cybertron_chicken": "Rotarary Chicken",
+  "entity.hixlepodsorigins.cybertron_cow": "Cybertron Cow",
+  "entity.hixlepodsorigins.cybertron_horse": "Cybertron Horse",
+
+  "entity.hixlepodsorigins.ten": "Ten",
+
+  "entity.hixlepodsorigins.scraplet": "Scraplet",
+  "entity.hixlepodsorigins.cybertron_creeper": "Cybertron Creeper",
+  "entity.hixlepodsorigins.cybertron_hostile_cow": "Cybertron Bull",
+
+  "entity.hixlepodsorigins.scraplet_boss": "Airachnid Prime",
+  "entity.hixlepodsorigins.beta_scraplet": "Beta Scraplet",
 
   "sounds.hixlepodsorigins.ninja": "Ninja",
   "sounds.hixlepodsorigins.za_warudo_activate": "Za Warudo Activate",
@@ -43,9 +106,55 @@
   "sounds.hixlepodsorigins.ground_bridge_humming_begins": "Ground Bidge Hums",
   "sounds.hixlepodsorigins.ground_bridge_humming": "Ground Bidge Hums",
 
+  "effect.hixlepodsorigins.ambergon": "Ambergon",
+  "item.minecraft.potion.effect.ambergon_potion": "Ambergon Potion",
+  "item.minecraft.splash_potion.effect.ambergon_potion": "Splash Potion of Ambergon",
+  "item.minecraft.lingering_potion.effect.ambergon_potion": "Lingering Potion of Ambergon",
+
+  "effect.hixlepodsorigins.malfunction": "Malfunction",
+  "item.minecraft.potion.effect.malfunction_potion": "Malfunction Potion",
+  "item.minecraft.splash_potion.effect.malfunction_potion": "Splash Potion of Malfunction",
+  "item.minecraft.lingering_potion.effect.malfunction_potion": "Lingering Potion of Malfunction",
+
+  "effect.hixlepodsorigins.lightning": "Lightning",
+  "item.minecraft.potion.effect.lightning_potion": "Lightning Potion",
+  "item.minecraft.splash_potion.effect.lightning_potion": "Splash Potion of Lightning",
+  "item.minecraft.lingering_potion.effect.lightning_potion": "Lingering Potion of Lightning",
+
+  "effect.hixlepodsorigins.freeze": "Freeze",
+  "item.minecraft.potion.effect.freeze_potion": "Freeze Potion",
+  "item.minecraft.splash_potion.effect.freeze_potion": "Splash Potion of Freeze",
+  "item.minecraft.lingering_potion.effect.freeze_potion": "Lingering Potion of Freeze",
+
+  "effect.hixlepodsorigins.chaos": "Chaos",
+  "item.minecraft.potion.effect.chaos_potion": "Chaos Potion",
+  "item.minecraft.splash_potion.effect.chaos_potion": "Splash Potion of Chaos",
+  "item.minecraft.lingering_potion.effect.chaos_potion": "Lingering Potion of Chaos",
+
+  "effect.hixlepodsorigins.rust": "Rust",
+  "item.minecraft.potion.effect.rust_potion": "Rust Potion",
+  "item.minecraft.splash_potion.effect.rust_potion": "Splash Potion of Rust",
+  "item.minecraft.lingering_potion.effect.rust_potion": "Lingering Potion of Rust",
+
   "key.category.hixlepodsorigins": "HixlePod's Origins",
   "key.hixlepodsorigins.ability_1": "Ability 1",
   "key.hixlepodsorigins.ability_2": "Ability 2",
   "key.hixlepodsorigins.ability_3": "Ability Toggle",
-  "key.hixlepodsorigins.pet_menu": "Pet menu"
+  "key.hixlepodsorigins.pet_menu": "Pet menu",
+
+
+  "death.attack.hixlepodsorigins_rust": "%1$s died to rust infection",
+  "death.attack.hixlepodsorigins_rust.player": "%1$s died to rust infection whilst fighting %2$s",
+
+  "death.attack.hixlepodsorigins_acid_rain": "%1$s was dissolved by acid rain",
+  "death.attack.hixlepodsorigins_acid_rain.player": "%1$s was dissolved by acid rain whilst fighting %2$s",
+
+  "death.attack.hixlepodsorigins_energon_poisoning": "%1$s died to energon poisoning",
+  "death.attack.hixlepodsorigins_energon_poisoning.player": "%1$s died to energon poisoning whilst fighting %2$s",
+
+  "death.attack.hixlepodsorigins_extinguish": "%1$s was extinguish",
+  "death.attack.hixlepodsorigins_extinguish.player": "%1$s was extinguish whilst fighting %2$s",
+
+  "death.attack.hixlepodsorigins_anema_vortext": "An Anemo Vortext took %1$s into the after life",
+  "death.attack.hixlepodsorigins_anema_vortext.player": "An Anemo Vortext took %1$s into the after life whilst fighting %2$s"
 }

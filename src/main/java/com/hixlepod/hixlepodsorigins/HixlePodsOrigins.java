@@ -1,12 +1,13 @@
 package com.hixlepod.hixlepodsorigins;
 
-import com.hixlepod.hixlepodsorigins.common.events.ClientModEvents;
-import com.hixlepod.hixlepodsorigins.common.events.CommonModEvents;
-import com.hixlepod.hixlepodsorigins.common.events.GameplayEvents;
-import com.hixlepod.hixlepodsorigins.common.events.ServerModEvents;
+import com.hixlepod.hixlepodsorigins.common.events.*;
 import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
+import com.hixlepod.hixlepodsorigins.core.utils.BetterBrewingRecipe;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -23,13 +24,14 @@ public class HixlePodsOrigins
         //Register Inits
         ItemInit.ITEMS.register(eventBus);
         BlockInit.BLOCKS.register(eventBus);
-        BlockEntityInit.BLOCK_ENTITIES.register(eventBus);
         SoundInit.SOUND_EVENTS.register(eventBus);
         ConfiguredFeatureInit.CONFIGURED_FEATURES.register(eventBus);
         PlacedFeatureInit.PLACED_FEATURES.register(eventBus);
         EntityInit.ENTITIES.register(eventBus);
-        MenuTypesInit.MENUS.register(eventBus);
-
+        POIInit.POI.register(eventBus);
+        EffectsInit.MOB_EFFECTS.register(eventBus);
+        PotionInit.POTIONS.register(eventBus);
+        LootModifiersInit.LOOT_MODIFIER_SERIALIZERS.register(eventBus);
         ItemInit.VANILLA_ITEMS.register(eventBus);
 
         //Event listeners
@@ -43,5 +45,16 @@ public class HixlePodsOrigins
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         NetworkManager.Register();
+
+        event.enqueueWork(() -> {
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.NIGHT_VISION, Items.INK_SAC, PotionInit.BLINDNESS_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, ItemInit.AMBERGON_BUCKET.get(), PotionInit.AMBERGON_POTION.get()));
+
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(PotionInit.AMBERGON_POTION.get(), ItemInit.DARK_ENERGON_CUBE.get(), PotionInit.MALFUNCTION_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(PotionInit.AMBERGON_POTION.get(), Items.BLUE_ICE, PotionInit.FREEZE_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(PotionInit.AMBERGON_POTION.get(), Items.BEDROCK, PotionInit.CHAOS_POTION.get()));
+
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(PotionInit.AMBERGON_POTION.get(), ItemInit.RUST.get(), PotionInit.RUST_POTION.get()));
+        });
     }
 }

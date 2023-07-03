@@ -3,13 +3,12 @@ package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Renderer.Model.CompassModel;
-import com.hixlepod.hixlepodsorigins.common.Pets.EntityCompass;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityCompass;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.ambient.Bat;
 
 public class CompassRenderer extends MobRenderer<EntityCompass, CompassModel> {
 

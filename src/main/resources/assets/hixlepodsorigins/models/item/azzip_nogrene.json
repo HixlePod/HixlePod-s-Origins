@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:items/azzip_nogrene",
+    "particle": "hixlepodsorigins:items/azzip_nogrene"
+  }
+}

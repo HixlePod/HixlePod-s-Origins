@@ -18,8 +18,7 @@ public class Example_Item extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> toolTip, TooltipFlag flagIn) {
 
-        toolTip.add(Component.nullToEmpty("For I may be a simple item, I was a great example on how to create everything you are today."));
-        toolTip.add(Component.nullToEmpty("Without me this mod would cease to exist."));
+        toolTip.add(Component.nullToEmpty("Am a example item yee"));
         super.appendHoverText(stack, worldIn, toolTip, flagIn);
     }
 }

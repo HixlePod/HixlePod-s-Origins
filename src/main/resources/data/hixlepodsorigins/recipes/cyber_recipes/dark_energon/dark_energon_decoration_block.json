@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:dark_energon_cube"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:dark_energon_decoration_block",
+    "count": 1
+  }
+}

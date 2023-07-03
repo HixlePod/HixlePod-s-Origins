@@ -1,14 +1,30 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.CrispyChordioid;
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.Electrum_Star;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
-import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys.GodOfFurrys;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
 public class OriginsManager {
+
+    public static void SetRobotEnergon(Player player) {
+        if (player.getName().equals(Component.literal(HixlePod.NAME))) {
+            HixlePod.SetEnergon(player);
+
+        } else if (player.getName().equals(Component.literal(AmbrosiaElf.NAME))) {
+            AmbrosiaElf.SetEnergon(player);
+
+        } else if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
+            Blakpaw2244.SetEnergon(player);
+
+        } else if (player.getName().equals(Component.literal(Folf_Gaming.NAME))) {
+            Folf_Gaming.SetEnergon(player);
+
+        } else if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            Kira_uwu69.SetEnergon(player);
+
+        }
+    }
 
     public static void setOriginStats(Player player) {
 
@@ -33,9 +49,6 @@ public class OriginsManager {
         } else if (player.getName().equals(Component.literal(Toupster02.NAME))) {
             Toupster02.setStats(player);
 
-        } else if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-            Electrum_Star.setStats(player);
-
         } else if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
             Flo_Plays_.setStats(player);
 
@@ -51,28 +64,38 @@ public class OriginsManager {
         } else if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
             CatGirlSeeka.setStats(player);
 
-        } else if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-            ArtificalMemes.setStats(player);
-
         } else if (player.getName().equals(Component.literal(matt4tea.NAME))) {
             matt4tea.setStats(player);
 
+        } else if (player.getName().equals(Component.literal(ofcourseidid.NAME))) {
+            ofcourseidid.setStats(player);
+
+        } else if (player.getName().equals(Component.literal(TricoFan.NAME))) {
+            TricoFan.setStats(player);
+
+        } else if (player.getName().equals(Component.literal(Folf_Gaming.NAME))) {
+            Folf_Gaming.setStats(player);
+
+        } else if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            Kira_uwu69.setStats(player);
+
+        } else if (player.getName().equals(Component.literal(Stamce.NAME))) {
+            Stamce.setStats(player);
         }
     }
 
     public static void setAbilityData(Player player) {
-        if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-            Electrum_Star.setAbilityData(player);
 
-        }
         if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
             CatGirlSeeka.setAbilityData(player);
-
         }
 
-        if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-            ArtificalMemes.setAbilityData(player);
+        if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
+            Blakpaw2244.setAbilityData(player);
+        }
 
+        if (player.getName().equals(Component.literal(undramaticc.NAME))) {
+            undramaticc.setAbilityData(player);
         }
     }
 
@@ -104,7 +127,7 @@ public class OriginsManager {
             return 120 * ticks;
 
         } else if (player.getName().equals(Component.literal(GodOfFurrys.NAME))) {
-            return 1 * ticks;
+            return (2 * ticks) + 10;
 
         } else if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
             return 100 * ticks;
@@ -112,11 +135,8 @@ public class OriginsManager {
         } else if (player.getName().equals(Component.literal(HixlePod.NAME))) {
             return 150 * ticks;
 
-        } else if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-            return 8;
-
         } else if (player.getName().equals(Component.literal(Maxwell.NAME))) {
-            return 8;
+            return 100 * ticks;
 
         } else if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
             return 15 * ticks;
@@ -130,13 +150,25 @@ public class OriginsManager {
         } else if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
             return 8;
 
-        } else if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-            return 8;
+        } else if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
+            return 5 * ticks;
 
         } else if (player.getName().equals(Component.literal(matt4tea.NAME))) {
             return 70 * ticks;
 
+        } else if (player.getName().equals(Component.literal(ofcourseidid.NAME))) {
+            return 15 * ticks;
+
+        } else if (player.getName().equals(Component.literal(Folf_Gaming.NAME))) {
+            return 1 * ticks;
+
+        } else if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            return 30 * ticks;
+
+        } else if (player.getName().equals(Component.literal(Stamce.NAME))) {
+            return 70 * ticks;
         }
+
 
         return -1;
     }
@@ -153,10 +185,7 @@ public class OriginsManager {
             return 150 * ticks;
 
         } else if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
-            return 5 * ticks;
-
-        } else if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-            return 60 * ticks;
+            return 10 * ticks;
 
         } else if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
             return 25 * ticks;
@@ -170,9 +199,11 @@ public class OriginsManager {
         } else if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
             return 60 * ticks;
 
-        } else if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-            return 60 * ticks;
+        } else if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            return 120 * ticks;
 
+        } else if (player.getName().equals(Component.literal(Stamce.NAME))) {
+            return 10 * ticks;
         }
 
         return -1;

@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Pets.EntityPumkin;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityPumkin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;

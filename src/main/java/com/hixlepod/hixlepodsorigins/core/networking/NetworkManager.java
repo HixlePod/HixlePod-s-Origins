@@ -1,18 +1,13 @@
 package com.hixlepod.hixlepodsorigins.core.networking;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Pets.Utils.SendPetInfoPacket;
+import com.hixlepod.hixlepodsorigins.core.networking.packet.SendPetInfoPacket;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyInvisibilityOFFS2CPacket;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyInvisibilityONS2CPacket;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.SpawnBlastParticleS2CPacket;
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.PulseAbilityS2CPacket;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.FudgeInvisibilityOFFS2CPacket;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.FudgeInvisibilityONS2CPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability1C2SPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability2C2SPacket;
-import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys.SpawnParticleS2CPacket;
-import com.hixlepod.hixlepodsorigins.core.networking.packet.ElytraAttemptFlyPacket;
-import com.hixlepod.hixlepodsorigins.core.utils.SpawnParticlePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -77,41 +72,10 @@ public class NetworkManager {
                 .consumerMainThread(AllyInvisibilityOFFS2CPacket::handle)
                 .add();
 
-
-        net.messageBuilder(SpawnParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(SpawnParticleS2CPacket::new)
-                .encoder(SpawnParticleS2CPacket::toBytes)
-                .consumerMainThread(SpawnParticleS2CPacket::handle)
-                .add();
-
-        net.messageBuilder(SpawnBlastParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(SpawnBlastParticleS2CPacket::new)
-                .encoder(SpawnBlastParticleS2CPacket::toBytes)
-                .consumerMainThread(SpawnBlastParticleS2CPacket::handle)
-                .add();
-
-        net.messageBuilder(SpawnParticlePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(SpawnParticlePacket::new)
-                .encoder(SpawnParticlePacket::toBytes)
-                .consumerMainThread(SpawnParticlePacket::handle)
-                .add();
-
-        net.messageBuilder(PulseAbilityS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(PulseAbilityS2CPacket::new)
-                .encoder(PulseAbilityS2CPacket::toBytes)
-                .consumerMainThread(PulseAbilityS2CPacket::handle)
-                .add();
-
         net.messageBuilder(SendPetInfoPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(SendPetInfoPacket::new)
                 .encoder(SendPetInfoPacket::toBytes)
                 .consumerMainThread(SendPetInfoPacket::handle)
-                .add();
-
-        net.messageBuilder(ElytraAttemptFlyPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(ElytraAttemptFlyPacket::new)
-                .encoder(ElytraAttemptFlyPacket::toBytes)
-                .consumerMainThread(ElytraAttemptFlyPacket::handle)
                 .add();
     }
 

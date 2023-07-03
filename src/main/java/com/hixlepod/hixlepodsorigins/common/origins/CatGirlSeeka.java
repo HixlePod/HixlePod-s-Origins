@@ -1,6 +1,5 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.Electrum_Star;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;

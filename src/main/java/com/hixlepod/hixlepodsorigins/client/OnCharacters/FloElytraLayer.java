@@ -2,11 +2,9 @@ package com.hixlepod.hixlepodsorigins.client.OnCharacters;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.OnCharacters.Model.FloElytraModel;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.CrispyChordioid;
 import com.hixlepod.hixlepodsorigins.common.origins.Flo_Plays_;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.ElytraModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -24,9 +22,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-
-import java.awt.*;
 
 public class FloElytraLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
     public static final ModelLayerLocation WINGS_LOCATION = new ModelLayerLocation(new ResourceLocation(HixlePodsOrigins.MODID,"textures/wings/flo_wings.png"), "main");
@@ -58,7 +53,7 @@ public class FloElytraLayer<T extends LivingEntity, M extends EntityModel<T>> ex
             p_116951_.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.elytraModel);
             this.elytraModel.setupAnim(entity, p_116955_, p_116956_, p_116958_, p_116959_, p_116960_);
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(p_116952_, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
+            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(p_116952_, RenderType.armorCutoutNoCull(resourcelocation), false, false);
             this.elytraModel.renderToBuffer(p_116951_, vertexconsumer, p_116953_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             p_116951_.popPose();
         }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:items/sugar_cube",
+    "particle": "hixlepodsorigins:items/sugar_cube"
+  }
+}

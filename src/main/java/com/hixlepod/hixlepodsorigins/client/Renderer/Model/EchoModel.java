@@ -2,7 +2,7 @@ package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
 
 import com.google.common.collect.ImmutableList;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Pets.EntityEcho;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
 import net.minecraft.client.model.ColorableAgeableListModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,12 +13,11 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.Wolf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class EchoModel<Type extends EntityEcho> extends ColorableAgeableListModel<Type>{
+public class EchoModel<Type extends EntityEcho> extends ColorableAgeableListModel<Type> {
 
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(HixlePodsOrigins.MODID, "echo"), "main");
 

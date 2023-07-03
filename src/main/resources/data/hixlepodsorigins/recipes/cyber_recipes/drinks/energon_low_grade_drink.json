@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "OOO",
+    " G "
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:ambergon_cream"
+    },
+    "O": {
+      "item": "hixlepodsorigins:refined_energon"
+    },
+    "G": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:energon_low_grade_drink",
+    "count": 1
+  }
+}

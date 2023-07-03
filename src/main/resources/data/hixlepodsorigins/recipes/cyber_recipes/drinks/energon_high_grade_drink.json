@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "R",
+    "G"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:energon_cube"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "G": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:energon_high_grade_drink",
+    "count": 1
+  }
+}

@@ -1,23 +1,14 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
-import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.SpawnBlastParticleS2CPacket;
-import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.entity.layers.ElytraLayer;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ElytraItem;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.Tags;
 import top.theillusivec4.caelus.api.CaelusApi;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class Flo_Plays_ {
 
@@ -26,6 +17,8 @@ public class Flo_Plays_ {
     public static void setStats(Player player) {
         player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(0.16);
         player.getAttribute(CaelusApi.getInstance().getFlightAttribute()).setBaseValue(1);
+
+        ScaleTypes.HEIGHT.getScaleData(player).setScale(1.05f);
     }
 
     public static void Ability1(ServerPlayer player) {

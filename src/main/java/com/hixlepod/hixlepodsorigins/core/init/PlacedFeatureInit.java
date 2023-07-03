@@ -11,6 +11,7 @@ import java.util.List;
 
 public class PlacedFeatureInit {
 
+    //OVERWORLD
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
             DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, HixlePodsOrigins.MODID);
 
@@ -33,6 +34,36 @@ public class PlacedFeatureInit {
                     commmonOrePlacement(2, HeightRangePlacement.triangle(
                             VerticalAnchor.bottom(),
                             VerticalAnchor.absolute(15)
+                    ))));
+
+
+    //CYBERTRON
+    public static final RegistryObject<PlacedFeature> ENERGON_ORE_CYBERTRON = PLACED_FEATURES.register("energon_ore_cybertron",
+            () -> new PlacedFeature(ConfiguredFeatureInit.ENERGON_ORE_CYBERTRON.getHolder().get(),
+                    commmonOrePlacement(7, HeightRangePlacement.triangle(
+                            VerticalAnchor.bottom(),
+                            VerticalAnchor.absolute(40)
+                    ))));
+
+    public static final RegistryObject<PlacedFeature> SYNTH_EM_ORE_CYBERTRON = PLACED_FEATURES.register("synth_en_ore_cybertron",
+            () -> new PlacedFeature(ConfiguredFeatureInit.SYNTH_EN_ORE_CYBERTRON.getHolder().get(),
+                    commmonOrePlacement(3, HeightRangePlacement.triangle(
+                            VerticalAnchor.bottom(),
+                            VerticalAnchor.absolute(30)
+                    ))));
+
+    public static final RegistryObject<PlacedFeature> DARK_ENERGON_ORE_CYBERTRON = PLACED_FEATURES.register("dark_energon_ore_cybertron",
+            () -> new PlacedFeature(ConfiguredFeatureInit.DARK_ENERGON_ORE_CYBERTRON.getHolder().get(),
+                    commmonOrePlacement(2, HeightRangePlacement.triangle(
+                            VerticalAnchor.bottom(),
+                            VerticalAnchor.absolute(15)
+                    ))));
+
+    public static final RegistryObject<PlacedFeature> RED_ENERGON_ORE_CYBERTRON = PLACED_FEATURES.register("red_energon_ore_cybertron",
+            () -> new PlacedFeature(ConfiguredFeatureInit.RED_ENERGON_ORE_CYBERTRON.getHolder().get(),
+                    commmonOrePlacement(4, HeightRangePlacement.triangle(
+                            VerticalAnchor.bottom(),
+                            VerticalAnchor.absolute(25)
                     ))));
 
     private static List<PlacementModifier> commmonOrePlacement(int countPerChunk, PlacementModifier height) {

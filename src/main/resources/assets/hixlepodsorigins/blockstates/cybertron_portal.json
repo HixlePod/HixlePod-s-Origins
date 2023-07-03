@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "axis=z": {"model": "hixlepodsorigins:block/cybertron_portal_ew"},
+    "axis=x": {"model": "hixlepodsorigins:block/cybertron_portal_ns"}
+  }
+}

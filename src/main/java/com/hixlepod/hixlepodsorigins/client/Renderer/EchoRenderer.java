@@ -2,15 +2,19 @@ package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Renderer.Model.EchoModel;
-import com.hixlepod.hixlepodsorigins.common.Pets.EntityEcho;
-import net.minecraft.client.model.geom.ModelLayers;
+import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronHorse;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class EchoRenderer<Type extends EntityEcho> extends MobRenderer<Type, EchoModel<Type>> {
 
-    private static final ResourceLocation texture = new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/echo.png");
+    //echo_overclocked.png
+    private static final ResourceLocation ECHO_TEXTURE = new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/echo.png");
+
+    private static final ResourceLocation ECHO_OVERCLOCKED_TEXTURE = new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/echo_overclocked.png");
 
     public EchoRenderer(EntityRendererProvider.Context context) {
         super(context, new EchoModel<>(context.bakeLayer(EchoModel.LAYER_LOCATION)), 0.5f);
@@ -18,6 +22,11 @@ public class EchoRenderer<Type extends EntityEcho> extends MobRenderer<Type, Ech
 
     @Override
     public ResourceLocation getTextureLocation(Type entity) {
-        return texture;
+        return ECHO_TEXTURE;
+    }
+
+    @Override
+    protected void scale(EntityEcho p_113974_, PoseStack p_113975_, float p_113976_) {
+        p_113975_.scale(0.85F, 0.85F, 0.85F);
     }
 }

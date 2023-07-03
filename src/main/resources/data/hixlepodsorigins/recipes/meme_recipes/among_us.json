@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "##G",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:red_concrete"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:among_us",
+    "count": 1
+  }
+}

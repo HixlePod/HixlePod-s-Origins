@@ -1,18 +1,28 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.items.TheStringlessBow;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.CrispyChordioid;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.SpawnBlastParticleS2CPacket;
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.Electrum_Star;
+import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
-import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
+import com.hixlepod.hixlepodsorigins.core.init.EffectsInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
-import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,27 +36,22 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.entity.ChunkEntities;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
-import net.minecraftforge.event.level.ChunkEvent;
-import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.Arrays;
-
-import static com.hixlepod.hixlepodsorigins.common.events.ClientModEvents.ClientForgeEvents.*;
 
 @Mod.EventBusSubscriber(modid = HixlePodsOrigins.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.DEDICATED_SERVER)
 public class ServerModEvents {
@@ -62,13 +67,6 @@ public class ServerModEvents {
 
                 player.getPersistentData().putString(HixlePodsOrigins.MODID + "_origin", "exdee");
 
-                if (player.getName().equals(Component.literal("PixlePod"))) {
-                    for (ServerPlayer serverPlayer : player.getServer().getPlayerList().getPlayers()) {
-                        serverPlayer.sendSystemMessage(Component.translatable("If you believe in a God, prey for their mercy.").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD));
-                        serverPlayer.getLevel().playSound(null, serverPlayer.position().x, serverPlayer.position().y, serverPlayer.position().z, SoundEvents.WITHER_SPAWN, SoundSource.AMBIENT, 1, 1);
-                    }
-                }
-
                 if(player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_firstTimeLogin") == true) {
                     OriginsManager.setOriginStats(player);
                 } else {
@@ -76,6 +74,57 @@ public class ServerModEvents {
                 }
 
                 OriginsManager.setAbilityData(player);
+                OriginsManager.setOriginStats(player);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void SmallOriginHeadHop(PlayerInteractEvent.EntityInteract event) {
+
+
+        if (event.getEntity() instanceof Player) {
+            ServerPlayer player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getEntity().getName().getString());
+
+            if (event.getTarget() instanceof Player) {
+                ServerPlayer target = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getTarget().getName().getString());
+
+                if (player != null && target != null) {
+
+                    if (OriginSettings.SITTING_ENABLED) {
+
+                        if (player.getName().equals(Component.literal(AmbrosiaElf.NAME)) || player.getName().equals(Component.literal(TricoFan.NAME)) || player.getName().equals(Component.literal(Stamce.NAME))) {
+
+                            if (target.getName().equals(Component.literal(AmbrosiaElf.NAME)) || target.getName().equals(Component.literal(TricoFan.NAME)) || target.getName().equals(Component.literal(Stamce.NAME))) {
+
+
+                            } else {
+                                player.setYRot(target.getYRot());
+                                player.setXRot(target.getXRot());
+                                player.startRiding(target);
+                                player.rideTick();
+                                target.rideTick();
+
+                                target.sendSystemMessage(Component.literal(ChatFormatting.GREEN + player.getName().getString() + " is sitting on your head!"));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void playerShootEvent(LivingHurtEvent event) {
+        if (event.getSource().getEntity() instanceof Player) {
+            Player attacker = (Player) event.getSource().getEntity();
+
+            if (attacker.getName().equals(Component.literal(Aniriai.NAME))) {
+                if (event.getEntity() instanceof LivingEntity) {
+                    if (event.getSource().isProjectile()) {
+                        event.setAmount(event.getAmount() * 2);
+                    }
+                }
             }
         }
     }
@@ -94,6 +143,16 @@ public class ServerModEvents {
             player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown2",
                     event.getOriginal().getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown2"));
 
+            //Ground bridge
+            player.getPersistentData().put(HixlePodsOrigins.MODID + "_GroundBridgeLocations",
+                    event.getOriginal().getPersistentData().getCompound(HixlePodsOrigins.MODID + "_GroundBridgeLocations"));
+
+            player.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge",
+                    event.getOriginal().getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge"));
+
+            player.getPersistentData().put(HixlePodsOrigins.MODID + "_GroundBridgeBlock",
+                    event.getOriginal().getPersistentData().getCompound(HixlePodsOrigins.MODID + "_GroundBridgeBlock"));
+
             OriginsManager.setOriginStats(player);
 
         }
@@ -105,6 +164,7 @@ public class ServerModEvents {
 
         if (player.getServer().isDedicatedServer()) {
             OriginsManager.setAbilityData(player);
+            OriginsManager.SetRobotEnergon(player);
         }
     }
 
@@ -129,31 +189,110 @@ public class ServerModEvents {
             }
         }
 
-        //CrispyChordioid.catAllergy(player);
+        //Netrual
         Fudge105.tick(player);
-        AllyIsAngy.tick(player);
-        undramaticc.tick(player);
-        J_Curve.tick();
-
-        GodOfFurrys.tick(player);
-
-        Maxwell.tick(player);
-
         matt4tea.tick(player);
 
-        Electrum_Star.tick(player);
-        CatGirlSeeka.tick(player);
-        ArtificalMemes.tick(player);
+        //Touch grass
+        AllyIsAngy.tick(player);
+        J_Curve.tick();
+        //CrispyChordioid.tick(player);
 
+        //Oblivian federation
+        GodOfFurrys.tick(player);
+        Maxwell.tick(player);
+        undramaticc.tick(player);
+        Stamce.tick(player);
+
+        CatGirlSeeka.tick(player);
+        ofcourseidid.tick(player);
+
+        //Satanic Panic
         Aniriai.tick(player);
         gh0stlure.tick(player);
+        TricoFan.tick(player);
+
+        //Skyflower
         KyoWing3809.tick(player);
 
+        //The Wreckers
         HixlePod.tick(player);
         Blakpaw2244.tick(player);
         AmbrosiaElf.tick(player);
+        Folf_Gaming.tick(player);
+        Kira_uwu69.tick(player);
 
         OriginsUtil.returnAbilityMessage(player);
+
+        if (player.getLevel().dimension() == DimensionsInit.CYBERTRON_KEY && player.isInWaterOrRain() && isInRain(player)) {
+            OriginsDamageSource.hurt(player, 0.5f, OriginsDamageSource.ACID_RAIN);
+        }
+
+        CompoundTag Data = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_VentiBlackhole");
+        int ticks = Data.getInt("Ticks");
+
+        if (ticks != 0) {
+            Data.putInt("Ticks", ticks - 1);
+
+            Vec3 position = new Vec3(Data.getDouble("PosX"), Data.getDouble("PosY"), Data.getDouble("PosZ"));
+
+            ResourceKey<Level> resourcekey = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(Data.getString("Level")));
+            ServerLevel serverlevel = player.getServer().getLevel(resourcekey);
+            if (serverlevel == null) {}
+
+            TheStringlessBow.AnemoVortexTick(player, position, serverlevel);
+            player.getPersistentData().put(HixlePodsOrigins.MODID + "_VentiBlackhole", Data);
+        }
+    }
+
+    public static boolean isInRain(Player player) {
+        BlockPos blockpos = player.blockPosition();
+        return player.getLevel().isRainingAt(blockpos) || player.getLevel().isRainingAt(new BlockPos((double)blockpos.getX(), player.getBoundingBox().maxY, (double)blockpos.getZ()));
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void attackPlayer(LivingHurtEvent event) {
+        if (event.getSource().getEntity() instanceof Player) {
+            Player player = (Player) event.getSource().getEntity();
+
+            if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
+                if (player.isFallFlying()) {
+                    event.setAmount(event.getAmount() * 2);
+                }
+            }
+            if (event.getEntity() instanceof LivingEntity) {
+                if (player.getName().equals(Component.literal(gh0stlure.NAME))) {
+                    if (!player.hasEffect(MobEffects.REGENERATION)) {
+                        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 5 * 20, 0, true, false));
+                    }
+                }
+
+                if (player.getName().equals(Component.literal(matt4tea.NAME))) {
+                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.POISON, 5 * 20, 2, true, false));
+                }
+
+                if (player.getName().equals(Maxwell.NAME)) {
+                    event.getEntity().setRemainingFireTicks(20 * 5);
+                }
+            }
+        }
+
+
+        if (event.getEntity() instanceof Player && event.getSource().getEntity() instanceof LivingEntity) {
+            Player player = (Player) event.getEntity();
+            LivingEntity target = (LivingEntity) event.getSource().getEntity();
+
+            if (player.getName().equals(Component.literal(J_Curve.NAME))) {
+
+                if (OriginsUtil.didChance(45)) {
+                    ServerLevel level = player.getServer().getLevel(player.getLevel().dimension());
+
+                    SmallFireball smallFireball = new SmallFireball(level, player, (target.getX() - player.getX()), -80.0, (target.getZ() - player.getZ()));
+                    smallFireball.setPos(smallFireball.getX(), player.getY(0.5D) + 0.5D, smallFireball.getZ());
+                    level.addFreshEntity(smallFireball);
+                }
+            }
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -183,21 +322,7 @@ public class ServerModEvents {
                 }
             }
 
-            if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-                if (!player.isOnGround()) {
-                    f *= 5.0F;
-                    event.setNewSpeed(f);
-                }
-            }
-
             if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
-                if (!player.isOnGround()) {
-                    f *= 5.0F;
-                    event.setNewSpeed(f);
-                }
-            }
-
-            if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
                 if (!player.isOnGround()) {
                     f *= 5.0F;
                     event.setNewSpeed(f);
@@ -207,8 +332,8 @@ public class ServerModEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void onTargetEvent(final LivingSetAttackTargetEvent event) {
-        LivingEntity target = event.getTarget();
+    public void onTargetEvent(final LivingChangeTargetEvent event) {
+        LivingEntity target = event.getNewTarget();
         LivingEntity attacker = event.getEntity();
 
         if (target instanceof Player) {
@@ -222,6 +347,26 @@ public class ServerModEvents {
 
                 if (attacker.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_AttackAthena") == true) {
                     if (target.getName().equals(Component.literal(undramaticc.NAME))) {
+                        ((Monster) attacker).setTarget(null);
+                        event.setCanceled(true);
+                    }
+                }
+
+                if (attacker instanceof Silverfish) {
+                    if (target.getName().equals(Component.literal(TricoFan.NAME))) {
+                        ((Monster) attacker).setTarget(null);
+                        event.setCanceled(true);
+                    }
+                }
+
+                if (attacker instanceof EntityScraplet) {
+                    if (target.getName().equals(Component.literal(HixlePod.NAME))
+                            || target.getName().equals(Component.literal(AmbrosiaElf.NAME))
+                            || target.getName().equals(Component.literal(Blakpaw2244.NAME))
+                            || target.getName().equals(Component.literal(Folf_Gaming.NAME))
+                            || target.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+                        //Do nothing
+                    } else {
                         ((Monster) attacker).setTarget(null);
                         event.setCanceled(true);
                     }
@@ -243,21 +388,19 @@ public class ServerModEvents {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
 
-            if (event.getEntity().getName().equals(Component.literal(CrispyChordioid.NAME))) {
-                if (event.getEntity().getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown") == true) {
-                    event.getEntity().getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown", false);
+            if (player.getName().equals(Component.literal(CrispyChordioid.NAME))) {
+                if (player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown")) {
+                    player.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown", false);
 
-                    for (Entity e : event.getEntity().getServer().overworld().getAllEntities()) {
-                        if (e.position().distanceTo(event.getEntity().position()) < 5) {
-                            if (!e.equals(event.getEntity()) && !(e.getTeam() == player.getTeam())) {
+                    for (Entity e : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+                        if (e.position().distanceTo(player.position()) < 5) {
+                            if (!e.equals(player) && !(e.getTeam() == player.getTeam())) {
                                 e.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(5, player));
                             }
                         }
                     }
 
-                    for (ServerPlayer serverPlayer : player.getServer().getPlayerList().getPlayers()) {
-                        NetworkManager.sendToPlayer(new SpawnBlastParticleS2CPacket(), serverPlayer);
-                    }
+                    OriginsUtil.sendParticle(player.getServer().getLevel(player.getLevel().dimension()), ParticleTypes.EXPLOSION, player.position(), new Vec3(2,2,2), 0, 15);
 
                     player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1, 1);
 
@@ -269,10 +412,19 @@ public class ServerModEvents {
             if (player.getName().equals(Component.literal(Aniriai.NAME))) {
                 event.setDistance(event.getDistance() / 2);
             }
+
+            if (player.getName().equals(Component.literal(Stamce.NAME)) || player.getName().equals(Component.literal(matt4tea.NAME))) {
+                event.setDistance(event.getDistance() * 0.2f);
+            }
+
+            if (player.getName().equals(Component.literal(AmbrosiaElf.NAME)) || player.getName().equals(Component.literal(TricoFan.NAME))) {
+                event.setDistance(event.getDistance() * 0.75f);
+            }
         }
 
+
         if (event.getEntity().isAlive()) {
-            if (event.getEntity().getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_ZA_WARUDO") == true) {
+            if (event.getEntity().getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_ZA_WARUDO")) {
                 event.setDistance(0);
                 event.setDamageMultiplier(0);
             }
@@ -283,54 +435,61 @@ public class ServerModEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEatEventFinish(LivingEntityUseItemEvent.Finish event) {
 
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
+        if (event.getEntity() instanceof Player player) {
 
             if (player.getName().equals(Component.literal(HixlePod.NAME))
                     || player.getName().equals(Component.literal(AmbrosiaElf.NAME))
-                    || player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
+                    || player.getName().equals(Component.literal(Blakpaw2244.NAME))
+                    || player.getName().equals(Component.literal(Folf_Gaming.NAME))
+                    || player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
 
-                if (event.getItem().getItem().equals(ItemInit.ENERGON_CUBE.get())) {
-                    int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 60000);
+                int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
 
-                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 5 * 20, 3, true, false));
+                if (event.getItem().getItem().equals(ItemInit.ENERGON_CUBE.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 60000); }
+                if (event.getItem().getItem().equals(ItemInit.SYNTH_EN_CUBE.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 65000); }
+                if (event.getItem().getItem().equals(ItemInit.DARK_ENERGON_CUBE.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 70000); }
+                if (event.getItem().getItem().equals(ItemInit.RED_ENERGON_CUBE.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - 20000); }
+
+                if (event.getItem().getItem().equals(ItemInit.REFINED_ENERGON.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 8500); }
+                if (event.getItem().getItem().equals(ItemInit.REFINED_SYNTH_EN.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 9000); }
+                if (event.getItem().getItem().equals(ItemInit.REFINED_DARK_ENERGON.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 9500); }
+                if (event.getItem().getItem().equals(ItemInit.REFINED_RED_ENERGON.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - 2200); }
+
+                if (event.getItem().getItem().equals(ItemInit.ENERGON_BITS.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 2000); }
+                if (event.getItem().getItem().equals(ItemInit.SYNTH_EN_BITS.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 3000); }
+                if (event.getItem().getItem().equals(ItemInit.DARK_ENERGON_BITS.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 4000); }
+                if (event.getItem().getItem().equals(ItemInit.RED_ENERGON_BITS.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - 1000); }
+
+                if (event.getItem().getItem().equals(ItemInit.ENERJOLLY.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - 5000); }
+                if (event.getItem().getItem().equals(ItemInit.HYPER_ENERJOLLY.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - 7000); }
+                if (event.getItem().getItem().equals(ItemInit.BATTLE_DONUT.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 25000); }
+                if (event.getItem().getItem().equals(ItemInit.ENERGON_PIZZA.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 50000); }
+
+                if (event.getItem().getItem().equals(ItemInit.ENERGON_LOW_GRADE_DRINK.get())) {
+                    if (player.getName().equals(Component.literal(AmbrosiaElf.NAME))) {
+                        player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 55000);
+                    } else {
+                        player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 5000);
+                    }
                 }
 
-                if (event.getItem().getItem().equals(ItemInit.SYNTH_EN_CUBE.get())) {
-                    int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 65000);
+                if (event.getItem().getItem().equals(ItemInit.ENERGON_MID_GRADE_DRINK.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 14000); }
+                if (event.getItem().getItem().equals(ItemInit.SYNTH_EN_MID_GRADE_DRINK.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 14000); }
+                if (event.getItem().getItem().equals(ItemInit.DARK_MID_GRADE_DRINK.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 14000); }
+                if (event.getItem().getItem().equals(ItemInit.RED_MID_GRADE_DRINK.get())) { player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 14000); }
 
-                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20 * 20, 3, true, false));
-                    player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 120 * 20, 2, true, false));
+                if (event.getItem().getItem().equals(ItemInit.ENERGON_HIGH_GRADE_DRINK.get())) {
+                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 12000);
+                    player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 20 * 20, 0, true, false, true));
                 }
 
-                if (event.getItem().getItem().equals(ItemInit.DARK_ENERGON_CUBE.get())) {
-                    int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 70000);
-
-                    player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 120 * 20, 4, true, false));
-                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 30 * 20, 4, true, false));
-                    player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300 * 20, 1, true, false));
-                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300 * 20, 1, true, false));
+                if (event.getItem().getItem().equals(ItemInit.DARK_HIGH_GRADE_DRINK.get())) {
+                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", energon + 12000);
+                    player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 60 * 20, 0, true, false, true));
+                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60 * 20, 0, true, false, true));
+                    player.addEffect(new MobEffectInstance(EffectsInit.MALFUNCTION.get(), 60 * 20, 0, true, false, true));
                 }
 
-
-
-                if (event.getItem().getItem().equals(ItemInit.REFINED_ENERGON.get())) {
-                    int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 8500);
-                }
-
-                if (event.getItem().getItem().equals(ItemInit.REFINED_SYNTH_EN.get())) {
-                    int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 9000);
-                }
-
-                if (event.getItem().getItem().equals(ItemInit.REFINED_DARK_ENERGON.get())) {
-                    int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon + 9500);
-                }
             }
         }
     }
@@ -368,23 +527,6 @@ public class ServerModEvents {
             }
         }
     }
-
-    /*
-    @SubscribeEvent
-    public static void onArmourEquipt(LivingEquipmentChangeEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-
-            if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-                if (event.getSlot().getType() == EquipmentSlot.Type.ARMOR) {
-                    if (Arrays.asList(Electrum_Star_Banned_Armour).contains(event.getSlot().getIndex(0))) {
-                        player.getSlot(0).set(new ItemStack(Items.AIR));
-                    }
-                }
-            }
-        }
-    }
-     */
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPlayerDamage(LivingHurtEvent event) {
@@ -425,9 +567,7 @@ public class ServerModEvents {
                 }
             }
 
-            if (player.getName().equals(Component.literal(Electrum_Star.NAME)) ||
-                    player.getName().equals(Component.literal(CatGirlSeeka.NAME)) ||
-                        player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
+            if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
 
                 int chance = OriginsUtil.randomInt(1, 100);
 
@@ -439,6 +579,22 @@ public class ServerModEvents {
                     item.position().equals(player.position());
 
                     player.getLevel().addFreshEntity(item);
+                }
+            }
+
+            if (player.getName().equals(Component.literal(TricoFan.NAME))) {
+
+                if (OriginsUtil.randomInt(1, 100) <= 40) {
+
+                    Entity entity = EntityType.SILVERFISH.create(player.getLevel());
+
+                    entity.moveTo(player.position());
+
+                    //if (event.getSource().getEntity() instanceof ) {
+                        //entity
+                    //}
+
+                    player.getLevel().addFreshEntity(entity);
                 }
             }
 
@@ -459,6 +615,10 @@ public class ServerModEvents {
                 player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GOAT_HURT, SoundSource.PLAYERS, 1, 2);
             }
 
+            if (player.getName().equals(Component.literal(TricoFan.NAME))) {
+                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.SILVERFISH_HURT, SoundSource.PLAYERS, 1, 2);
+            }
+
             if (player.getName().equals(Component.literal(gh0stlure.NAME))) {
 
                 player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BAT_HURT, SoundSource.PLAYERS, 1, 1);
@@ -466,6 +626,22 @@ public class ServerModEvents {
                 if (event.getSource().equals(DamageSource.FLY_INTO_WALL)) {
                     event.setAmount(event.getAmount() * 2);
                 }
+            }
+
+            if (player.getName().equals(Component.literal(AmbrosiaElf.NAME))) {
+                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BELL_BLOCK, SoundSource.PLAYERS, 1, 2);
+            }
+            if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
+                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BELL_BLOCK, SoundSource.PLAYERS, 1, 0);
+            }
+            if (player.getName().equals(Component.literal(HixlePod.NAME))) {
+                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 2);
+            }
+            if (player.getName().equals(Component.literal(Folf_Gaming.NAME))) {
+                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 1.5f);
+            }
+            if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 0.5f);
             }
         }
     }

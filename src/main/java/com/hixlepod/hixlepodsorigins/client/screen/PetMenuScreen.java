@@ -1,19 +1,11 @@
 package com.hixlepod.hixlepodsorigins.client.screen;
 
-import com.hixlepod.hixlepodsorigins.common.Pets.PetsManager;
-import com.hixlepod.hixlepodsorigins.common.Pets.Utils.SendPetInfoPacket;
+import com.hixlepod.hixlepodsorigins.core.networking.packet.SendPetInfoPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
-import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability1C2SPacket;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 
 public class PetMenuScreen extends Screen {
 

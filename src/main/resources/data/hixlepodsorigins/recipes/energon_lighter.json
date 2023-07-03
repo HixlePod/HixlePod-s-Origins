@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "F"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:refined_energon"
+    },
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:energon_lighter",
+    "count": 1
+  }
+}

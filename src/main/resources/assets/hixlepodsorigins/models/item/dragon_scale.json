@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "hixlepodsorigins:items/dragon_scale",
-    "particle": "dragon_scale"
+    "particle": "hixlepodsorigins:items/dragon_scale"
   }
 }

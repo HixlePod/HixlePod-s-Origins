@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#H#",
+    "/##"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:sugar_cube"
+    },
+    "H": {
+      "item": "hixlepodsorigins:red_energon_cube"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:hyper_enerjolly",
+    "count": 1
+  }
+}

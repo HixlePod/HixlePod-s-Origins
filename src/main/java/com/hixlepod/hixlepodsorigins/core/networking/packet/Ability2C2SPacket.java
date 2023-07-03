@@ -2,10 +2,10 @@ package com.hixlepod.hixlepodsorigins.core.networking.packet;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.CrispyChordioid;
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.Electrum_Star;
+import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
-import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -34,6 +34,7 @@ public class Ability2C2SPacket {
             //Server
             ServerPlayer player = context.getSender();
 
+            if (OriginSettings.TRIGGER_ABILITIES_ENABLED) {
                 if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown2") == 0) {
 
                     player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown2", OriginsManager.returnAbilityMaxCooldown2(player));
@@ -42,6 +43,9 @@ public class Ability2C2SPacket {
 
                 } else {
                 }
+            } else {
+                player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Origin trigger abilities have been disabled by the server administrator."));
+            }
         });
         return true;
     }
@@ -59,9 +63,6 @@ public class Ability2C2SPacket {
         } else if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
             Blakpaw2244.Ability2(player);
 
-        } else if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-            Electrum_Star.Ability2(player);
-
         } else if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
             Flo_Plays_.Ability2(player);
 
@@ -71,8 +72,8 @@ public class Ability2C2SPacket {
         } else if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
             CatGirlSeeka.Ability2(player);
 
-        } else if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-            ArtificalMemes.Ability2(player);
+        } else if (player.getName().equals(Component.literal(Stamce.NAME))) {
+            Stamce.Ability2(player);
 
         }
     }

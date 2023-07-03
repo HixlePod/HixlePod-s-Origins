@@ -17,7 +17,13 @@ import net.minecraft.world.item.Items;
 
 public class undramaticc {
 
-    public static String NAME = "undras";
+    public static String NAME = "saod";
+
+    public static void setAbilityData(Player player) {
+        player.getAbilities().setFlyingSpeed(0.03F);
+        player.getAbilities().mayfly = true;
+        player.getServer().getPlayerList().getPlayerByName(undramaticc.NAME).onUpdateAbilities();
+    }
 
     public static void Ability1(ServerPlayer player) {
         //Fudge105.isInvisible = true;
@@ -41,7 +47,7 @@ public class undramaticc {
             int health = (int) player.getHealth();
 
             //The lower the health the higher the damage
-            attack_multiplier = 3.0 + (20 - health) * 0.15;
+            attack_multiplier = 3.0 + (20 - health) * 0.175;
 
             player.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(attack_multiplier);
         }

@@ -1,9 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Pets.EntityCompass;
-import com.hixlepod.hixlepodsorigins.common.Pets.EntityEcho;
-import net.minecraft.client.model.ColorableAgeableListModel;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityCompass;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -14,7 +12,6 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.ambient.Bat;
 
 public class CompassModel extends HierarchicalModel<EntityCompass> {
     private final ModelPart root;

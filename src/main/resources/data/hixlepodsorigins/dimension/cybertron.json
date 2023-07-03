@@ -1,0 +1,11 @@
+{
+  "type": "hixlepodsorigins:cybertron",
+  "generator": {
+    "biome_source": {
+      "biome": "hixlepodsorigins:cybertron_main_biome",
+      "type": "minecraft:fixed"
+    },
+    "settings": "hixlepodsorigins:cybertron_noise_settings",
+    "type": "minecraft:noise"
+  }
+}

@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "hixlepodsorigins:items/unrefined_dark_energon",
-    "particle": "unrefined_dark_energon"
+    "particle": "hixlepodsorigins:items/unrefined_dark_energon"
   }
 }

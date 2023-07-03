@@ -53,7 +53,7 @@ public class Fudge105 {
     public static void tick(Player player) {
         if (player.getName().equals(Component.literal(Fudge105.NAME))) {
 
-            if (!player.isInWaterOrRain() && player.getServer().overworld().isDay() && isUnderBlock(player)) {
+            if (!player.isInWaterOrRain() && player.getServer().overworld().isDay() && isUnderBlock(player) && player.getLevel().dimension() == Level.OVERWORLD) {
                 if (!player.hasEffect(MobEffects.FIRE_RESISTANCE)) {
                     if (player.isOnFire()) {
                         if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_FireDamageCooldown") != 0) {

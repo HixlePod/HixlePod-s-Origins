@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeMod;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class Aniriai {
 
@@ -21,6 +22,8 @@ public class Aniriai {
         player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.3);
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(17.0);
         player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).setBaseValue(3.0);
+
+        ScaleTypes.HEIGHT.getScaleData(player).setScale(1.065f);
     }
 
     public static void Ability1(ServerPlayer player) {

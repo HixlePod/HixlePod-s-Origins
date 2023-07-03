@@ -1,16 +1,13 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.items.HolyLyre.HolyLyreGui;
-import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys.GodOfFurrys;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class HixlePod {
 
@@ -21,10 +18,16 @@ public class HixlePod {
 
     public static double ENERGON_AMOUNT = 6000.0;
 
+    public static void SetEnergon(Player player) {
+        player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", 6000 * OriginsManager.ticks);
+    }
+
     public static void setStats(Player player) {
         player.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(2.5);
         DEFENCE = 65.0F;
-        player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon", 6000 * OriginsManager.ticks);
+
+        ScaleTypes.HEIGHT.getScaleData(player).setScale(1.09f);
+        ScaleTypes.WIDTH.getScaleData(player).setScale(1.085f);
     }
 
     public static void Ability1(Player player) {

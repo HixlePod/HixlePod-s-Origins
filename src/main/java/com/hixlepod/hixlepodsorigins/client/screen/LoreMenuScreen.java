@@ -1,32 +1,32 @@
 package com.hixlepod.hixlepodsorigins.client.screen;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Pets.Utils.SendPetInfoPacket;
-import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-
-import java.awt.font.FontRenderContext;
 
 public class LoreMenuScreen extends Screen {
 
     private static String Title = "";
+
+    //Lore Menu
     private static String Quote = "";
     private static int QuotePosition = 0;
 
     private static String Description = "";
+    private MultiLineLabel message = MultiLineLabel.EMPTY;
+
+    private static int TheJournalPage = 1;
+
+    //World laws
 
     private static int WorldLawsPage = 1;
-    private static int TheJournalPage = 1;
 
     private enum Page {
         WORLD_LAWS,
@@ -57,6 +57,8 @@ public class LoreMenuScreen extends Screen {
         //Page buttons
         addRenderableWidget(new Button(((this.width / 2) - 30) - 10, this.height - 25, 20, 20, Component.literal("<-"), LoreMenuScreen::LeftButton));
         addRenderableWidget(new Button(((this.width / 2) + 30) - 10, this.height - 25, 20, 20, Component.literal("->"), LoreMenuScreen::RightButton));
+
+        this.message = MultiLineLabel.create(this.font, Component.literal(Description), (this.width / 2) - 15);
     }
 
     private static final ResourceLocation WHAT_EVER_THIS_IS = new ResourceLocation(HixlePodsOrigins.MODID, "textures/lorebook/characters/whatever_this_is.png");
@@ -76,6 +78,9 @@ public class LoreMenuScreen extends Screen {
         drawString(poseStack, this.font, Component.literal(Title), (this.width / 2) - 23, 15, 13158600);
 
         drawString(poseStack, this.font, Component.literal(Quote), QuotePosition, 30, 6451573);
+
+        int i = this.width / 2 - this.message.getWidth() / 2;
+        this.message.renderLeftAligned(poseStack, i, 70, 9 * 2, 16777215);
 
         int scale = 77;
 
@@ -153,6 +158,17 @@ public class LoreMenuScreen extends Screen {
                 Quote = ChatFormatting.ITALIC + "\"Predictably unpredictable… what a free yet trapped spirit.\"";
                 QuotePosition = 115;
                 CURRENT_RESOURCE = WHIRL_SKETCH;
+                Description = "This inhabitant, ‘Whirl’, appears to be the leader of " +
+                        "‘The Wreckers’ faction. On his own he’s of little threat, and " +
+                        "yet somehow has managed to coerce the cooperation of two rather " +
+                        "dangerous individuals. For all that she’s petty, childish, and " +
+                        "impulsive, she’s quick to use her powers in many given circumstances. " +
+                        "A power that aids allies and detriments enemies. He holds little " +
+                        "interest in getting his hands dirty, perhaps aware of his own weaknesses " +
+                        "even if he may not acknowledge them. Perhaps amongst the few in this " +
+                        "world without a secret to tell, Whirl simply enjoys the present and " +
+                        "cares little for the past and future. Though, admittedly, the lack of " +
+                        "secrets may have to do with their inability to internalise their thoughts.";
 
             } else if (TheJournalPage == 2) {
                 Title = "Journal - Whisper";
@@ -173,10 +189,12 @@ public class LoreMenuScreen extends Screen {
         } else if (CurrentPage == Page.WORLD_LAWS) {
             Title = "World Laws";
             Quote = "";
+            Description = "";
 
         } else if (CurrentPage == Page.PLACEHOLDER) {
             Title = "Placeholder";
             Quote = "";
+            Description = "";
         }
     }
 }

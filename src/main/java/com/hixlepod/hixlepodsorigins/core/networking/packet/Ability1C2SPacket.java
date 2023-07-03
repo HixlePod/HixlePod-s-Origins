@@ -3,10 +3,10 @@ package com.hixlepod.hixlepodsorigins.core.networking.packet;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;
-import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid.CrispyChordioid;
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.Electrum_Star;
+import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
-import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -35,13 +35,17 @@ public class Ability1C2SPacket {
             //Server
             ServerPlayer player = context.getSender();
 
-            if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown1") == 0) {
+            if (OriginSettings.TRIGGER_ABILITIES_ENABLED) {
+                if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown1") == 0) {
 
-                player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown1", OriginsManager.returnAbilityMaxCooldown1(player));
+                    player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown1", OriginsManager.returnAbilityMaxCooldown1(player));
 
-                playerAbilities1(player);
+                    playerAbilities1(player);
 
+                } else {
+                }
             } else {
+                player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Origin trigger abilities have been disabled by the server administrator."));
             }
         });
         return true;
@@ -76,9 +80,6 @@ public class Ability1C2SPacket {
         } else if (player.getName().equals(Component.literal(HixlePod.NAME))) {
             HixlePod.Ability1(player);
 
-        } else if (player.getName().equals(Component.literal(Electrum_Star.NAME))) {
-            Electrum_Star.Ability1(player);
-
         } else if (player.getName().equals(Component.literal(Maxwell.NAME))) {
             Maxwell.Ability1(player);
 
@@ -94,8 +95,23 @@ public class Ability1C2SPacket {
         } else if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
             CatGirlSeeka.Ability1(player);
 
-        } else if (player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-            ArtificalMemes.Ability1(player);
+        } else if (player.getName().equals(Component.literal(ofcourseidid.NAME))) {
+            ofcourseidid.Ability1(player);
+
+        } else if (player.getName().equals(Component.literal(Folf_Gaming.NAME))) {
+            Folf_Gaming.Ability1(player);
+
+        } else if (player.getName().equals(Component.literal(matt4tea.NAME))) {
+            matt4tea.Ability1(player);
+
+        } else if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
+            KyoWing3809.Ability1(player);
+
+        } else if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            Kira_uwu69.Ability1(player);
+
+        } else if (player.getName().equals(Component.literal(Stamce.NAME))) {
+            Stamce.Ability1(player);
 
         }
     }

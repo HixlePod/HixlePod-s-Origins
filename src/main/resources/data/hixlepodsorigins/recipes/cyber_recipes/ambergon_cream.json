@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#S#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:sugar_cube"
+    },
+    "S": {
+      "item": "hixlepodsorigins:ambergon_bucket"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:ambergon_cream",
+    "count": 16
+  }
+}

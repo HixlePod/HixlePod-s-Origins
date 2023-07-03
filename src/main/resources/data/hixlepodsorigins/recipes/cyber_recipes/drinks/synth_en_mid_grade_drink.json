@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "R",
+    "G"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:refined_synth_en"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:synth_en_mid_grade_drink",
+    "count": 1
+  }
+}

@@ -33,7 +33,7 @@ public class matt4tea {
 
                 if (EXTREME_FOCUS) {
                     player.hurtMarked = true;
-                    player.setDeltaMovement(player.getDeltaMovement().add(0, 1.0, 0));
+                    player.setDeltaMovement(player.getDeltaMovement().add(0, 0.2, 0));
                 }
             }
 

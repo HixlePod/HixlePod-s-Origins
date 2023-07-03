@@ -1,28 +1,32 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.EntityOverrides.WanderingTraderOverride;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
-import com.hixlepod.hixlepodsorigins.common.origins.Electrum_Star.Electrum_Star;
-import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
+import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
+import com.hixlepod.hixlepodsorigins.core.init.CommandsInnit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.npc.WanderingTrader;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.WitherSkeleton;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.BasicItemListing;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,91 +37,146 @@ import java.util.Arrays;
 @Mod.EventBusSubscriber(modid = HixlePodsOrigins.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GameplayEvents {
 
-    static Item[] DRAGONS_BANNED_FOOD = {Items.APPLE, Items.MUSHROOM_STEW, Items.COOKIE, Items.MELON_SLICE, Items.DRIED_KELP, Items.CARROT,
-            Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO, Items.PUMPKIN_PIE, Items.BEETROOT, Items.BEETROOT_SOUP,
-            Items.SWEET_BERRIES, Items.GLOW_BERRIES, Items.HONEY_BOTTLE};
+    static String[] ROBOTS = {HixlePod.NAME, AmbrosiaElf.NAME, Blakpaw2244.NAME, Kira_uwu69.NAME, Folf_Gaming.NAME};
 
-    static Item[] KYOWING_BANNED_FOODS = {Items.MUSHROOM_STEW, Items.PORKCHOP, Items.COOKED_PORKCHOP,
-            Items.COD, Items.SALMON, Items.TROPICAL_FISH, Items.PUFFERFISH, Items.COOKED_COD, Items.COOKED_SALMON, Items.COOKIE,
-            Items.MELON_SLICE, Items.DRIED_KELP, Items.BEEF, Items.COOKED_BEEF, Items.CHICKEN, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH,
-            Items.SPIDER_EYE, Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO, Items.PUMPKIN_PIE, Items.RABBIT,
-            Items.COOKED_RABBIT, Items.RABBIT_STEW, Items.MUTTON, Items.COOKED_MUTTON, Items.BEETROOT, Items.BEETROOT_SOUP, Items.SWEET_BERRIES,
-            Items.GLOW_BERRIES, Items.HONEY_BOTTLE, Items.BOW, Items.CROSSBOW, Items.WOODEN_SWORD, Items.IRON_SWORD,
-            Items.STONE_SWORD, Items.GOLDEN_SWORD, Items.DIAMOND_SWORD, Items.NETHERITE_SWORD};
-
-    static Item[] GHOSTLURE_BANNED_FOODS = {Items.MUSHROOM_STEW, Items.BREAD, Items.COOKED_PORKCHOP, Items.COOKED_COD,
-            Items.COOKED_SALMON, Items.COOKIE, Items.DRIED_KELP, Items.COOKED_BEEF, Items.COOKED_CHICKEN,
-            Items.CARROT, Items.POTATO, Items.BAKED_POTATO, Items.PUMPKIN_PIE, Items.COOKED_RABBIT, Items.RABBIT_STEW,
-            Items.COOKED_MUTTON, Items.BEETROOT, Items.BEETROOT_SOUP};
-
-    static Item[] ANIRIAL_BANNED_FOODS = {Items.PORKCHOP, Items.COOKED_PORKCHOP, Items.COD, Items.SALMON, Items.TROPICAL_FISH, Items.PUFFERFISH,
-            Items.COOKED_COD, Items.COOKED_SALMON, Items.BEEF, Items.COOKED_BEEF, Items.CHICKEN, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH,
-            Items.SPIDER_EYE, Items.RABBIT, Items.COOKED_RABBIT, Items.RABBIT_STEW, Items.MUTTON, Items.COOKED_MUTTON};
-
-    static Item[] GOAT_EAT = {ItemInit.CUSTOM_COAL.get(), ItemInit.CUSTOM_CHARCOAL.get(), ItemInit.CUSTOM_DIAMOND.get(), ItemInit.CUSTOM_EMERALD.get(),
-            ItemInit.CUSTOM_LAPIS_LAZULI.get(), ItemInit.CUSTOM_RAW_COPPER.get(), ItemInit.CUSTOM_COPPER_INGOT.get(), ItemInit.CUSTOM_RAW_GOLD.get(),
-            ItemInit.CUSTOM_GOLD_INGOT.get(), ItemInit.CUSTOM_NETHERITE_INGOT.get(), ItemInit.CUSTOM_NETHERITE_SCRAP.get(), ItemInit.CUSTOM_STICK.get(),
-            ItemInit.CUSTOM_RAW_IRON.get(), ItemInit.CUSTOM_IRON_INGOT.get(), ItemInit.CUSTOM_PAPER.get(), ItemInit.CUSTOM_BOOK.get(), ItemInit.CUSTOM_GUNPOWDER.get(),
-            ItemInit.CUSTOM_SLIMEBALL.get(), ItemInit.CUSTOM_TOTEM_OF_UNDYING.get(), ItemInit.CUSTOM_BROWN_MUSHROOM.get(), ItemInit.CUSTOM_RED_MUSHROOM.get(),
-            ItemInit.CUSTOM_DIRT.get()};
-
-    static Item[] TRANSFORMER_BANNED_FOODS = {Items.APPLE, Items.MUSHROOM_STEW, Items.BREAD, Items.PORKCHOP, Items.COOKED_PORKCHOP,
-            Items.COD, Items.SALMON, Items.TROPICAL_FISH, Items.PUFFERFISH, Items.COOKED_COD, Items.COOKED_SALMON, Items.COOKIE,
-            Items.MELON_SLICE, Items.DRIED_KELP, Items.BEEF, Items.COOKED_BEEF, Items.CHICKEN, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH,
-            Items.SPIDER_EYE, Items.CARROT, Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO, Items.PUMPKIN_PIE, Items.RABBIT,
-            Items.COOKED_RABBIT, Items.RABBIT_STEW, Items.MUTTON, Items.COOKED_MUTTON, Items.BEETROOT, Items.BEETROOT_SOUP, Items.SWEET_BERRIES,
-            Items.GLOW_BERRIES, Items.HONEY_BOTTLE, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE};
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onEatEvent(LivingEntityUseItemEvent.Start event) {
+    public static void onEatStartEvent(LivingEntityUseItemEvent.Start event) {
 
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
 
-            if (player.getName().equals(Component.literal(Electrum_Star.NAME)) || player.getName().equals(Component.literal(CatGirlSeeka.NAME)) || player.getName().equals(Component.literal(ArtificalMemes.NAME))) {
-                if (Arrays.asList(DRAGONS_BANNED_FOOD).contains(player.getMainHandItem().getItem())) {
+            if (Arrays.asList(ROBOTS).contains(player.getName().getString())) {
+                if (Arrays.asList(FoodLists.TRANSFORMER_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
+                    event.setCanceled(true);
+                }
+
+            }
+
+            if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
+                if (Arrays.asList(FoodLists.DRAGONS_BANNED_FOOD).contains(player.getMainHandItem().getItem())) {
 
                     event.setCanceled(true);
                 }
             }
 
             if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
-                if (Arrays.asList(KYOWING_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
+                if (Arrays.asList(FoodLists.KYOWING_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
                     event.setCanceled(true);
                 }
             }
 
             if (player.getName().equals(Component.literal(gh0stlure.NAME))) {
-                if (Arrays.asList(GHOSTLURE_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
+                if (Arrays.asList(FoodLists.GHOSTLURE_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
+                    event.setCanceled(true);
+                }
+            } else {
+                if (player.getMainHandItem().getItem().equals(ItemInit.BLOOD_BONE.get())) {
                     event.setCanceled(true);
                 }
             }
 
             if (player.getName().equals(Component.literal(Aniriai.NAME))) {
-                if (Arrays.asList(ANIRIAL_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
+                if (Arrays.asList(FoodLists.ANIRIAL_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
                     event.setCanceled(true);
                 }
             } else {
-                if (Arrays.asList(GOAT_EAT).contains(player.getMainHandItem().getItem())) {
-                    event.setCanceled(true);
-                }
-            }
-
-            if (player.getName().equals(Component.literal(HixlePod.NAME)) || player.getName().equals(Component.literal(AmbrosiaElf.NAME)) || player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
-
-                if (Arrays.asList(TRANSFORMER_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
-                    event.setCanceled(true);
-                }
-
-            } else {
-                if (player.getMainHandItem().getItem().equals(ItemInit.ENERGON_CUBE.get()) || player.getMainHandItem().getItem().equals(ItemInit.SYNTH_EN_CUBE.get()) || player.getMainHandItem().getItem().equals(ItemInit.DARK_ENERGON_CUBE.get())
-                 || player.getMainHandItem().getItem().equals(ItemInit.REFINED_ENERGON.get()) || player.getMainHandItem().getItem().equals(ItemInit.REFINED_SYNTH_EN.get()) || player.getMainHandItem().getItem().equals(ItemInit.REFINED_DARK_ENERGON.get())) {
+                if (Arrays.asList(FoodLists.GOAT_FOODS).contains(player.getMainHandItem().getItem())) {
                     event.setCanceled(true);
                 }
             }
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onEatFinishEvent(LivingEntityUseItemEvent.Finish event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+
+            if (!Arrays.asList(ROBOTS).contains(player.getName().getString())) {
+                if (Arrays.asList(FoodLists.TRANSFORMER_FOODS).contains(player.getMainHandItem().getItem())) {
+
+                    OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLootLoad(LivingDropsEvent event) {
+       if (event.getEntity() instanceof Skeleton || event.getEntity() instanceof Zombie ||
+               event.getEntity() instanceof WitherSkeleton || event.getEntity() instanceof Creeper) {
+
+           event.getDrops().add(new ItemEntity(event.getEntity().getLevel(),
+                   event.getEntity().position().x(),
+                   event.getEntity().position().y(),
+                   event.getEntity().position().z(), new ItemStack(ItemInit.BLOOD_BONE.get())));
+       }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void blockPlaceEvent(BlockEvent.EntityPlaceEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+
+            if (event.getPlacedBlock().getBlock() == BlockInit.GROUND_BRIDGE_BLOCK.get()) {
+                if (player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge")) {
+                    player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You are either flexing or trying to trap people. nice try."));
+                    event.setCanceled(true);
+                    return;
+                }
+
+                player.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge", true);
+
+                CompoundTag GroundBridge = new CompoundTag();
+
+                GroundBridge.putDouble("PosX", event.getPos().getX());
+                GroundBridge.putDouble("PosY", event.getPos().getY());
+                GroundBridge.putDouble("PosZ", event.getPos().getZ());
+
+                player.getPersistentData().put(HixlePodsOrigins.MODID + "_GroundBridgeBlock", GroundBridge);
+
+                player.sendSystemMessage(Component.literal(ChatFormatting.GOLD + "You now have access to Ground Bridge commands, type '/groundbridge HELP' for more information."));
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void blockBreakEvent(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof Player) {
+            Player player = event.getPlayer();
+
+            if (event.getState().getBlock() == BlockInit.GROUND_BRIDGE_BLOCK.get()) {
+
+                CompoundTag GroundBridge = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_GroundBridgeBlock");
+
+                BlockPos blockPos = event.getPos();
+
+                if (blockPos.getX() == GroundBridge.getDouble("PosX") &&
+                        blockPos.getY() == GroundBridge.getDouble("PosY") &&
+                        blockPos.getZ() == GroundBridge.getDouble("PosZ")) {
+                    player.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge", false);
+                    player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You no longer have access to ground bridge commands."));
+                } else {
+                    player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You cannot break other people's ground bridges."));
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void DisplayName(PlayerEvent.NameFormat event) {
+        Player player = event.getEntity();
+
+        String name = player.getPersistentData().getString(HixlePodsOrigins.MODID + "_CustomDisplayName");
+
+        if (!name.isEmpty()) {
+            event.getEntity().setCustomName(Component.literal(name));
+            event.setDisplayname(Component.literal(name));
+        }
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void WanderingTraderTrades(WandererTradesEvent event) {
@@ -181,4 +240,8 @@ public class GameplayEvents {
     }
 
      */
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event){
+        CommandsInnit.Register(event.getDispatcher());
+    }
 }
