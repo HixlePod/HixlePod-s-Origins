@@ -1,7 +1,7 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer;
+package com.hixlepod.hixlepodsorigins.client.Renderer.Pets;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.RuneModel;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets.RuneModel;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityRune;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

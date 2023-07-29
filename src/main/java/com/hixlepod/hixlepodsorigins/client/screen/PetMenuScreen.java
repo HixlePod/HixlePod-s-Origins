@@ -1,5 +1,6 @@
 package com.hixlepod.hixlepodsorigins.client.screen;
 
+import com.hixlepod.hixlepodsorigins.common.events.ClientModEvents;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.SendPetInfoPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import net.minecraft.ChatFormatting;
@@ -37,10 +38,12 @@ public class PetMenuScreen extends Screen {
 
     private static void SummonPet(Button button) {
         NetworkManager.sendToServer(new SendPetInfoPacket(0));
+        ClientModEvents.ClientForgeEvents.isPetOut = true;
     }
 
     private static void UnsummonPet(Button button) {
         NetworkManager.sendToServer(new SendPetInfoPacket(1));
+        ClientModEvents.ClientForgeEvents.isPetOut = false;
     }
 
     private static void SetFriendly(Button button) {

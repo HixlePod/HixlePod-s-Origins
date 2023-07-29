@@ -18,12 +18,17 @@ public class CommonModEvents {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
+        //Mobs
+        event.put(EntityInit.BLUE_SLIME.get(), EntityBlueSlime.createAttributes().build());
+
         //PETS
         event.put(EntityInit.ECHO.get(), EntityEcho.createAttributes().build());
         event.put(EntityInit.COMPASS.get(), EntityCompass.createAttributes().build());
         event.put(EntityInit.RUNE.get(), EntityRune.createAttributes().build());
         event.put(EntityInit.PUMKIN.get(), EntityPumkin.createAttributes().build());
         event.put(EntityInit.DRAGON_SLAYER.get(), EntityDragonSlayer.createAttributes().build());
+        event.put(EntityInit.POSSUM.get(), EntityPossum.createAttributes().build());
+
 
         //CYBER MOBS
         event.put(EntityInit.CYBERTRON_PIG.get(), EntityCybertronPig.createAttributes().build());

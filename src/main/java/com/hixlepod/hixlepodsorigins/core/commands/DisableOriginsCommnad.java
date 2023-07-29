@@ -76,6 +76,27 @@ public class DisableOriginsCommnad {
         return 1;
     }
 
+    public static int CHANGE_GROUND_BRIDGE_ENABLED(CommandSourceStack source, String status) {
+
+        if (source.isPlayer()) {
+
+            Player player = source.getPlayer();
+
+            if (status.equals("ENABLE")) {
+                OriginSettings.GROUND_BRIDGE_ENABLED = true;
+                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ground bridges have been enabled."));
+
+            } else if (status.equals("DISABLE")) {
+                OriginSettings.GROUND_BRIDGE_ENABLED = false;
+                player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Ground bridges have been disabled."));
+
+            } else {
+                player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Error: Only 2 acceptable values, ENABLE and DISABLE. You typed " + status));
+            }
+        }
+        return 1;
+    }
+
     public static int CHANGE_ALL(CommandSourceStack source, String status) {
 
         if (source.isPlayer()) {
@@ -86,6 +107,7 @@ public class DisableOriginsCommnad {
                 OriginSettings.TRIGGER_ABILITIES_ENABLED = true;
                 OriginSettings.PETS_ENABLED = true;
                 OriginSettings.SITTING_ENABLED = true;
+                OriginSettings.GROUND_BRIDGE_ENABLED = true;
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "All categories have been enabled."));
 
@@ -93,6 +115,7 @@ public class DisableOriginsCommnad {
                 OriginSettings.TRIGGER_ABILITIES_ENABLED = false;
                 OriginSettings.PETS_ENABLED = false;
                 OriginSettings.SITTING_ENABLED = false;
+                OriginSettings.GROUND_BRIDGE_ENABLED = false;
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "All categories have been disabled."));
 

@@ -14,6 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -22,6 +23,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeMod;
 import virtuoel.pehkui.Pehkui;
 import virtuoel.pehkui.api.ScaleTypes;
+
+import java.util.Arrays;
 
 public class KyoWing3809 {
 
@@ -57,19 +60,23 @@ public class KyoWing3809 {
 
     }
 
+    static Block[] GOOD_BLOCKS = {Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK, Blocks.MOSS_CARPET};
+
     public static void tick(Player player) {
         if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
             for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
                 if (entity instanceof LivingEntity) {
 
                     if (entity.position().distanceTo(player.position()) < 30) {
-                        if (entity.equals(player) || entity.getTeam() == player.getTeam() || entity.getType() == EntityType.HORSE ||
-                            entity.getType() == EntityType.DONKEY || entity.getType() == EntityType.SKELETON_HORSE) {
+                        if (entity.equals(player) || entity.getTeam() == player.getTeam() || entity instanceof Animal) {
 
                             if (!((LivingEntity) entity).hasEffect(MobEffects.REGENERATION)) {
                                 ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 8 * 20, 1, true, false));
                             }
-                            player.getServer().getLevel(player.getLevel().dimension()).sendParticles(ParticleTypes.HAPPY_VILLAGER, entity.position().x() + OriginsUtil.randomDouble(-0.45, 0.45), entity.position().y() + OriginsUtil.randomDouble(0.3, 1.2), entity.position().z() + OriginsUtil.randomDouble(-0.45, 0.45), 0, 0.4d, 1d, 0.4d, 0d);
+
+                            if (OriginsUtil.didChance(10)) {
+                                player.getServer().getLevel(player.getLevel().dimension()).sendParticles(ParticleTypes.HAPPY_VILLAGER, entity.position().x(), entity.position().y(), entity.position().z(), 3, 0.45d, 1d, 0.45d, 0.1);
+                            }
                         }
                     }
                 }
@@ -83,7 +90,7 @@ public class KyoWing3809 {
             Block block2 = player.getLevel().getBlockState(blockPos2).getBlock();
             Block block3 = player.getLevel().getBlockState(blockPos3).getBlock();
 
-            if (block1 == Blocks.GRASS_BLOCK || block2 == Blocks.GRASS_BLOCK || block3 == Blocks.GRASS_BLOCK) {
+            if (Arrays.asList(GOOD_BLOCKS).contains(block1) || Arrays.asList(GOOD_BLOCKS).contains(block2) || Arrays.asList(GOOD_BLOCKS).contains(block3)) {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2 * 20, 0, true, false));
             } else {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0, true, false));
@@ -91,6 +98,9 @@ public class KyoWing3809 {
             }
 
             if (GROW_PLANTS) {
+                if (OriginsUtil.didChance(15)) {
+                    player.getServer().getLevel(player.getLevel().dimension()).sendParticles(ParticleTypes.ELECTRIC_SPARK, player.position().x(), player.position().y() + player.getEyeHeight() + 0.5, player.position().z(), 3, 0.05d, 0.1d, 0.05d, 0.1);
+                }
                 if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_LET_IT_GROWW") != 0) {
                     player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_LET_IT_GROWW",
                             player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_LET_IT_GROWW") - 1);

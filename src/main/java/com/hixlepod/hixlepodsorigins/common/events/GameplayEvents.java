@@ -1,6 +1,8 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCreeper;
+import com.hixlepod.hixlepodsorigins.common.NPCs.NPCManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
 import com.hixlepod.hixlepodsorigins.core.init.CommandsInnit;
@@ -23,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -37,8 +40,6 @@ import java.util.Arrays;
 @Mod.EventBusSubscriber(modid = HixlePodsOrigins.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GameplayEvents {
 
-    static String[] ROBOTS = {HixlePod.NAME, AmbrosiaElf.NAME, Blakpaw2244.NAME, Kira_uwu69.NAME, Folf_Gaming.NAME};
-
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEatStartEvent(LivingEntityUseItemEvent.Start event) {
@@ -46,7 +47,7 @@ public class GameplayEvents {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
 
-            if (Arrays.asList(ROBOTS).contains(player.getName().getString())) {
+            if (Arrays.asList(FoodLists.ROBOTS).contains(player.getName())) {
                 if (Arrays.asList(FoodLists.TRANSFORMER_BANNED_FOODS).contains(player.getMainHandItem().getItem())) {
                     event.setCanceled(true);
                 }
@@ -88,13 +89,15 @@ public class GameplayEvents {
         }
     }
 
+
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEatFinishEvent(LivingEntityUseItemEvent.Finish event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
 
-            if (!Arrays.asList(ROBOTS).contains(player.getName().getString())) {
-                if (Arrays.asList(FoodLists.TRANSFORMER_FOODS).contains(player.getMainHandItem().getItem())) {
+            if (!Arrays.asList(FoodLists.ROBOTS).contains(player.getName())) {
+                if (Arrays.asList(FoodLists.TRANSFORMER_FOODS).contains(player.getMainHandItem().getItem()) ||
+                Arrays.asList(FoodLists.TRANSFORMERS_DRINKS).contains(player.getMainHandItem().getItem())) {
 
                     OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
                     event.setCanceled(true);
@@ -104,9 +107,16 @@ public class GameplayEvents {
     }
 
     @SubscribeEvent
+    public static void WorldTickEvent(TickEvent.LevelTickEvent event) {
+        if (event.level != null && !event.level.isClientSide()) {
+            NPCManager.CheckNPCIsSpawnable(event);
+        }
+    }
+
+    @SubscribeEvent
     public static void onLootLoad(LivingDropsEvent event) {
        if (event.getEntity() instanceof Skeleton || event.getEntity() instanceof Zombie ||
-               event.getEntity() instanceof WitherSkeleton || event.getEntity() instanceof Creeper) {
+               event.getEntity() instanceof WitherSkeleton || (event.getEntity() instanceof Creeper && !(event.getEntity() instanceof EntityCybertronCreeper))) {
 
            event.getDrops().add(new ItemEntity(event.getEntity().getLevel(),
                    event.getEntity().position().x(),

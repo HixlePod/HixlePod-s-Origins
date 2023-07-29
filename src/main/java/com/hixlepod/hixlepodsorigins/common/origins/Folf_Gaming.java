@@ -40,7 +40,7 @@ public class Folf_Gaming {
             for (Entity entity : player.getLevel().getAllEntities()) {
                 if (entity.position().distanceTo(new Vec3(look.x(), look.y(), look.z())) < 1.5) {
                     if (!entity.equals(player)) {
-                        entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(2, player));
+                        entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(1, player));
                     }
                 }
             }

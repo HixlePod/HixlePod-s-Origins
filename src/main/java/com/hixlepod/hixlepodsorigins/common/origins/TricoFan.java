@@ -1,5 +1,6 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
+import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -9,12 +10,14 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.ForgeMod;
+import org.checkerframework.checker.units.qual.C;
 import virtuoel.pehkui.Pehkui;
 import virtuoel.pehkui.api.*;
 import virtuoel.pehkui.command.PehkuiEntitySelectorOptions;
@@ -46,13 +49,12 @@ public class TricoFan {
 
             //Night vision
             if (!isUnderBlock(player)) {
-                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 20, 1, true, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 20, 0, true, false, false));
             }
 
-            if (isInLight(player)) {
-                if (!(player.getInventory().getArmor(3).equals(Items.CARVED_PUMPKIN) || player.getInventory().getArmor(3).equals(Items.PLAYER_HEAD))) {
-                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 10 * 20, 1, true, false, false));
-                }
+            if (isInLight(player) && !(player.getInventory().getArmor(3).getItem() == Items.CARVED_PUMPKIN ||
+                            player.getInventory().getArmor(3).getItem() == Items.PLAYER_HEAD)) {
+                player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 10 * 20, 0, true, false, false));
             }
 
             BlockPos blockPos1 = new BlockPos(player.position().x(), player.position().y() - 1, player.position().z());
@@ -61,7 +63,7 @@ public class TricoFan {
 
             if (block1 == Blocks.SCULK || block1 == Blocks.SCULK_SENSOR) {
                 player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5 * 20, 0, true, false));
-                player.hurt(DamageSource.DROWN, 1);
+                OriginsDamageSource.hurt(player, 1, OriginsDamageSource.SCULK_DRAIN);
             }
         }
     }

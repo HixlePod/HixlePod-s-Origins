@@ -1,10 +1,24 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
+import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public class FoodLists {
+
+
+    public static MutableComponent[] ROBOTS = {
+            Component.literal(HixlePod.NAME),
+            Component.literal(AmbrosiaElf.NAME),
+            Component.literal(Blakpaw2244.NAME),
+            Component.literal(Kira_uwu69.NAME),
+            Component.literal(Folf_Gaming.NAME)
+    };
+
+
 
     public static Item[] DRAGONS_BANNED_FOOD = {Items.APPLE, Items.MUSHROOM_STEW, Items.COOKIE, Items.MELON_SLICE, Items.DRIED_KELP, Items.CARROT,
             Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO, Items.PUMPKIN_PIE, Items.BEETROOT, Items.BEETROOT_SOUP,
@@ -45,6 +59,13 @@ public class FoodLists {
             {ItemInit.REFINED_ENERGON.get(), ItemInit.REFINED_SYNTH_EN.get(), ItemInit.REFINED_DARK_ENERGON.get(), ItemInit.REFINED_RED_ENERGON.get(),
                     ItemInit.ENERGON_CUBE.get(), ItemInit.SYNTH_EN_CUBE.get(), ItemInit.DARK_ENERGON_CUBE.get(), ItemInit.RED_ENERGON_CUBE.get(),
                     ItemInit.ENERGON_BITS.get(), ItemInit.SYNTH_EN_BITS.get(), ItemInit.DARK_ENERGON_BITS.get(), ItemInit.RED_ENERGON_BITS.get(),
-                    ItemInit.ENERJOLLY.get(), ItemInit.HYPER_ENERJOLLY.get(), ItemInit.BATTLE_DONUT.get(), ItemInit.AZZIP_NOGRENE.get(),};
+                    ItemInit.ENERJOLLY.get(), ItemInit.HYPER_ENERJOLLY.get(), ItemInit.BATTLE_DONUT.get(), ItemInit.AZZIP_NOGRENE.get(),
+            };
+
+    public static Item[] TRANSFORMERS_DRINKS = {
+        ItemInit.ENERGON_LOW_GRADE_DRINK.get(),
+            ItemInit.ENERGON_MID_GRADE_DRINK.get(), ItemInit.SYNTH_EN_MID_GRADE_DRINK.get(), ItemInit.DARK_MID_GRADE_DRINK.get(), ItemInit.RED_MID_GRADE_DRINK.get(),
+            ItemInit.ENERGON_HIGH_GRADE_DRINK.get(), ItemInit.DARK_HIGH_GRADE_DRINK.get(),
+    };
 
 }

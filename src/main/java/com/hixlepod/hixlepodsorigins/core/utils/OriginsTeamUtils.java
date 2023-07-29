@@ -7,6 +7,7 @@ import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.common.ForgeMod;
 
+@Deprecated
 public class OriginsTeamUtils {
 
     private static Scoreboard scoreboard = new Scoreboard();

@@ -2,6 +2,7 @@ package com.hixlepod.hixlepodsorigins.core.init;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.blocks.CybertronPortalBlock;
+import com.hixlepod.hixlepodsorigins.common.blocks.StoneBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -53,4 +54,7 @@ public class BlockInit {
         return BLOCKS.register(name, block);
     }
 
+    public static final DeferredRegister<Block> VANILLA_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "minecraft");
+
+    //public static final RegistryObject<Block> CUSTOM_STONE = VANILLA_BLOCKS.register("stone", () -> new StoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
 }

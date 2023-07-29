@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "package": "com.hixlepod.hixlepodsorigins.mixin",
+  "refmap": "hixlepodsorigins.mixin.refmap.json",
+  "client": [
+    "DisableVanillaTitle",
+    "DingOnStartup"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

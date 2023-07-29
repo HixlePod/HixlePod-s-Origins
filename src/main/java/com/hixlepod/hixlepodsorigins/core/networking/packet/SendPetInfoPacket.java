@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.core.networking.packet;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.PetsManager;
+import com.hixlepod.hixlepodsorigins.common.events.ClientModEvents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -43,17 +44,17 @@ public class SendPetInfoPacket {
 
             //Set Friendly
             if (this.pet_options == 2) {
-                player.sendSystemMessage(Component.literal(ChatFormatting.GOLD + "Set pet to Friendly!"));
+                PetsManager.SetEntityBehaviour(player, this.pet_options);
             }
 
             //Set Neutral
             if (this.pet_options == 3) {
-                player.sendSystemMessage(Component.literal(ChatFormatting.GOLD + "Set pet to Neutral!"));
+                PetsManager.SetEntityBehaviour(player, this.pet_options);
             }
 
             //Set Aggressive
             if (this.pet_options == 4) {
-                player.sendSystemMessage(Component.literal(ChatFormatting.GOLD + "Set pet to Aggressive!"));
+                PetsManager.SetEntityBehaviour(player, this.pet_options);
             }
 
         });

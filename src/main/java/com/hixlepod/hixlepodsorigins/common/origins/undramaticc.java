@@ -17,7 +17,7 @@ import net.minecraft.world.item.Items;
 
 public class undramaticc {
 
-    public static String NAME = "saod";
+    public static String NAME = "undras";
 
     public static void setAbilityData(Player player) {
         player.getAbilities().setFlyingSpeed(0.03F);

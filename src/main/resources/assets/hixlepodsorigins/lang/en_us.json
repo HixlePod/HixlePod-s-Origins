@@ -12,6 +12,9 @@
   "item.hixlepodsorigins.dragon_scale": "Dragon Scale",
   "item.hixlepodsorigins.blood_bone": "Blood bone",
   "item.hixlepodsorigins.battle_burrito": "Battle Burrito",
+  "item.hixlepodsorigins.ore_tracker": "Ore Tracker",
+  "item.hixlepodsorigins.bag_of_cat_food": "Bag Of Cat Food",
+  "item.hixlepodsorigins.pan": "Pan",
 
 
   "block.hixlepodsorigins.energon_decoration_block": "Energon Decoration Block",
@@ -78,11 +81,14 @@
 
   "block.hixlepodsorigins.ground_bridge": "Ground Bridge",
 
+  "entity.hixlepodsorigins.blue_slime": "Blue Slime",
+
   "entity.hixlepodsorigins.echo": "Echo",
   "entity.hixlepodsorigins.compass": "Compass",
   "entity.hixlepodsorigins.rune": "Rune",
   "entity.hixlepodsorigins.pumkin": "Pumkin",
   "entity.hixlepodsorigins.dragon_slayer": "Dragon Slayer",
+  "entity.hixlepodsorigins.possum": "Possum",
 
   "entity.hixlepodsorigins.cybertron_pig": "Cybertron Pig",
   "entity.hixlepodsorigins.cybertron_chicken": "Rotarary Chicken",
@@ -95,8 +101,8 @@
   "entity.hixlepodsorigins.cybertron_creeper": "Cybertron Creeper",
   "entity.hixlepodsorigins.cybertron_hostile_cow": "Cybertron Bull",
 
-  "entity.hixlepodsorigins.scraplet_boss": "Airachnid Prime",
-  "entity.hixlepodsorigins.beta_scraplet": "Beta Scraplet",
+  "entity.hixlepodsorigins.scraplet_boss": "[BOSS] Airachnid Prime",
+  "entity.hixlepodsorigins.beta_scraplet": "[BOSS-MINION] Beta Scraplet",
 
   "sounds.hixlepodsorigins.ninja": "Ninja",
   "sounds.hixlepodsorigins.za_warudo_activate": "Za Warudo Activate",
@@ -139,7 +145,7 @@
   "key.category.hixlepodsorigins": "HixlePod's Origins",
   "key.hixlepodsorigins.ability_1": "Ability 1",
   "key.hixlepodsorigins.ability_2": "Ability 2",
-  "key.hixlepodsorigins.ability_3": "Ability Toggle",
+  "key.hixlepodsorigins.lore_menu": "Lore Menu",
   "key.hixlepodsorigins.pet_menu": "Pet menu",
 
 
@@ -156,5 +162,8 @@
   "death.attack.hixlepodsorigins_extinguish.player": "%1$s was extinguish whilst fighting %2$s",
 
   "death.attack.hixlepodsorigins_anema_vortext": "An Anemo Vortext took %1$s into the after life",
-  "death.attack.hixlepodsorigins_anema_vortext.player": "An Anemo Vortext took %1$s into the after life whilst fighting %2$s"
+  "death.attack.hixlepodsorigins_anema_vortext.player": "An Anemo Vortext took %1$s into the after life whilst fighting %2$s",
+
+  "death.attack.hixlepodsorigins_sculk_drain": "%1$s was drained by sculk",
+  "death.attack.hixlepodsorigins_sculk_drain.player": "%1$s was drained by sculk whilst fighting %2$s"
 }

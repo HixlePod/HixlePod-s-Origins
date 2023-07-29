@@ -60,6 +60,16 @@ public class EntityPumkin extends TamableAnimal implements NeutralMob {
                 .add(Attributes.ARMOR_TOUGHNESS, 1.0);
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (this.getOwner() != null) {
+
+            PetsManager.GetHostility(this.getOwner().getPersistentData().getString("PetBehaviour"), this);
+        }
+    }
+
     private static final Component CONTAINER_TITLE = Component.translatable("container.enderchest");
 
     public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {

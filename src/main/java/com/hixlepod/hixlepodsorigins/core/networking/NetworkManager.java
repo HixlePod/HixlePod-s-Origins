@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.core.networking;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.core.networking.packet.PotionPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.SendPetInfoPacket;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyInvisibilityOFFS2CPacket;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyInvisibilityONS2CPacket;
@@ -76,6 +77,12 @@ public class NetworkManager {
                 .decoder(SendPetInfoPacket::new)
                 .encoder(SendPetInfoPacket::toBytes)
                 .consumerMainThread(SendPetInfoPacket::handle)
+                .add();
+
+        net.messageBuilder(PotionPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PotionPacket::decode)
+                .encoder(PotionPacket::encode)
+                .consumerMainThread(PotionPacket.Handler::handle)
                 .add();
     }
 

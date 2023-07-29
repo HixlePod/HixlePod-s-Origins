@@ -7,9 +7,15 @@ import com.hixlepod.hixlepodsorigins.client.NPC.SmudgeNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.OnCharacters.*;
 import com.hixlepod.hixlepodsorigins.client.OnCharacters.Model.*;
 import com.hixlepod.hixlepodsorigins.client.Renderer.*;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.*;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets.*;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Pets.*;
 import com.hixlepod.hixlepodsorigins.client.screen.LoreMenuScreen;
 import com.hixlepod.hixlepodsorigins.client.screen.PetMenuScreen;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.BlockData;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.BlockStore;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.Ores;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.xray.Controller;
+import com.hixlepod.hixlepodsorigins.common.Entities.Pets.PetsManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
@@ -17,21 +23,40 @@ import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability1C2SPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability2C2SPacket;
+import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.lwjgl.opengl.GL11;
 
 public class ClientModEvents {
 
@@ -40,12 +65,14 @@ public class ClientModEvents {
 
         @SubscribeEvent
         public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
-            if (event.getEntity() instanceof Player) {
-                Player player = event.getEntity();
+            if (event.getEntity() != null) {
+                if (event.getEntity() instanceof Player) {
+                    Player player = event.getEntity();
 
-                if (!player.getServer().isDedicatedServer()) {
+                    if (!player.getServer().isDedicatedServer()) {
 
-                    player.sendSystemMessage(Component.literal("[HixlePod's Origins] Mod detected running on singleplayer, this is not recommended as this mod requires a multiplayer session. Most features will be broken!"));
+                        player.sendSystemMessage(Component.literal("[HixlePod's Origins] Mod detected running on singleplayer, this is not recommended as this mod requires a multiplayer session. Most features will be broken!"));
+                    }
                 }
             }
         }
@@ -55,7 +82,7 @@ public class ClientModEvents {
             Player player = event.getEntity();
 
             if (player.getName().equals(Component.literal(Fudge105.NAME))) {
-                if (Fudge105.isInvisible == true) {
+                if (Fudge105.isInvisible) {
                     player.setInvisible(true);
                     event.setCanceled(true);
 
@@ -78,6 +105,8 @@ public class ClientModEvents {
 
 
         }
+
+        public static boolean isPetOut = false;
 
         @SubscribeEvent(priority = EventPriority.HIGHEST)
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -102,7 +131,66 @@ public class ClientModEvents {
                     player.setDeltaMovement(player.getDeltaMovement().add(0, -0.035, 0));
                 }
             }
+
+            //Compass code that works, I can now rest in peace
+
+            //if (player.getName().equals(HixlePodsOrigins.proxy.getClientPlayer().getName())) {
+
+            if (Minecraft.getInstance().player != null && event.player != null) {
+                if (player.getName().equals(Minecraft.getInstance().player.getName())) {
+
+                    ItemStack handItemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+                    if ((handItemStack != null && handItemStack.getItem() == ItemInit.ORE_TRACKER.get()) ||
+                            (player.getName().equals(Component.literal(AmbrosiaElf.NAME)) && isPetOut)) {
+                        oreTracker(Ores.COAL.toString(), true);
+                        oreTracker(Ores.IRON.toString(), true);
+                        oreTracker(Ores.REDSTONE.toString(), true);
+                        oreTracker(Ores.LAPIS.toString(), true);
+                        oreTracker(Ores.GOLD.toString(), true);
+                        oreTracker(Ores.DIAMOND.toString(), true);
+                        oreTracker(Ores.EMERALD.toString(), true);
+                        oreTracker(Ores.QUARTZ.toString(), true);
+                        oreTracker(Ores.COPPER.toString(), true);
+                        //oreTracker(Ores.NETHERITE.toString());
+                        if (!Controller.drawOres()) {
+                            Controller.toggleDrawOres();
+                        }
+                    } else {
+                        /*
+                        oreTracker(Ores.COAL.toString(), false);
+                        oreTracker(Ores.IRON.toString(), false);
+                        oreTracker(Ores.REDSTONE.toString(), false);
+                        oreTracker(Ores.LAPIS.toString(), false);
+                        oreTracker(Ores.GOLD.toString(), false);
+                        oreTracker(Ores.DIAMOND.toString(), false);
+                        oreTracker(Ores.EMERALD.toString(), false);
+                        oreTracker(Ores.QUARTZ.toString(), false);
+                        oreTracker(Ores.COPPER.toString(), false);
+
+                         */
+
+                        if (Controller.drawOres()) {
+                            Controller.toggleDrawOres();
+                        }
+                    }
+                }
+            }
         }
+
+        private static void oreTracker(String oreUUID, boolean Enabled) {
+            BlockStore store = HixlePodsOrigins.blockStore;
+
+            BlockStore.BlockDataWithUUID bdUUID = store.getStoreByReference(oreUUID);
+            BlockData oreSight = bdUUID.getBlockData();
+            if (!oreSight.isDrawing()) {
+                oreSight.setDrawing(Enabled);
+
+                if (!Controller.drawOres()) {
+                    Controller.toggleDrawOres();
+                }
+            }
+        }
+
 
         private static boolean inverted = false;
 
@@ -112,14 +200,14 @@ public class ClientModEvents {
             if (Minecraft.getInstance().player.isAlive()) {
                 if (player.hasEffect(EffectsInit.MALFUNCTION.get())) {
 
-                    if (inverted == false) {
+                    if (!inverted) {
                         Minecraft.getInstance().options.invertYMouse().set(!Minecraft.getInstance().options.invertYMouse().get());
                     }
                     invert(event);
                     inverted = true;
 
                 } else {
-                    if (inverted == true) {
+                    if (inverted) {
                         Minecraft.getInstance().options.invertYMouse().set(!Minecraft.getInstance().options.invertYMouse().get());
                     }
                     inverted = false;
@@ -147,31 +235,11 @@ public class ClientModEvents {
         }
 
 
-
         private static float calculateImpulse(boolean p_205578_, boolean p_205579_) {
             if (p_205578_ == p_205579_) {
                 return 0.0F;
             } else {
                 return p_205578_ ? -1.0F : 1.0F;
-            }
-        }
-
-        @SubscribeEvent
-        public void onPlayerJump(LivingEvent.LivingJumpEvent event) {
-            if (event.getEntity() instanceof Player) {
-                Player player = (Player) event.getEntity();
-
-                if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
-                    player.setDeltaMovement(player.getDeltaMovement().add(0,0.3,0));
-                }
-
-                if (player.getName().equals(Component.literal(Aniriai.NAME))) {
-                    player.setDeltaMovement(player.getDeltaMovement().add(0,0.6,0));
-                }
-
-                if (player.getName().equals(Component.literal(AmbrosiaElf.NAME))) {
-                    player.setDeltaMovement(player.getDeltaMovement().add(0,0.7,0));
-                }
             }
         }
 
@@ -218,20 +286,13 @@ public class ClientModEvents {
                 Minecraft.getInstance().setScreen(new PetMenuScreen("Pet menu"));
             }
 
-            if (KeyInit.ABILITY_3.consumeClick()) {
+            if (KeyInit.LORE_MENU.consumeClick()) {
                 Minecraft.getInstance().setScreen(new LoreMenuScreen("Ye"));
             }
-
-            /*
-            if (Minecraft.getInstance().options.keyJump.consumeClick()) {
-                Player player = Minecraft.getInstance().player;
-
-                NetworkManager.sendToServer(new ElytraAttemptFlyPacket());
-            }
-
-             */
         }
     }
+
+
 
     @Mod.EventBusSubscriber(modid = HixlePodsOrigins.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModBusEvents {
@@ -280,6 +341,7 @@ public class ClientModEvents {
             event.registerLayerDefinition(RuneModel.LAYER_LOCATION, RuneModel::createBodyLayer);
             event.registerLayerDefinition(PumkinModel.LAYER_LOCATION, PumkinModel::createBodyLayer);
             event.registerLayerDefinition(DragonSlayerModel.LAYER_LOCATION, DragonSlayerModel::createBodyLayer);
+            event.registerLayerDefinition(PossumModel.LAYER_LOCATION, PossumModel::createBodyLayer);
 
             event.registerLayerDefinition(FloElytraLayer.WINGS_LOCATION, FloElytraModel::createLayer);
             event.registerLayerDefinition(GhostElytraLayer.WINGS_LOCATION, GhostElytraModel::createLayer);
@@ -294,18 +356,22 @@ public class ClientModEvents {
 
             event.register(KeyInit.ABILITY_1);
             event.register(KeyInit.ABILITY_2);
-            event.register(KeyInit.ABILITY_3);
+            event.register(KeyInit.LORE_MENU);
             event.register(KeyInit.PET_MENU);
         }
 
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            //Mobs
+            event.registerEntityRenderer(EntityInit.BLUE_SLIME.get(), BlueSlimeRenderer::new);
+
             //Pets
             event.registerEntityRenderer(EntityInit.ECHO.get(), EchoRenderer::new);
             event.registerEntityRenderer(EntityInit.COMPASS.get(), CompassRenderer::new);
             event.registerEntityRenderer(EntityInit.RUNE.get(), RuneRenderer::new);
             event.registerEntityRenderer(EntityInit.PUMKIN.get(), PumkinRenderer::new);
             event.registerEntityRenderer(EntityInit.DRAGON_SLAYER.get(), DragonSlayerRenderer::new);
+            event.registerEntityRenderer(EntityInit.POSSUM.get(), PossumRenderer::new);
 
             //Cybertron
             event.registerEntityRenderer(EntityInit.CYBERTRON_PIG.get(), CybertronPigRenderer::new);

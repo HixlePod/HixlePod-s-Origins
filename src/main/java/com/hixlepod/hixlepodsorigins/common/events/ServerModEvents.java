@@ -225,7 +225,7 @@ public class ServerModEvents {
         OriginsUtil.returnAbilityMessage(player);
 
         if (player.getLevel().dimension() == DimensionsInit.CYBERTRON_KEY && player.isInWaterOrRain() && isInRain(player)) {
-            OriginsDamageSource.hurt(player, 0.5f, OriginsDamageSource.ACID_RAIN);
+            OriginsDamageSource.hurt(player, 0.75f, OriginsDamageSource.ACID_RAIN);
         }
 
         CompoundTag Data = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_VentiBlackhole");
@@ -243,6 +243,7 @@ public class ServerModEvents {
             TheStringlessBow.AnemoVortexTick(player, position, serverlevel);
             player.getPersistentData().put(HixlePodsOrigins.MODID + "_VentiBlackhole", Data);
         }
+
     }
 
     public static boolean isInRain(Player player) {
@@ -521,7 +522,7 @@ public class ServerModEvents {
 
         if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
             if (event.getPos().getY() <= 100) {
-                player.sendSystemMessage(Component.translatable("Its too low for you to sleep!").withStyle(ChatFormatting.RED));
+                player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Its too low for you to sleep!"));
                 event.setResult(Player.BedSleepingProblem.NOT_POSSIBLE_HERE);
                 event.setCanceled(true);
             }

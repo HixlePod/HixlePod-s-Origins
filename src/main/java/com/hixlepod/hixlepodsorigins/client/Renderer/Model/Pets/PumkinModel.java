@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
+package com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityPumkin;

@@ -29,8 +29,14 @@ public class PotionInit {
             () -> new Potion(new MobEffectInstance(EffectsInit.CHAOS.get(), 30 * 20, 0)));
 
     public static final RegistryObject<Potion> RUST_POTION = POTIONS.register("rust_potion",
-            () -> new Potion(new MobEffectInstance(EffectsInit.RUST.get(), 60 * 60 * 60 * 20, 0)));
+            () -> new Potion(new MobEffectInstance(EffectsInit.RUST.get(), 60 * 60 * 60 * 20, 1)));
 
     public static final RegistryObject<Potion> BLINDNESS_POTION = POTIONS.register("blindness_potion",
             () -> new Potion(new MobEffectInstance(MobEffects.BLINDNESS, 2 * 60 * 20, 0)));
+
+    public static final RegistryObject<Potion> GIANT_POTION = POTIONS.register("giant_potion",
+            () -> new Potion(new MobEffectInstance(EffectsInit.GIANT.get(), 2 * 60 * 20, 0)));
+
+    public static final RegistryObject<Potion> DWARF_POTION = POTIONS.register("dwarf_potion",
+            () -> new Potion(new MobEffectInstance(EffectsInit.DWARF.get(), 2 * 60 * 20, 0)));
 }

@@ -34,8 +34,8 @@ public class AmbrosiaElf {
 
         player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).setBaseValue(1.0);
 
-        ScaleTypes.HEIGHT.getScaleData(player).setScale(0.5f);
-        ScaleTypes.WIDTH.getScaleData(player).setScale(0.53f);
+        ScaleTypes.HEIGHT.getScaleData(player).setScale(0.44f);
+        ScaleTypes.WIDTH.getScaleData(player).setScale(0.48f);
         ScaleTypes.JUMP_HEIGHT.getScaleData(player).setScale(1.5f);
 
         player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.155);

@@ -7,6 +7,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+@Deprecated
 public class ExampleC2SPacket {
 
     public ExampleC2SPacket() {

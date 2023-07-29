@@ -1,8 +1,7 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer;
+package com.hixlepod.hixlepodsorigins.client.Renderer.Pets;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.EchoModel;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronHorse;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets.EchoModel;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -27,6 +26,6 @@ public class EchoRenderer<Type extends EntityEcho> extends MobRenderer<Type, Ech
 
     @Override
     protected void scale(EntityEcho p_113974_, PoseStack p_113975_, float p_113976_) {
-        p_113975_.scale(0.85F, 0.85F, 0.85F);
+        p_113975_.scale(0.825F, 0.825F, 0.825F);
     }
 }

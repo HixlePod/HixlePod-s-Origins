@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:items/ore_tracker",
+    "particle": "hixlepodsorigins:items/ore_tracker"
+  }
+}

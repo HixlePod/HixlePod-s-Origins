@@ -29,6 +29,7 @@ public class GodOfFurrys {
 
         Vec3 look = player.position().add(0, 1.4, 0);
 
+        LaserAttackLoop:
         for (int i = 0; i < laser_distance; i++) {
             look = look.add(player.getLookAngle().x(), player.getLookAngle().y(), player.getLookAngle().z());
 
@@ -38,6 +39,7 @@ public class GodOfFurrys {
                 if (entity.position().distanceTo(new Vec3(look.x(), look.y(), look.z())) < 1.5) {
                     if (!entity.equals(player)) {
                         entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(1, player));
+                        break LaserAttackLoop;
                     }
                 }
             }

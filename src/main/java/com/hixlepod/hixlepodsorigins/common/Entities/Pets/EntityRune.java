@@ -76,6 +76,8 @@ public class EntityRune extends TamableAnimal implements NeutralMob {
             } else if (this.getOwner().position().distanceTo(this.position()) > 20 && this.getTarget() == null) {
                 this.teleportTo(this.getOwner().position().x(), this.getOwner().position().y(), this.getOwner().position().z());
             }
+
+            PetsManager.GetHostility(this.getOwner().getPersistentData().getString("PetBehaviour"), this);
         }
 
         if (this.getOwner() != null) {

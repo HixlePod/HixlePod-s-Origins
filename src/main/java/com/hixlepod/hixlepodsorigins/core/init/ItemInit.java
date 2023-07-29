@@ -150,6 +150,14 @@ public class ItemInit {
 
     public static final RegistryObject<Item> AMONG_US = ITEMS.register("among_us", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().build())));
 
+    public static final RegistryObject<Item> ORE_TRACKER = ITEMS.register("ore_tracker", () -> new OreTrackerItem(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+
+    public static final RegistryObject<Item> BAG_OF_CAT_FOOD = ITEMS.register("bag_of_cat_food", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+
+    public static final RegistryObject<Item> PAN = ITEMS.register("pan", () -> new PanItem(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+
+    public static final RegistryObject<Item> MYSTERY_BUNDLE = ITEMS.register("mystery_bundle", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+
 
     //Vanilla items
     public static final DeferredRegister<Item> VANILLA_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "minecraft");

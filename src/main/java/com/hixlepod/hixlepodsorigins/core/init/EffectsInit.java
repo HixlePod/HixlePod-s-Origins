@@ -30,4 +30,11 @@ public class EffectsInit {
 
     public static final RegistryObject<MobEffect> RUST = MOB_EFFECTS.register("rust",
             () -> new RustEffect(MobEffectCategory.HARMFUL, 12814090));
+
+
+    public static final RegistryObject<MobEffect> GIANT = MOB_EFFECTS.register("giant",
+            () -> new GiantEffect(MobEffectCategory.NEUTRAL, 65280));
+
+    public static final RegistryObject<MobEffect> DWARF = MOB_EFFECTS.register("dwarf",
+            () -> new DwarfEffect(MobEffectCategory.NEUTRAL, 16711680));
 }

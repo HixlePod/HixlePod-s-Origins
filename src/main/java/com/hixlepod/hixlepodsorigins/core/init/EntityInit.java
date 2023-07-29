@@ -19,6 +19,10 @@ public class EntityInit {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, HixlePodsOrigins.MODID);
 
+    //Mobs
+    public static final RegistryObject<EntityType<EntityBlueSlime>> BLUE_SLIME = ENTITIES.register("blue_slime",
+            () -> EntityType.Builder.of(EntityBlueSlime::new, MobCategory.MONSTER).sized(2.04F, 2.04F).
+                    build(new ResourceLocation(HixlePodsOrigins.MODID, "blue_slime").toString()));
 
     //Pets
     public static final RegistryObject<EntityType<EntityEcho>> ECHO = ENTITIES.register("echo",
@@ -40,6 +44,10 @@ public class EntityInit {
     public static final RegistryObject<EntityType<EntityDragonSlayer>> DRAGON_SLAYER = ENTITIES.register("dragon_slayer",
             () -> EntityType.Builder.of(EntityDragonSlayer::new, MobCategory.CREATURE).fireImmune().sized(0.5F, 3.0F).
                     build(new ResourceLocation(HixlePodsOrigins.MODID, "dragon_slayer").toString()));
+
+    public static final RegistryObject<EntityType<EntityPossum>> POSSUM = ENTITIES.register("possum",
+            () -> EntityType.Builder.of(EntityPossum::new, MobCategory.CREATURE).fireImmune().sized(0.25F, 0.25F).
+                    build(new ResourceLocation(HixlePodsOrigins.MODID, "possum").toString()));
 
 
     //CYBERTRON ENTITIES

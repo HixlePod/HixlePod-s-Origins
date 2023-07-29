@@ -9,8 +9,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
 public class Ninja extends Item {
+
 
     public Ninja(Properties p_41383_) {
         super(p_41383_);

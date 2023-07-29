@@ -3,7 +3,6 @@ package com.hixlepod.hixlepodsorigins.core.utils;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 
 public class OriginsDamageSource {
 
@@ -16,8 +15,11 @@ public class OriginsDamageSource {
 
     public static String ANEMO_VORTEXT = HixlePodsOrigins.MODID + "_anema_vortext";
 
+    public static String SCULK_DRAIN = HixlePodsOrigins.MODID + "_sculk_drain";
+
     public static void hurt(Entity entity, float Damage, String Source) {
         DamageSource damageSource = new DamageSource(Source);
+        damageSource.bypassArmor();
         entity.hurt(damageSource, Damage);
     }
 

@@ -7,6 +7,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.player.Player;
 
 public class PetsManager {
@@ -84,6 +86,19 @@ public class PetsManager {
                         player.getLevel().addFreshEntity(dragonSlayer);
                     }
 
+                    if (entityType == EntityInit.POSSUM.get()) {
+                        EntityPossum entityPossum = new EntityPossum(entityType, player.getLevel());
+
+                        entityPossum.setEntityOwner(player);
+                        entityPossum.moveTo(player.position());
+                        entityPossum.setCustomName(Component.literal("Possum"));
+                        entityPossum.setCustomNameVisible(true);
+
+                        for (int i = 0; i < 3; i++) {
+                            player.getLevel().addFreshEntity(entityPossum);
+                        }
+                    }
+
                     player.getPersistentData().putBoolean("IsPetSummoned", true);
                     player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Summoning Pet!"));
                 }
@@ -116,6 +131,41 @@ public class PetsManager {
         }
     }
 
+    static int SET_FRIENDLY = 2;
+    static int SET_NEUTRAL = 3;
+    static int SET_AGGRESSIVE = 4;
+
+
+    public static void SetEntityBehaviour(Player player, int BehaviourType) {
+        if (BehaviourType == SET_FRIENDLY) {
+            player.getPersistentData().putString("PetBehaviour", "FRIENDLY");
+            player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Set pet behaviour Friendly!"));
+
+        } else if (BehaviourType == SET_NEUTRAL) {
+            player.getPersistentData().putString("PetBehaviour", "NEUTRAL");
+            player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Set pet behaviour Neutral!"));
+
+        } else if (BehaviourType == SET_AGGRESSIVE) {
+            player.getPersistentData().putString("PetBehaviour", "AGGRESSIVE");
+            player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Error."));
+
+        }
+    }
+
+    public static void GetHostility(String BehaviorType, TamableAnimal pet) {
+        if (BehaviorType == "FRIENDLY") {
+            pet.setTarget(null);
+
+        } else if (BehaviorType == "NEUTRAL") {
+            //Pet will manage hostility themselves
+
+        } else if (BehaviorType == "AGGRESSIVE") {
+            //Doesn't work yet
+        } else {
+            //Same as neutral
+        }
+    }
+
     public static EntityType returnPlayerPet(Player player) {
         if (player.getName().equals(Component.literal(HixlePod.NAME))) {
             return EntityInit.ECHO.get();
@@ -135,6 +185,10 @@ public class PetsManager {
 
         if (player.getName().equals(Component.literal(J_Curve.NAME))) {
             return EntityInit.DRAGON_SLAYER.get();
+        }
+
+        if (player.getName().equals(Component.literal(Aniriai.NAME))) {
+            return EntityInit.POSSUM.get();
         }
 
         return null;

@@ -30,9 +30,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -141,6 +141,39 @@ public class EntityCybertronHorse extends AbstractHorse {
             }
         }
 
+    }
+
+    public double getPassengersRidingOffset() {
+        return -0.1D;
+    }
+
+    protected float getSinglePassengerXOffset() {
+        return 0.0F;
+    }
+
+
+    @Override
+    protected boolean canAddPassenger(Entity p_38390_) {
+        return this.getPassengers().size() < this.getMaxPassengers();
+    }
+
+
+    protected int getMaxPassengers() {
+        return 2;
+    }
+
+    @Nullable
+    public LivingEntity getControllingPassenger() {
+        return (LivingEntity) this.getFirstPassenger();
+    }
+
+    @Override
+    protected void addPassenger(Entity passenger) {
+        super.addPassenger(passenger);
+        if (this.isControlledByLocalInstance() && this.lerpSteps > 0) {
+            this.lerpSteps = 0;
+            this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float)this.lerpYRot, (float)this.lerpXRot);
+        }
     }
 
     public void containerChanged(Container p_30696_) {

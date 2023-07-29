@@ -40,7 +40,8 @@ public class CommandsInnit {
                 .then(Commands.literal("TRIGGER_ABILITIES")     .requires(cs -> { return cs.hasPermission(1); }).then(Commands.argument("STATUS", StringArgumentType.string()).suggests((context, builder) -> returnBooleanValues(context, builder)).executes((context) -> { return DisableOriginsCommnad.CHANGE_TRIGGER_ABILITIES(context.getSource(), StringArgumentType.getString(context, "STATUS")); })))
                 .then(Commands.literal("PETS")                  .requires(cs -> { return cs.hasPermission(1); }).then(Commands.argument("STATUS", StringArgumentType.string()).suggests((context, builder) -> returnBooleanValues(context, builder)).executes((context) -> { return DisableOriginsCommnad.CHANGE_PETS_ENABLED(context.getSource(), StringArgumentType.getString(context, "STATUS")); })))
                 .then(Commands.literal("SMALL_ORIGIN_SITTING")  .requires(cs -> { return cs.hasPermission(1); }).then(Commands.argument("STATUS", StringArgumentType.string()).suggests((context, builder) -> returnBooleanValues(context, builder)).executes((context) -> { return DisableOriginsCommnad.CHANGE_SITTING_ENABLED(context.getSource(), StringArgumentType.getString(context, "STATUS")); })))
-                .then(Commands.literal("ALL")           .requires(cs -> { return cs.hasPermission(1); }).then(Commands.argument("STATUS", StringArgumentType.string()).suggests((context, builder) -> returnBooleanValues(context, builder)).executes((context) -> { return DisableOriginsCommnad.CHANGE_ALL(context.getSource(), StringArgumentType.getString(context, "STATUS")); })))
+                .then(Commands.literal("ALL")                   .requires(cs -> { return cs.hasPermission(1); }).then(Commands.argument("STATUS", StringArgumentType.string()).suggests((context, builder) -> returnBooleanValues(context, builder)).executes((context) -> { return DisableOriginsCommnad.CHANGE_ALL(context.getSource(), StringArgumentType.getString(context, "STATUS")); })))
+                .then(Commands.literal("GROUND_BRIDGES")        .requires(cs -> { return cs.hasPermission(1); }).then(Commands.argument("STATUS", StringArgumentType.string()).suggests((context, builder) -> returnBooleanValues(context, builder)).executes((context) -> { return DisableOriginsCommnad.CHANGE_GROUND_BRIDGE_ENABLED(context.getSource(), StringArgumentType.getString(context, "STATUS")); })))
         );
 
         LiteralCommandNode<CommandSourceStack> SetNameCommand = dispatcher.register(Commands.literal("name")
@@ -93,6 +94,7 @@ public class CommandsInnit {
 
         for (String location : Locations.getAllKeys()) {
             builder.suggest(location);
+
         }
 
         return builder.buildFuture();

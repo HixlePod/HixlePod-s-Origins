@@ -3,6 +3,7 @@ package com.hixlepod.hixlepodsorigins.common.Entities.Pets;
 import com.hixlepod.hixlepodsorigins.common.origins.OriginsManager;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -130,8 +131,6 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
             this.clearFire();
         }
 
-        this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 10 * 20, 1, true, false, false));
-
         if (this.getTarget() != null) {
             if (this.isTame())
 
@@ -173,6 +172,8 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
             } else if (this.getOwner().position().distanceTo(this.position()) > 15 && this.getTarget() == null) {
                 this.teleportTo(this.getOwner().position().x(), this.getOwner().position().y(), this.getOwner().position().z());
             }
+
+            PetsManager.GetHostility(this.getOwner().getPersistentData().getString("PetBehaviour"), this);
         }
 
         if (this.getOwner() != null) {

@@ -155,9 +155,10 @@ public class TheStringlessBow extends ProjectileWeaponItem {
         OriginsUtil.sendParticle(level, new DustParticleOptions(new Vector3f(0.3f, 0.9f, 0.8f), 1), position, new Vec3(3, 3, 3), 1, 10);
 
         for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
-            if (entity.position().distanceTo(position) < 25 && (entity != null)) {
+            if (entity.position().distanceTo(position) < 25 && (entity != null) && (player != null)) {
                 if (!entity.equals(player) && !(entity.getTeam() == player.getTeam())) {
-                    OriginsDamageSource.hurt(entity, 10, OriginsDamageSource.ANEMO_VORTEXT);
+                    OriginsDamageSource.hurt(entity, OriginsUtil.damageScale(1, player), OriginsDamageSource.ANEMO_VORTEXT);
+
                 }
             }
         }

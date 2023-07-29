@@ -30,12 +30,13 @@ public class OriginsUtil {
 
     public static double DamageScale(double BaseDamage, Player player) {
         double ExperienceLevel = player.experienceLevel;
-        double DayCount = player.getServer().overworld().getDayTime();
+        double DayCount = player.getServer().overworld().getDayTime() / 24000;
 
         //BaseDamage added twice to calculation so it has a bigger effect on the final damage.
-        double TotalDamage = BaseDamage + ((ExperienceLevel / 10) + (DayCount / 300));
-        double FinalDamage = BaseDamage + (Math.log(TotalDamage) / Math.log(1.2));
-        return FinalDamage;
+        double CalculatedDamage = BaseDamage + ((ExperienceLevel / 10) + (DayCount / 500));
+        double FinalDamage = BaseDamage + (Math.log(CalculatedDamage) / Math.log(1.105));
+
+        return Math.round(FinalDamage);
     }
 
     /**

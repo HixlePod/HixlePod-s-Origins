@@ -30,7 +30,8 @@ public class Maxwell {
                         Vec3 normalizedDifference = difference.normalize();
                         entity.setDeltaMovement(normalizedDifference.multiply(-7, -2, -7));
 
-                        entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(5, player));
+                        entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(4, player));
+
                         entity.setRemainingFireTicks(10 * 20);
                     }
                 }

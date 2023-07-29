@@ -62,7 +62,7 @@ public class RaccGoatHornsLayer<T extends Player, M extends PlayerModel<T>> exte
 
 
             //this.goatModel.setupAnim(entity, p_116955_, p_116956_, p_116958_, p_116959_, p_116960_);
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(p_116952_, RenderType.armorCutoutNoCull(resourcelocation), false, true);
+            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(p_116952_, RenderType.armorCutoutNoCull(resourcelocation), false, false);
             this.goatModel.renderToBuffer(stack, vertexconsumer, p_116953_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             stack.popPose();
 
