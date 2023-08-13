@@ -11,7 +11,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
@@ -21,7 +20,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeMod;
-import virtuoel.pehkui.Pehkui;
 import virtuoel.pehkui.api.ScaleTypes;
 
 import java.util.Arrays;
@@ -49,7 +47,7 @@ public class KyoWing3809 {
     public static void Ability1(ServerPlayer player) {
         GROW_PLANTS = !GROW_PLANTS;
 
-        if (GROW_PLANTS == true) {
+        if (GROW_PLANTS) {
             player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "You focus your power, nature begins to grow around you."));
         } else {
             player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "You rest your power."));

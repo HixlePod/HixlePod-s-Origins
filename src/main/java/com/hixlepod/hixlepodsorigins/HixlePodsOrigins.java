@@ -12,6 +12,7 @@ import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
@@ -40,7 +41,7 @@ public class HixlePodsOrigins
     public static final String MODID = "hixlepodsorigins";
 
     private static final String ORIGINS_VERSION = "0.9.4";
-    private static final String ORIGINS_BUILD_VERSION = "BUILD-180";
+    private static final String ORIGINS_BUILD_VERSION = "BUILD-272";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;
 
@@ -59,6 +60,8 @@ public class HixlePodsOrigins
 
         //Register Inits
         ItemInit.ITEMS.register(eventBus);
+        ComponentModuleItems.ITEMS.register(eventBus);
+
         BlockInit.BLOCKS.register(eventBus);
         SoundInit.SOUND_EVENTS.register(eventBus);
         ConfiguredFeatureInit.CONFIGURED_FEATURES.register(eventBus);

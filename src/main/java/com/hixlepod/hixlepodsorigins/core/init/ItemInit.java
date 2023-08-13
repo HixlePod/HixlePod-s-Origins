@@ -16,70 +16,70 @@ public class ItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HixlePodsOrigins.MODID);
 
-    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Example_Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<Item> THE_HOLY_LYRE = ITEMS.register("the_holy_lyre", () -> new The_Holy_Lyre_Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).stacksTo(1)));
+    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Example_Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> THE_HOLY_LYRE = ITEMS.register("the_holy_lyre", () -> new The_Holy_Lyre_Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(1)));
 
-    public static final RegistryObject<BlockItem> GROUND_BRIDGE_BLOCK_ITEM = ITEMS.register("ground_bridge_block", () -> new BlockItem(BlockInit.GROUND_BRIDGE_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<Item> ENERGOM_LIGHTER = ITEMS.register("energon_lighter", () -> new EnergonLighterItem(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> GROUND_BRIDGE_BLOCK_ITEM = ITEMS.register("ground_bridge_block", () -> new BlockItem(BlockInit.GROUND_BRIDGE_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> ENERGOM_LIGHTER = ITEMS.register("energon_lighter", () -> new EnergonLighterItem(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<BlockItem> ENERGON_DECORATION_BLOCK_ITEM = ITEMS.register("energon_decoration_block", () -> new BlockItem(BlockInit.ENERGON_DECORATION_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<BlockItem> SYNTH_EN_DECORATION_BLOCK_ITEM = ITEMS.register("synth_en_decoration_block", () -> new BlockItem(BlockInit.SYNTH_EN_DECORATION_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<BlockItem> DARK_ENERGON_DECORATION_BLOCK_ITEM = ITEMS.register("dark_energon_decoration_block", () -> new BlockItem(BlockInit.DARK_ENERGON_DECORATION_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<BlockItem> RED_ENERGON_DECORATION_BLOCK_ITEM = ITEMS.register("red_energon_decoration_block", () -> new BlockItem(BlockInit.RED_ENERGON_DECORATION_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> ENERGON_DECORATION_BLOCK_ITEM = ITEMS.register("energon_decoration_block", () -> new BlockItem(BlockInit.ENERGON_DECORATION_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> SYNTH_EN_DECORATION_BLOCK_ITEM = ITEMS.register("synth_en_decoration_block", () -> new BlockItem(BlockInit.SYNTH_EN_DECORATION_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> DARK_ENERGON_DECORATION_BLOCK_ITEM = ITEMS.register("dark_energon_decoration_block", () -> new BlockItem(BlockInit.DARK_ENERGON_DECORATION_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> RED_ENERGON_DECORATION_BLOCK_ITEM = ITEMS.register("red_energon_decoration_block", () -> new BlockItem(BlockInit.RED_ENERGON_DECORATION_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<BlockItem> ENERGON_ORE_BLOCK_ITEM = ITEMS.register("energon_ore_block", () -> new BlockItem(BlockInit.ENERGON_ORE_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<BlockItem> SYNTH_EN_ORE_ITEM = ITEMS.register("synth_en_ore_block", () -> new BlockItem(BlockInit.SYNTH_EN_ORE_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<BlockItem> DARK_ENERGON_ORE_ITEM = ITEMS.register("dark_energon_ore_block", () -> new BlockItem(BlockInit.DARK_ENERGON_ORE_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<BlockItem> RED_ENERGON_ORE_ITEM = ITEMS.register("red_energon_ore_block", () -> new BlockItem(BlockInit.RED_ENERGON_ORE_BLOCK.get(), new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-
-
-    public static final RegistryObject<Item> UNREFINED_ENERGON = ITEMS.register("unrefined_energon", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<Item> UNREFINED_SYNTH_EN = ITEMS.register("unrefined_synth_en", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<Item> UNREFINED_DARK_ENERGON = ITEMS.register("unrefined_dark_energon", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<Item> UNREFINED_RED_ENERGON = ITEMS.register("unrefined_red_energon", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> ENERGON_ORE_BLOCK_ITEM = ITEMS.register("energon_ore_block", () -> new BlockItem(BlockInit.ENERGON_ORE_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> SYNTH_EN_ORE_ITEM = ITEMS.register("synth_en_ore_block", () -> new BlockItem(BlockInit.SYNTH_EN_ORE_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> DARK_ENERGON_ORE_ITEM = ITEMS.register("dark_energon_ore_block", () -> new BlockItem(BlockInit.DARK_ENERGON_ORE_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<BlockItem> RED_ENERGON_ORE_ITEM = ITEMS.register("red_energon_ore_block", () -> new BlockItem(BlockInit.RED_ENERGON_ORE_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
 
-    public static final RegistryObject<Item> REFINED_ENERGON = ITEMS.register("refined_energon", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> REFINED_SYNTH_EN = ITEMS.register("refined_synth_en", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> REFINED_DARK_ENERGON = ITEMS.register("refined_dark_energon", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> REFINED_RED_ENERGON = ITEMS.register("refined_red_energon", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> UNREFINED_ENERGON = ITEMS.register("unrefined_energon", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> UNREFINED_SYNTH_EN = ITEMS.register("unrefined_synth_en", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> UNREFINED_DARK_ENERGON = ITEMS.register("unrefined_dark_energon", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> UNREFINED_RED_ENERGON = ITEMS.register("unrefined_red_energon", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+
+
+    public static final RegistryObject<Item> REFINED_ENERGON = ITEMS.register("refined_energon", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> REFINED_SYNTH_EN = ITEMS.register("refined_synth_en", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> REFINED_DARK_ENERGON = ITEMS.register("refined_dark_energon", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> REFINED_RED_ENERGON = ITEMS.register("refined_red_energon", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,15 * 20, 2), 1)
             .build())));
 
-    public static final RegistryObject<Item> ENERGON_CUBE = ITEMS.register("energon_cube", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> ENERGON_CUBE = ITEMS.register("energon_cube", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.REGENERATION,5 * 20, 4), 1)
             .build())));
-    public static final RegistryObject<Item> SYNTH_EN_CUBE = ITEMS.register("synth_en_cube", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> SYNTH_EN_CUBE = ITEMS.register("synth_en_cube", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.REGENERATION,20 * 20, 4), 1)
             .effect(new MobEffectInstance(MobEffects.ABSORPTION,  120 * 20, 2), 1)
             .build())));
-    public static final RegistryObject<Item> DARK_ENERGON_CUBE = ITEMS.register("dark_energon_cube", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> DARK_ENERGON_CUBE = ITEMS.register("dark_energon_cube", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.REGENERATION,     120 * 20, 4), 1)
             .effect(new MobEffectInstance(MobEffects.ABSORPTION,       30 * 20,  4), 1)
             .effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,  300 * 20, 0), 1)
             .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,300 * 20, 0), 1)
             .build())));
-    public static final RegistryObject<Item> RED_ENERGON_CUBE = ITEMS.register("red_energon_cube", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> RED_ENERGON_CUBE = ITEMS.register("red_energon_cube", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,300 * 20, 2), 1)
             .build())));
 
-    public static final RegistryObject<Item> ENERGON_BITS = ITEMS.register("energon_bits", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> SYNTH_EN_BITS = ITEMS.register("synth_en_bits", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> DARK_ENERGON_BITS = ITEMS.register("dark_energon_bits", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> RED_ENERGON_BITS = ITEMS.register("red_energon_bits", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> ENERGON_BITS = ITEMS.register("energon_bits", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> SYNTH_EN_BITS = ITEMS.register("synth_en_bits", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> DARK_ENERGON_BITS = ITEMS.register("dark_energon_bits", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> RED_ENERGON_BITS = ITEMS.register("red_energon_bits", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
 
 
-    public static final RegistryObject<Item> ENERGON_PIZZA = ITEMS.register("energon_pizza", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> AZZIP_NOGRENE = ITEMS.register("azzip_nogrene", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).rarity(Rarity.RARE).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> ENERJOLLY = ITEMS.register("enerjolly", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> ENERGON_PIZZA = ITEMS.register("energon_pizza", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> AZZIP_NOGRENE = ITEMS.register("azzip_nogrene", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).rarity(Rarity.RARE).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> ENERJOLLY = ITEMS.register("enerjolly", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,180 * 20, 7), 1)
             .build())));
 
-    public static final RegistryObject<Item> HYPER_ENERJOLLY = ITEMS.register("hyper_enerjolly", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> HYPER_ENERJOLLY = ITEMS.register("hyper_enerjolly", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,30 * 20, 11), 1)
             .build())));
 
-    public static final RegistryObject<Item> BATTLE_DONUT = ITEMS.register("battle_donut", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
+    public static final RegistryObject<Item> BATTLE_DONUT = ITEMS.register("battle_donut", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
             .effect(new MobEffectInstance(MobEffects.GLOWING,         20 * 20, 1), 1)
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,  20 * 20, 2), 1)
             .effect(new MobEffectInstance(MobEffects.REGENERATION,    20 * 20, 2), 1)
@@ -88,28 +88,28 @@ public class ItemInit {
             .effect(new MobEffectInstance(MobEffects.ABSORPTION,      20 * 20, 2), 1)
             .build())));
 
-    public static final RegistryObject<Item> ENERGON_LOW_GRADE_DRINK = ITEMS.register("energon_low_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> ENERGON_LOW_GRADE_DRINK = ITEMS.register("energon_low_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
 
 
-    public static final RegistryObject<Item> ENERGON_MID_GRADE_DRINK = ITEMS.register("energon_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> SYNTH_EN_MID_GRADE_DRINK = ITEMS.register("synth_en_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> DARK_MID_GRADE_DRINK = ITEMS.register("dark_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> RED_MID_GRADE_DRINK = ITEMS.register("red_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
+    public static final RegistryObject<Item> ENERGON_MID_GRADE_DRINK = ITEMS.register("energon_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> SYNTH_EN_MID_GRADE_DRINK = ITEMS.register("synth_en_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> DARK_MID_GRADE_DRINK = ITEMS.register("dark_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> RED_MID_GRADE_DRINK = ITEMS.register("red_mid_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat()
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,20 * 20, 3), 1)
             .build())));
 
-    public static final RegistryObject<Item> ENERGON_HIGH_GRADE_DRINK = ITEMS.register("energon_high_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
-    public static final RegistryObject<Item> DARK_HIGH_GRADE_DRINK = ITEMS.register("dark_high_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> ENERGON_HIGH_GRADE_DRINK = ITEMS.register("energon_high_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
+    public static final RegistryObject<Item> DARK_HIGH_GRADE_DRINK = ITEMS.register("dark_high_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().build())));
 
 
-    public static final RegistryObject<Item> SUGAR_CUBE = ITEMS.register("sugar_cube", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-    public static final RegistryObject<Item> AMBERGON_BUCKET = ITEMS.register("ambergon_bucket", () -> new Item(new Item.Properties().craftRemainder(Items.BUCKET).tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).stacksTo(1)));
-    public static final RegistryObject<Item> AMBERGON_CREAM = ITEMS.register("ambergon_cream", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> SUGAR_CUBE = ITEMS.register("sugar_cube", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> AMBERGON_BUCKET = ITEMS.register("ambergon_bucket", () -> new Item(new Item.Properties().craftRemainder(Items.BUCKET).tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(1)));
+    public static final RegistryObject<Item> AMBERGON_CREAM = ITEMS.register("ambergon_cream", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> RUST = ITEMS.register("rust", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> RUST = ITEMS.register("rust", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> BLOOD_BONE = ITEMS.register("blood_bone", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().nutrition(6).saturationMod(4).effect(new MobEffectInstance(MobEffects.HUNGER, 10 * 20, 2), 1).build())));
-    public static final RegistryObject<Item> BATTLE_BURRITO = ITEMS.register("battle_burrito", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).stacksTo(16).food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
+    public static final RegistryObject<Item> BLOOD_BONE = ITEMS.register("blood_bone", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().alwaysEat().nutrition(6).saturationMod(4).effect(new MobEffectInstance(MobEffects.HUNGER, 10 * 20, 2), 1).build())));
+    public static final RegistryObject<Item> BATTLE_BURRITO = ITEMS.register("battle_burrito", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(16).food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
             .effect(new MobEffectInstance(MobEffects.GLOWING,         60 * 20, 1), 1)
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,  60 * 20, 2), 1)
             .effect(new MobEffectInstance(MobEffects.REGENERATION,    60 * 20, 2), 1)
@@ -127,14 +127,12 @@ public class ItemInit {
 
 
     //Weapons
-
-    public static final RegistryObject<Item> THE_STRINGLESS = ITEMS.register("the_stringless", () -> new TheStringlessBow(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).stacksTo(1)));
+    public static final RegistryObject<Item> THE_STRINGLESS = ITEMS.register("the_stringless", () -> new TheStringlessBow(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(1)));
 
     //Meme items
+    public static final RegistryObject<Item> NINJA = ITEMS.register("ninja", () -> new Ninja(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> NINJA = ITEMS.register("ninja", () -> new Ninja(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
-
-    public static final RegistryObject<Item> WEED = ITEMS.register("weed", () -> new Weed(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder()
+    public static final RegistryObject<Item> WEED = ITEMS.register("weed", () -> new Weed(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder()
             .effect(new MobEffectInstance(MobEffects.LEVITATION,            10 * 20, 4), 1)
             .effect(new MobEffectInstance(MobEffects.GLOWING,               10 * 20, 4), 1)
             .effect(new MobEffectInstance(MobEffects.CONFUSION,             10 * 20, 4), 1)
@@ -144,19 +142,40 @@ public class ItemInit {
             .effect(new MobEffectInstance(MobEffects.UNLUCK,                10 * 20, 4), 1)
             .build())));
 
-    public static final RegistryObject<Item> DRAGON_SCALE = ITEMS.register("dragon_scale", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> DRAGON_SCALE = ITEMS.register("dragon_scale", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> MAXWELL = ITEMS.register("maxwell", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().build())));
+    public static final RegistryObject<Item> MAXWELL = ITEMS.register("maxwell", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().build())));
 
-    public static final RegistryObject<Item> AMONG_US = ITEMS.register("among_us", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().build())));
+    public static final RegistryObject<Item> AMONG_US = ITEMS.register("among_us", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).food(new FoodProperties.Builder().build())));
 
-    public static final RegistryObject<Item> ORE_TRACKER = ITEMS.register("ore_tracker", () -> new OreTrackerItem(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> ORE_TRACKER = ITEMS.register("ore_tracker", () -> new OreTrackerItem(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> BAG_OF_CAT_FOOD = ITEMS.register("bag_of_cat_food", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> BAG_OF_CAT_FOOD = ITEMS.register("bag_of_cat_food", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> PAN = ITEMS.register("pan", () -> new PanItem(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> PAN = ITEMS.register("pan", () -> new PanItem(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
 
-    public static final RegistryObject<Item> MYSTERY_BUNDLE = ITEMS.register("mystery_bundle", () -> new Item(new Item.Properties().tab(ModCreativeTab.HIXLEPOD_ORIGINS_TAB)));
+    public static final RegistryObject<Item> PASSPORT = ITEMS.register("passport", () -> new PassPortItem(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB)));
+
+    public static final RegistryObject<Item> MYSTERY_BUNDLE = ITEMS.register("mystery_bundle", () -> new MysteryBundleItem(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(16)));
+
+    //YARN ITEMS
+    public static final RegistryObject<Item> BRONZE_YARN = ITEMS.register("bronze_yarn", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(100)));
+
+    public static final RegistryObject<Item> SILVER_YARN = ITEMS.register("silver_yarn", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(100)));
+
+    public static final RegistryObject<Item> GOLD_YARN = ITEMS.register("gold_yarn", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(100)));
+
+    public static final RegistryObject<Item> PLATINUM_YARN = ITEMS.register("platinum_yarn", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(100)));
+
+    public static final RegistryObject<Item> DIAMOND_YARN = ITEMS.register("diamond_yarn", () -> new Item(new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(100)));
+
+
+    //Trophy items
+    public static final RegistryObject<BlockItem> BRONZE_TROPHY = ITEMS.register("bronze_trophy", () -> new BlockItem(BlockInit.BRONZE_TROPHY_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<BlockItem> SILVER_TROPHY = ITEMS.register("silver_trophy", () -> new BlockItem(BlockInit.SILVER_TROPHY_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<BlockItem> GOLD_TROPHY = ITEMS.register("gold_trophy", () -> new BlockItem(BlockInit.GOLD_TROPHY_BLOCK.get(), new Item.Properties().tab(OriginsCreativeTabs.HIXLEPOD_ORIGINS_TAB).stacksTo(1).rarity(Rarity.EPIC)));
 
 
     //Vanilla items

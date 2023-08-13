@@ -52,7 +52,7 @@ public class GodOfFurrys {
 
     public static void tick(Player player) {
         if (player.getName().equals(Component.literal(GodOfFurrys.NAME))) {
-            if ((player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown2") / OriginsManager.ticks) <= 100.0) {
+            if ((player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown2") / OriginsManager.ticks) <= 100) {
                 shield = false;
             }
         }

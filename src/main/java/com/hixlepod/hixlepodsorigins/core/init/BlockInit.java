@@ -50,6 +50,15 @@ public class BlockInit {
 
     public static final RegistryObject<Block> CYBERTRON_PORTAL = registerBlockWithoutBlockItem("cybertron_portal", CybertronPortalBlock::new);
 
+
+
+    public static final RegistryObject<Block> BRONZE_TROPHY_BLOCK = BLOCKS.register("bronze_trophy", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).noOcclusion()));
+
+    public static final RegistryObject<Block> SILVER_TROPHY_BLOCK = BLOCKS.register("silver_trophy", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).noOcclusion()));
+
+    public static final RegistryObject<Block> GOLD_TROPHY_BLOCK = BLOCKS.register("gold_trophy", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).noOcclusion()));
+
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }

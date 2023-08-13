@@ -26,7 +26,8 @@ public class OreTrackerItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> toolTip, TooltipFlag flagIn) {
 
-        toolTip.add(Component.nullToEmpty(ChatFormatting.WHITE + "Not an item that can be obtained, used to test ore tracking."));
+        toolTip.add(Component.nullToEmpty(ChatFormatting.WHITE + "No longer obtainable."));
+        toolTip.add(Component.nullToEmpty(ChatFormatting.WHITE + "Used to test ore tracking ability."));
         super.appendHoverText(stack, worldIn, toolTip, flagIn);
     }
 }

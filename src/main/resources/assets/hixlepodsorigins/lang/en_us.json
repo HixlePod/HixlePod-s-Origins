@@ -1,5 +1,6 @@
 {
-  "itemGroup.hixlepodsOriginsTab": "HixlePod's Origins",
+  "itemGroup.hixlepodsOriginsTab": "HixlePod's Origins: General",
+  "itemGroup.hixlepodsOriginsComponentTab": "HixlePod's Origins: Tech",
 
   "item.hixlepodsorigins.example_item": "Example Item",
   "item.hixlepodsorigins.the_holy_lyre": "The Holy Lyre",
@@ -8,6 +9,12 @@
   "item.hixlepodsorigins.maxwell": "MAXWELL",
   "item.hixlepodsorigins.among_us": "Amogus",
   "item.hixlepodsorigins.azzip_nogrene": "azziP nogrenE",
+
+  "item.hixlepodsorigins.bronze_yarn": "Bronze Yarn",
+  "item.hixlepodsorigins.silver_yarn": "Silver Yarn",
+  "item.hixlepodsorigins.gold_yarn": "Gold Yarn",
+  "item.hixlepodsorigins.platinum_yarn": "Platinum Yarn",
+  "item.hixlepodsorigins.diamond_yarn": "Diamond Yarn",
 
   "item.hixlepodsorigins.dragon_scale": "Dragon Scale",
   "item.hixlepodsorigins.blood_bone": "Blood bone",
@@ -26,6 +33,10 @@
   "block.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore Block",
   "block.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore Block",
   "block.hixlepodsorigins.red_energon_ore_block": "Red Energon Ore Block",
+
+  "block.hixlepodsorigins.bronze_trophy": "Bronze Trophy",
+  "block.hixlepodsorigins.silver_trophy": "Silver Trophy",
+  "block.hixlepodsorigins.gold_trophy": "Gold Trophy",
 
   "item.hixlepodsorigins.energon_ore_block": "Energon Ore",
   "item.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore",

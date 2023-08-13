@@ -104,11 +104,12 @@ public class GroundBridge_Commands {
 
                 Player player = source.getPlayer();
 
-                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "\n\nStart by saving some locations.: \n" +
+                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "\n\nStart by saving a location, this will also save where you are looking at: \n" +
                         ChatFormatting.GOLD + " /groundbridge SAVE_LOCATION " + returnBaseName() + " \n" +
                         ChatFormatting.GOLD + " /groundbridge DELETE_SAVE " + returnBaseName() + " \n\n" +
                         ChatFormatting.GREEN + "Now you want to teleport, start by teleporting yourself or create a party to teleport a group:\n" +
-                        ChatFormatting.GOLD + " /groundbridge TELEPORT Player Location"));
+                        ChatFormatting.GOLD + " /groundbridge TELEPORT Player Location\n"+
+                        ChatFormatting.GOLD + " /groundbridge TELEPORT_TEAM Location"));
 
             } else {
                 source.sendSystemMessage(Component.literal(ChatFormatting.RED + "Ground bridge commands have been disabled by the server administrator."));
@@ -129,7 +130,7 @@ public class GroundBridge_Commands {
                 Player player = source.getSource().getPlayer();
                 ServerPlayer targetedPlayer = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(targetedPlayerString);
 
-                if (HasGroundBridge(player)) {
+                if (HasGroundBridge(player) && EnoughExpForTeleport(player)) {
                     if (PlayerIsTeammateOrClose(player, targetedPlayer)) {
 
                         CompoundTag Locations = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_GroundBridgeLocations");
@@ -150,7 +151,7 @@ public class GroundBridge_Commands {
                         player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Teleported " + ChatFormatting.GOLD + targetedPlayer.getName().getString() + ChatFormatting.GREEN + " to " + ChatFormatting.GOLD + location + ChatFormatting.GREEN + "!"));
 
                     } else { player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Player is too far away or not in the same dimension.")); }
-                } else { player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You do not have a Ground Bridge.")); }
+                } else { player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You do not have a Ground Bridge or you do not have enough levels.")); }
             } else { source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "Ground bridge commands have been disabled by the server administrator.")); }
         } else { source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "You must be a player to execute that command.")); }
 
@@ -164,7 +165,7 @@ public class GroundBridge_Commands {
 
                 Player player = source.getSource().getPlayer();
 
-                if (HasGroundBridge(player)) {
+                if (HasGroundBridge(player) && EnoughExpForTeleport(player)) {
 
                     for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
                         if (entity instanceof Player) {
@@ -191,7 +192,7 @@ public class GroundBridge_Commands {
                             }
                         }
                     }
-                } else { player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You do not have a Ground Bridge.")); }
+                } else { player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You do not have a Ground Bridge or you do not have enough levels.")); }
             } else { source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "Ground bridge commands have been disabled by the server administrator.")); }
         } else {source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "You must be a player to execute that command."));}
 
@@ -207,7 +208,16 @@ public class GroundBridge_Commands {
     }
 
     public static boolean HasGroundBridge(Player player) {
-        if (player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge") == true) {
+        if (player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_HasGroundBridge")) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean EnoughExpForTeleport(Player player) {
+        if (player.experienceLevel > 3) {
+            player.experienceLevel -= 3;
             return true;
         }
 
@@ -215,7 +225,8 @@ public class GroundBridge_Commands {
     }
 
     public static String returnBaseName() {
-        String[] list = {"My_Cool_Base", "Rocky_Mines", "Campus", "Elderstock_Stronghold", "GHOST_OF_SPARTA", "RAACCCCCCCC", "Rolling_Hills"};
+        String[] list = {"My_Cool_Base", "Rocky_Mines", "Campus", "Elderstock_Stronghold", "GHOST_OF_SPARTA", "RAACCCCCCCC", "Rolling_Hills", "ELFS_THRONE",
+        "Wind_Temple"};
         Random random = new Random();
 
         return list[random.nextInt(list.length)];

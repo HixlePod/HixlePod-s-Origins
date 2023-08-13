@@ -40,6 +40,8 @@ public class CommonModEvents {
         event.put(EntityInit.SCRAPLET.get(), EntityScraplet.createAttributes().build());
         event.put(EntityInit.CYBERTRON_CREEPER.get(), EntityCybertronCreeper.createAttributes().build());
         event.put(EntityInit.CYBERTRON_HOSTILE_COW.get(), EntityCybertronHostileCow.createAttributes().build());
+        event.put(EntityInit.CYBERTRON_ZOMBIE.get(), EntityCybertronZombie.createAttributes().build());
+
 
         //Bosses
         event.put(EntityInit.SCRAPLET_BOSS.get(), EntityScrapletBoss.createAttributes().build());

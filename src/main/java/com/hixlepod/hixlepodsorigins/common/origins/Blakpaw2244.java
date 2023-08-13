@@ -105,7 +105,7 @@ public class Blakpaw2244 {
 
             if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon") >= 0) {
                 int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
-                player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - 1);
+                player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_Energon",  energon - (player.getAbilities().flying ? 2 : 1));
             }
 
             if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon") <= 1) {
@@ -116,4 +116,5 @@ public class Blakpaw2244 {
 
         }
     }
+
 }

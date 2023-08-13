@@ -85,6 +85,10 @@ public class EntityInit {
             () -> EntityType.Builder.of(EntityCybertronHostileCow::new, MobCategory.CREATURE).sized(0.9F, 1.4F).
                     build(new ResourceLocation(HixlePodsOrigins.MODID, "cybertron_hostile_cow").toString()));
 
+    public static final RegistryObject<EntityType<EntityCybertronZombie>> CYBERTRON_ZOMBIE = ENTITIES.register("cybertron_zombie",
+            () -> EntityType.Builder.of(EntityCybertronZombie::new, MobCategory.MONSTER).sized(1F, 2F).
+                    build(new ResourceLocation(HixlePodsOrigins.MODID, "cybertron_zombie").toString()));
+
     //Bosses
 
      //Scraplet boss & Co

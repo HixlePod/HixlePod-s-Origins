@@ -383,6 +383,7 @@ public class ClientModEvents {
             event.registerEntityRenderer(EntityInit.SCRAPLET.get(), ScrapletRenderer::new);
             event.registerEntityRenderer(EntityInit.CYBERTRON_CREEPER.get(), CybertronCreeperRenderer::new);
             event.registerEntityRenderer(EntityInit.CYBERTRON_HOSTILE_COW.get(), CybertronHostileCowRenderer::new);
+            event.registerEntityRenderer(EntityInit.CYBERTRON_ZOMBIE.get(), CybertronZombieRenderer::new);
 
             //Bosses
             event.registerEntityRenderer(EntityInit.SCRAPLET_BOSS.get(), ScrapletBossRenderer::new);

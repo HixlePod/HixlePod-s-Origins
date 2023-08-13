@@ -2,6 +2,7 @@ package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCreeper;
+import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronZombie;
 import com.hixlepod.hixlepodsorigins.common.NPCs.NPCManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
@@ -109,7 +110,7 @@ public class GameplayEvents {
     @SubscribeEvent
     public static void WorldTickEvent(TickEvent.LevelTickEvent event) {
         if (event.level != null && !event.level.isClientSide()) {
-            NPCManager.CheckNPCIsSpawnable(event);
+            //NPCManager.CheckNPCIsSpawnable(event);
         }
     }
 
@@ -122,6 +123,13 @@ public class GameplayEvents {
                    event.getEntity().position().x(),
                    event.getEntity().position().y(),
                    event.getEntity().position().z(), new ItemStack(ItemInit.BLOOD_BONE.get())));
+       }
+
+       if (event.getEntity() instanceof EntityCybertronZombie) {
+           event.getDrops().add(new ItemEntity(event.getEntity().getLevel(),
+                   event.getEntity().position().x(),
+                   event.getEntity().position().y(),
+                   event.getEntity().position().z(), new ItemStack(ItemInit.RUST.get())));
        }
     }
 

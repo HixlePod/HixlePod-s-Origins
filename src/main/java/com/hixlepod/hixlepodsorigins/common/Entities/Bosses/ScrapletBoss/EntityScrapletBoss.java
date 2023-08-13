@@ -34,7 +34,6 @@ import java.util.concurrent.TimeUnit;
 
 public class EntityScrapletBoss extends Spider {
 
-    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(0);
 
     public EntityScrapletBoss(EntityType<? extends EntityScrapletBoss> p_33786_, Level p_33787_) {
         super(p_33786_, p_33787_);
@@ -44,12 +43,24 @@ public class EntityScrapletBoss extends Spider {
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.CUSTOM_IRON_INGOT.get());
     private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS));
 
-
+    //Duplication
     private int SCRAPLET_DUPLICATION_COOLDOWN = 20 * 5; //5 second cooldown
     private int SCRAPLET_DUPLICATION_TIMER = 20 * 5;
 
-    private int ABILITY_COOLDOWN = 20 * 8;
+    //Abilities
+    private int ABILITY_COOLDOWN = 20 * 9;
     private int ABILITY_TIMER = 20 * 8;
+
+    //Summon Scraplet
+    private int SUMMON_SCRAPLET_COOLDOWN = 0;
+    private int SUMMON_SCRAPLET_AMOUNT = 0;
+
+    //Boom Ability
+    private int BOOM_WARNING_COOLDOWN = 0;
+    private int BOOM_WARNING_AMOUNT = 0;
+
+    private int BOOM_COOLDOWN = 0;
+    private int BOOM_AMOUNT = 0;
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
@@ -67,7 +78,7 @@ public class EntityScrapletBoss extends Spider {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.12F)
-                .add(Attributes.MAX_HEALTH, 1000.0)
+                .add(Attributes.MAX_HEALTH, 800.0)
                 .add(Attributes.ATTACK_DAMAGE, 25.0D)
                 .add(Attributes.ARMOR, 20.0)
                 .add(Attributes.ARMOR_TOUGHNESS, 20.0)
@@ -83,6 +94,9 @@ public class EntityScrapletBoss extends Spider {
         super.tick();
 
         if (this.getTarget() != null) {
+
+            AbilityTick();
+
             if (this.SCRAPLET_DUPLICATION_TIMER != 0) {
                 this.SCRAPLET_DUPLICATION_TIMER = this.SCRAPLET_DUPLICATION_TIMER - 1;
             } else {
@@ -95,42 +109,24 @@ public class EntityScrapletBoss extends Spider {
 
 
             if (this.ABILITY_TIMER != 0) {
-                this.ABILITY_TIMER = this.ABILITY_TIMER - 1;
+                this.ABILITY_TIMER -= 1;
             } else {
 
                 switch (OriginsUtil.randomInt(1, 4)) {
                     case 1: YeetScraplet(this, this.getTarget()); break;
                     case 2:
-
-                        for (int i = 0; i < OriginsUtil.randomInt(14, 21); i++) {
-
-                            scheduler.schedule(new Runnable() {
-                                public void run() {
-                                    SpawnBetaScaplet();
-                                }
-
-                            }, 85 * i, TimeUnit.MILLISECONDS);
-                        }
+                        this.SUMMON_SCRAPLET_COOLDOWN = OriginsUtil.randomInt(1, 3);
+                        this.SUMMON_SCRAPLET_AMOUNT = OriginsUtil.randomInt(14, 21);
                         break;
 
                     case 3:
                     case 4:
 
-                        for (int i = 0; i < 3; i++) {
-                            scheduler.schedule(new Runnable() {
-                                public void run() {
-                                    getLevel().playSound(null, blockPosition(), SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.HOSTILE, 1, 2);
-                                }
-                            }, i * 1, TimeUnit.SECONDS);
-                        }
+                        this.BOOM_WARNING_AMOUNT = 3;
+                        this.BOOM_WARNING_COOLDOWN = 20;
 
-                        for (int i = 0; i < 5; i++) {
-                            scheduler.schedule(new Runnable() {
-                                public void run() {
-                                    BoomAbility();
-                                }
-                            }, (i * 400) + (1000 * 3), TimeUnit.MILLISECONDS);
-                        }
+                        this.BOOM_AMOUNT = 5;
+                        this.BOOM_COOLDOWN = 10;
                         break;
 
                 }
@@ -181,6 +177,38 @@ public class EntityScrapletBoss extends Spider {
         entity.setDeltaMovement(vec31.x, (double) 1f, vec31.z);
 
         OriginsUtil.sendParticle(entity.getServer().getLevel(entity.getLevel().dimension()), ParticleTypes.CAMPFIRE_COSY_SMOKE, entity.position(), new Vec3(0.2, 0.2, 0.2), 0.5, 10);
+    }
+
+    public void AbilityTick() {
+        if (this.SUMMON_SCRAPLET_COOLDOWN != 0) {
+            this.SUMMON_SCRAPLET_COOLDOWN -= 1;
+        } else {
+            if (this.SUMMON_SCRAPLET_AMOUNT != 0) {
+                this.SUMMON_SCRAPLET_AMOUNT -= 1;
+                SpawnBetaScaplet();
+                this.SUMMON_SCRAPLET_COOLDOWN = OriginsUtil.randomInt(1, 3);
+            }
+        }
+
+        if (this.BOOM_WARNING_AMOUNT != 0) {
+            if (this.BOOM_WARNING_COOLDOWN != 0) {
+                this.BOOM_WARNING_COOLDOWN -= 1;
+            } else {
+                this.getLevel().playSound(null, blockPosition(), SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.HOSTILE, 1, 2);
+                this.BOOM_WARNING_AMOUNT -= 1;
+                this.BOOM_WARNING_COOLDOWN = 20;
+            }
+        } else {
+            if (this.BOOM_AMOUNT != 0) {
+                if (this.BOOM_COOLDOWN != 0) {
+                    this.BOOM_COOLDOWN -= 1;
+                } else {
+                    BoomAbility();
+                    this.BOOM_COOLDOWN = 10;
+                    this.BOOM_AMOUNT -= 1;
+                }
+            }
+        }
     }
 
     @Override
