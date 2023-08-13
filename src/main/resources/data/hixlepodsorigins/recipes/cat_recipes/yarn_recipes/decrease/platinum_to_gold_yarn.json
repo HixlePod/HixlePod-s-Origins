@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "hixlepodsorigins:platinum_yarn"
+    }
+  ],
+  "result": {
+    "item": "hixlepodsorigins:gold_yarn",
+    "count": 9
+  }
+}

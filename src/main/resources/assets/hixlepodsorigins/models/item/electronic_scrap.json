@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:items/electronic_scrap",
+    "particle": "hixlepodsorigins:items/electronic_scrap"
+  }
+}

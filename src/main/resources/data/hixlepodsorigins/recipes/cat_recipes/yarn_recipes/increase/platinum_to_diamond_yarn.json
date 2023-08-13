@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "hixlepodsorigins:platinum_yarn",
+      "count": 3
+    }
+  },
+  "result": {
+    "item": "hixlepodsorigins:diamond_yarn"
+  }
+}
