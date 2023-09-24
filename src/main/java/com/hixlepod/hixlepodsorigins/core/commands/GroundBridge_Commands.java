@@ -216,8 +216,8 @@ public class GroundBridge_Commands {
     }
 
     public static boolean EnoughExpForTeleport(Player player) {
-        if (player.experienceLevel > 3) {
-            player.experienceLevel -= 3;
+        if (player.experienceLevel >= 1) {
+            player.giveExperienceLevels(-1);
             return true;
         }
 
