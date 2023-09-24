@@ -40,7 +40,7 @@ public class Kira_uwu69 {
             }
 
             if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon") <= 1) {
-                player.hurt(DamageSource.STARVE, 2.5f);
+                player.hurt(player.damageSources().starve(), 2.5f);
             }
 
             player.getFoodData().setFoodLevel(20);
@@ -48,25 +48,25 @@ public class Kira_uwu69 {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10 * 20, 1, true, false, false));
 
             if ((player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown2") / OriginsManager.ticks) <= 90.0) {
-                ProtectThoseGodDamnPeople(player);
+                ProtectThosePeople(player);
             }
         }
     }
 
     public static void Ability1(ServerPlayer player) {
-        for (Entity entity : player.getLevel().getAllEntities()) {
+        for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity instanceof LivingEntity) {
 
                 if (entity.position().distanceTo(player.position()) < 16) {
                     if (!entity.equals(player) && !(entity.getTeam() == player.getTeam())) {
 
-                        LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(player.getLevel());
+                        LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(player.level());
 
                         lightning.moveTo(entity.position());
                         lightning.setDamage(OriginsUtil.damageScale(5, player));
                         lightning.setVisualOnly(true);
 
-                        player.getLevel().addFreshEntity(lightning);
+                        player.level().addFreshEntity(lightning);
                     }
                 }
             }
@@ -83,14 +83,14 @@ public class Kira_uwu69 {
         }
     }
 
-    public static void ProtectThoseGodDamnPeople(Player player) {
+    public static void ProtectThosePeople(Player player) {
         for (Player entity : player.getServer().getPlayerList().getPlayers()) {
             if (entity.equals(player) || (entity.getTeam() == player.getTeam())) {
 
                 if ((player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown2") / OriginsManager.ticks) <= 90.0) {
 
                     if (entity.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_ProtectThePeople") == true) {
-                        player.getServer().getLevel(player.getLevel().dimension()).sendParticles(
+                        player.getServer().getLevel(player.level().dimension()).sendParticles(
                                 ParticleTypes.DOLPHIN,
                                 entity.position().x() + OriginsUtil.randomDouble(-0.45, 0.45),
                                 entity.position().y() + OriginsUtil.randomDouble(0.3, 1.2),

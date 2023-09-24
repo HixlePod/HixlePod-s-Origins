@@ -32,7 +32,7 @@ public class gh0stlure {
     }
 
     public static void Ability2(ServerPlayer player) {
-        for (Entity entity : player.getLevel().getAllEntities()) {
+        for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity instanceof LivingEntity) {
 
                 if (entity.position().distanceTo(player.position()) < 30) {
@@ -70,8 +70,8 @@ public class gh0stlure {
         int player_y = (int) player.position().y();
 
         for (int y = player_y; y < player.getServer().overworld().getMaxBuildHeight(); y++) {
-            Level level = player.getLevel();
-            if (level.getBlockState(new BlockPos(player.position().x, y, player.position().z)).getMaterial().isSolid()) {
+            Level level = player.level();
+            if (level.getBlockState(new BlockPos((int) player.position().x, y, (int) player.position().z)).isSolid()) {
                 return false;
             }
         }

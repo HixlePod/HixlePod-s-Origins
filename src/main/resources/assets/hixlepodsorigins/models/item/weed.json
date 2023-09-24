@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/weed",
-    "particle": "hixlepodsorigins:items/weed"
+    "layer0": "hixlepodsorigins:item/weed",
+    "particle": "hixlepodsorigins:item/weed"
   }
 }

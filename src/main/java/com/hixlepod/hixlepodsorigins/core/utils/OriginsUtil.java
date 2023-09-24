@@ -112,7 +112,7 @@ public class OriginsUtil {
     }
 
     public static Entity returnPlayerPet(Player player, EntityType livingEntity) {
-        for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+        for (Entity entity : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity instanceof LivingEntity) {
 
                 if (entity.getType() == livingEntity) {

@@ -17,7 +17,7 @@ import net.minecraft.world.item.Items;
 
 public class undramaticc {
 
-    public static String NAME = "undras";
+    public static String NAME = "oused";
 
     public static void setAbilityData(Player player) {
         player.getAbilities().setFlyingSpeed(0.03F);
@@ -29,7 +29,7 @@ public class undramaticc {
         //Fudge105.isInvisible = true;
 
         for (int i = 0; i < 9; i++) {
-            Entity entity = EntityType.ZOMBIE.create(player.getLevel());
+            Entity entity = EntityType.ZOMBIE.create(player.level());
 
             entity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
 
@@ -37,7 +37,7 @@ public class undramaticc {
             entity.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_DropItems", true);
             entity.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_AttackAthena", true);
 
-            player.getLevel().addFreshEntity(entity);
+            player.level().addFreshEntity(entity);
         }
     }
     public static double attack_multiplier;

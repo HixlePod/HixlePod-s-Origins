@@ -62,7 +62,7 @@ public class EntityCybertronCow extends Animal {
             player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
             ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, ItemInit.AMBERGON_BUCKET.get().getDefaultInstance());
             player.setItemInHand(interactionHand, itemstack1);
-            return InteractionResult.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
             return super.interactAt(player, vec3, interactionHand);
         }

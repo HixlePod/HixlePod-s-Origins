@@ -89,7 +89,7 @@ public class Render {
                         b.color[0]/255.0F,b.color[1]/255.0F,b.color[2]/255.0F,(float)b.alpha);
             }
         }
-        var vbuf = new VertexBuffer();
+        var vbuf = new VertexBuffer(VertexBuffer.Usage.DYNAMIC);
         vbuf.bind();
         vbuf.upload(builder.end());
 
@@ -126,7 +126,7 @@ public class Render {
 
         RenderSystem.setShader(GameRenderer::getRendertypeLinesShader);
         RenderSystem.disableCull();
-        RenderSystem.disableTexture();
+        //RenderSystem.disableDepthTest();
         RenderSystem.disableDepthTest();
         RenderSystem.depthMask(false);
         vertexBuf.bind();
@@ -135,11 +135,11 @@ public class Render {
         assert thisRenderer != null;
         thisRenderer.COLOR_MODULATOR.set(0.0f);
 
-        vertexBuf.drawWithShader(stack.last().pose(), event.getProjectionMatrix().copy(),thisRenderer);
+        vertexBuf.drawWithShader(stack.last().pose(), event.getProjectionMatrix(), thisRenderer);
 
         VertexBuffer.unbind();
         RenderSystem.enableCull();
-        RenderSystem.enableTexture();
+        //RenderSystem.enable();
         RenderSystem.enableDepthTest();
         RenderSystem.depthMask(true);
 

@@ -34,7 +34,7 @@ public class CrispyChordioid {
     }
 
     public static void Ability2(ServerPlayer player) {
-        if (player.isOnGround() == false) {
+        if (player.onGround() == false) {
             player.hurtMarked = true;
             player.setDeltaMovement(player.getDeltaMovement().add(0, -0.5 * 5, 0));
             player.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown", true);

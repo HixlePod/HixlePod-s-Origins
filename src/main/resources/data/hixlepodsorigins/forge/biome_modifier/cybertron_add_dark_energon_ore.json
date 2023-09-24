@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#hixlepodsorigins:cybertron",
+  "features": "hixlepodsorigins:overworld_dark_energon_ore",
+  "step": "underground_ores"
+}

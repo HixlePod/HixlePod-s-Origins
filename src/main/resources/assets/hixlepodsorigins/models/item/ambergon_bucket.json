@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/ambergon_bucket",
-    "particle": "hixlepodsorigins:items/ambergon_bucket"
+    "layer0": "hixlepodsorigins:item/ambergon_bucket",
+    "particle": "hixlepodsorigins:item/ambergon_bucket"
   }
 }

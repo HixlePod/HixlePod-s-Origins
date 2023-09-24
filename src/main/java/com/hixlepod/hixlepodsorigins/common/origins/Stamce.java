@@ -27,8 +27,8 @@ public class Stamce {
 
         player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).setBaseValue(1.0);
 
-        player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(5.5);
-        player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(5.5);
+        player.getAttribute(ForgeMod.ENTITY_REACH.get()).setBaseValue(5.5);
+        player.getAttribute(ForgeMod.BLOCK_REACH.get()).setBaseValue(5.5);
 
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(18.0);
 

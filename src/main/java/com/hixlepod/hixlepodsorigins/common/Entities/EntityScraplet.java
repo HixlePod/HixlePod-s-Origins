@@ -71,11 +71,11 @@ public class EntityScraplet extends Spider {
                 this.SCRAPLET_DUPLICATION_TIMER = this.SCRAPLET_DUPLICATION_TIMER - 1;
             } else {
                 if (this.SCRAPLETS_SPAWNED <= MAX_SCRAPLETS_PER) {
-                    Entity entity = EntityInit.SCRAPLET.get().create(this.getLevel());
+                    Entity entity = EntityInit.SCRAPLET.get().create(this.level());
 
                     entity.moveTo(this.position());
 
-                    this.getLevel().addFreshEntity(entity);
+                    this.level().addFreshEntity(entity);
 
                     this.SCRAPLETS_SPAWNED++;
                     this.SCRAPLET_DUPLICATION_TIMER = SCRAPLET_DUPLICATION_COOLDOWN;

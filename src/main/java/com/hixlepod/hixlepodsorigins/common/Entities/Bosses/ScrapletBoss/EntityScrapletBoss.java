@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -24,13 +25,10 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class EntityScrapletBoss extends Spider {
 
@@ -140,27 +138,29 @@ public class EntityScrapletBoss extends Spider {
         playSound(SoundEvents.GENERIC_EXPLODE, 1, 2);
         SpawnBetaScaplet();
 
-        for (Entity entity : this.getServer().getLevel(this.getLevel().dimension()).getAllEntities()) {
+        for (Entity entity : this.getServer().getLevel(this.level().dimension()).getAllEntities()) {
             if (entity instanceof Player) {
                 if (entity.position().distanceTo(this.position()) < 10) {
                     Vec3 difference = this.position().subtract(entity.position());
                     Vec3 normalizedDifference = difference.normalize();
                     entity.setDeltaMovement(normalizedDifference.multiply(-5, -2, -5));
 
-                    entity.hurt(DamageSource.explosion(this), 35);
+                    //entity.hurt(DamageSource.explosion(this), 35);
+                    entity.hurt(entity.damageSources().explosion(this, entity), 35);
+                    //entity.hurt(entity.damageSources().explosion(new Explosion(0, this)), 35);
                 }
             }
         }
     }
 
     public void SpawnBetaScaplet() {
-        EntityBetaScraplet entity = EntityInit.BETA_SCRAPLET.get().create(this.getLevel());
+        EntityBetaScraplet entity = EntityInit.BETA_SCRAPLET.get().create(this.level());
 
         entity.moveTo(this.position());
 
         YeetScraplet(entity, this.getTarget(), LEAPING_HEIGHT + 0.3, LEAPING_LENGTH - 0.3, OriginsUtil.randomDouble(-12, 12), OriginsUtil.randomDouble(-12, 12));
 
-        this.getLevel().addFreshEntity(entity);
+        this.level().addFreshEntity(entity);
     }
 
     public void YeetScraplet(Entity entity, Entity target) {
@@ -176,7 +176,7 @@ public class EntityScrapletBoss extends Spider {
 
         entity.setDeltaMovement(vec31.x, (double) 1f, vec31.z);
 
-        OriginsUtil.sendParticle(entity.getServer().getLevel(entity.getLevel().dimension()), ParticleTypes.CAMPFIRE_COSY_SMOKE, entity.position(), new Vec3(0.2, 0.2, 0.2), 0.5, 10);
+        OriginsUtil.sendParticle(entity.getServer().getLevel(entity.level().dimension()), ParticleTypes.CAMPFIRE_COSY_SMOKE, entity.position(), new Vec3(0.2, 0.2, 0.2), 0.5, 10);
     }
 
     public void AbilityTick() {
@@ -194,7 +194,7 @@ public class EntityScrapletBoss extends Spider {
             if (this.BOOM_WARNING_COOLDOWN != 0) {
                 this.BOOM_WARNING_COOLDOWN -= 1;
             } else {
-                this.getLevel().playSound(null, blockPosition(), SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.HOSTILE, 1, 2);
+                this.level().playSound(null, blockPosition(), SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.HOSTILE, 1, 2);
                 this.BOOM_WARNING_AMOUNT -= 1;
                 this.BOOM_WARNING_COOLDOWN = 20;
             }

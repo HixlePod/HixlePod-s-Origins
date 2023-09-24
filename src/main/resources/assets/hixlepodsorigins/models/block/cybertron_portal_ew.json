@@ -1,7 +1,7 @@
 {
   "textures": {
-    "particle": "hixlepodsorigins:blocks/cybertron_portal",
-    "portal": "hixlepodsorigins:blocks/cybertron_portal"
+    "particle": "hixlepodsorigins:block/cybertron_portal",
+    "portal": "hixlepodsorigins:block/cybertron_portal"
   },
   "elements": [
     {

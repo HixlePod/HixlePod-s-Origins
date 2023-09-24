@@ -1,7 +1,7 @@
 {
 	"parent": "minecraft:item/generated",
 	"textures": {
-		"layer0": "hixlepodsorigins:items/energon_cube",
-		"particle": "hixlepodsorigins:items/energon_cube"
+		"layer0": "hixlepodsorigins:item/energon_cube",
+		"particle": "hixlepodsorigins:item/energon_cube"
 	}
 }

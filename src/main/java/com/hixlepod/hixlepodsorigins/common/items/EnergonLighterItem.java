@@ -35,7 +35,7 @@ public class EnergonLighterItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
 
         if (context.getPlayer() != null) {
-            if (context.getPlayer().level.dimension() == DimensionsInit.CYBERTRON_KEY || context.getPlayer().level.dimension() == Level.OVERWORLD) {
+            if (context.getPlayer().level().dimension() == DimensionsInit.CYBERTRON_KEY || context.getPlayer().level().dimension() == Level.OVERWORLD) {
                 for (Direction direction : Direction.Plane.VERTICAL) {
                     BlockPos framePos = context.getClickedPos().relative(direction);
 

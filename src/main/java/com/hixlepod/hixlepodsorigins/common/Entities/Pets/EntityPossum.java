@@ -103,9 +103,10 @@ public class EntityPossum extends TamableAnimal implements NeutralMob {
         }
 
         if (this.getOwner() != null) {
-            if (this.getLevel() != this.getOwner().getLevel()) {
-                this.level = this.getOwner().getLevel();
+            if (this.level() != this.getOwner().level()) {
+                this.changeDimension((ServerLevel) this.getOwner().level());
             }
+
 
             PetsManager.GetHostility(this.getOwner().getPersistentData().getString("PetBehaviour"), this);
         }

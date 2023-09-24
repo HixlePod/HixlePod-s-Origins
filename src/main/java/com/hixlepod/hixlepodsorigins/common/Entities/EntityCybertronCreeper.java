@@ -199,7 +199,7 @@ public class EntityCybertronCreeper extends Creeper {
     }
 
     private void explodeCreeper() {
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             /*
             Explosion.BlockInteraction explosion$blockinteraction = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
             float f = this.isPowered() ? 2.0F : 1.0F;
@@ -214,7 +214,7 @@ public class EntityCybertronCreeper extends Creeper {
     }
 
     private void spawnLingeringCloud() {
-        AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level, this.getX(), this.getY(), this.getZ());
+        AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
         areaeffectcloud.setRadius(3.0F);
         areaeffectcloud.setRadiusOnUse(-0.5F);
         areaeffectcloud.setWaitTime(10);
@@ -223,7 +223,7 @@ public class EntityCybertronCreeper extends Creeper {
 
         areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 5 * 20, 2));
 
-        this.level.addFreshEntity(areaeffectcloud);
+        this.level().addFreshEntity(areaeffectcloud);
     }
 
     public boolean isIgnited() {

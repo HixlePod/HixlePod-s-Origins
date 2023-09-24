@@ -4,8 +4,10 @@ import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
+import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -38,6 +40,13 @@ public class LoreMenuScreen extends Screen {
 
     public LoreMenuScreen(String title) {
         super(Component.literal(title).withStyle(ChatFormatting.GOLD));
+
+        this.message = MultiLineLabel.EMPTY;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
     }
 
     @Override
@@ -46,19 +55,44 @@ public class LoreMenuScreen extends Screen {
         //width, height, size x, size y
 
         //World Laws
-        addRenderableWidget(new Button(5, 30, 70, 20, Component.literal("World Laws"), LoreMenuScreen::WorldLawsButton));
+        addRenderableWidget(Button.builder(Component.literal("World Laws"), LoreMenuScreen::WorldLawsButton)
+                //x, y, width, height
+                .bounds(5, 30, 70, 20)
+                .build());
+
+        //addRenderableWidget(new Button(5, 30, 70, 20, Component.literal("World Laws"), LoreMenuScreen::WorldLawsButton, ));
 
         //Messangers Journal
-        addRenderableWidget(new Button(5, 55, 70, 20, Component.literal("The Journal"), LoreMenuScreen::JournalButton));
+        addRenderableWidget(Button.builder(Component.literal("The Journal"), LoreMenuScreen::JournalButton)
+                //x, y, width, height
+                .bounds(5, 55, 70, 20)
+                .build());
+
+        //addRenderableWidget(new Button(5, 55, 70, 20, Component.literal("The Journal"), LoreMenuScreen::JournalButton));
 
         //Soon to be added.
-        addRenderableWidget(new Button(5, 80, 70, 20, Component.literal("Placeholder"), LoreMenuScreen::PlaceholderButton));
+        addRenderableWidget(Button.builder(Component.literal("Placeholder"), LoreMenuScreen::PlaceholderButton)
+                //x, y, width, height
+                .bounds(5, 80, 70, 20)
+                .build());
+
+        //addRenderableWidget(new Button(5, 80, 70, 20, Component.literal("Placeholder"), LoreMenuScreen::PlaceholderButton));
 
         //Page buttons
-        addRenderableWidget(new Button(((this.width / 2) - 30) - 10, this.height - 25, 20, 20, Component.literal("<-"), LoreMenuScreen::LeftButton));
-        addRenderableWidget(new Button(((this.width / 2) + 30) - 10, this.height - 25, 20, 20, Component.literal("->"), LoreMenuScreen::RightButton));
+        //addRenderableWidget(new Button(((this.width / 2) - 30) - 10, this.height - 25, 20, 20, Component.literal("<-"), LoreMenuScreen::LeftButton));
+        //addRenderableWidget(new Button(((this.width / 2) + 30) - 10, this.height - 25, 20, 20, Component.literal("->"), LoreMenuScreen::RightButton));
 
-        this.message = MultiLineLabel.create(this.font, Component.literal(Description), (this.width / 2) - 15);
+        addRenderableWidget(Button.builder(Component.literal("<-"), LoreMenuScreen::LeftButton)
+                //x, y, width, height
+                .bounds(((this.width / 2) - 30) - 10, this.height - 25, 20, 20)
+                .build());
+
+        addRenderableWidget(Button.builder(Component.literal("->"), LoreMenuScreen::RightButton)
+                //x, y, width, height
+                .bounds(((this.width / 2) + 30) - 10, this.height - 25, 20, 20)
+                .build());
+
+        this.message = MultiLineLabel.create(this.font, Component.literal(Description), (this.width / 2) + 15);
     }
 
     private static final ResourceLocation WHAT_EVER_THIS_IS = new ResourceLocation(HixlePodsOrigins.MODID, "textures/lorebook/characters/whatever_this_is.png");
@@ -69,15 +103,15 @@ public class LoreMenuScreen extends Screen {
 
 
     @Override
-    public void render(PoseStack poseStack, int p_96563_, int p_96564_, float p_96565_) {
+    public void render(GuiGraphics poseStack, int p_96563_, int p_96564_, float p_96565_) {
 
         //Tints the background
         this.renderBackground(poseStack);
 
-        //Screen title
-        drawString(poseStack, this.font, Component.literal(Title), (this.width / 2) - 23, 15, 13158600);
+        //Draw string
+        poseStack.drawString(this.font, Component.literal(Title), (this.width / 2) - 23, 15, 13158600);
+        poseStack.drawString(this.font, Component.literal(Quote), QuotePosition, 30, 6451573);
 
-        drawString(poseStack, this.font, Component.literal(Quote), QuotePosition, 30, 6451573);
 
         int i = this.width / 2 - this.message.getWidth() / 2;
         this.message.renderLeftAligned(poseStack, i, 70, 9 * 2, 16777215);
@@ -98,8 +132,8 @@ public class LoreMenuScreen extends Screen {
 
             RenderSystem.setShaderTexture(0, CURRENT_RESOURCE);
 
-            //this.blit(poseStack, posX, posY, 0, 0, scaledWidth, scaledHeight);
-            this.blit(poseStack, posX, posY, 0, 0.0f, 0.0f, 57 + scale, 110 + scale, 57 + scale, 110 + scale);
+            //poseStack.blit(CURRENT_RESOURCE, posX, posY, 0, 0, scaledWidth, scaledHeight);
+            poseStack.blit(CURRENT_RESOURCE, posX, posY, 0, 0.0f, 0.0f, 57 + scale, 110 + scale, 57 + scale, 110 + scale);
 
             RenderSystem.depthMask(true);
             RenderSystem.enableDepthTest();

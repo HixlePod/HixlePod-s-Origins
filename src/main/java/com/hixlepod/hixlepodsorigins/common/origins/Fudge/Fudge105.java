@@ -39,21 +39,21 @@ public class Fudge105 {
 
     public static void Ability2(ServerPlayer player) {
         for (int i = 0; i < 6; i++) {
-            Entity entity = EntityType.DROWNED.create(player.getLevel());
+            Entity entity = EntityType.DROWNED.create(player.level());
 
             entity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.TRIDENT));
 
             entity.moveTo(player.position());
             entity.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_DropItems", true);
 
-            player.getLevel().addFreshEntity(entity);
+            player.level().addFreshEntity(entity);
         }
     }
 
     public static void tick(Player player) {
         if (player.getName().equals(Component.literal(Fudge105.NAME))) {
 
-            if (!player.isInWaterOrRain() && player.getServer().overworld().isDay() && isUnderBlock(player) && player.getLevel().dimension() == Level.OVERWORLD) {
+            if (!player.isInWaterOrRain() && player.getServer().overworld().isDay() && isUnderBlock(player) && player.level().dimension() == Level.OVERWORLD) {
                 if (!player.hasEffect(MobEffects.FIRE_RESISTANCE)) {
                     if (player.isOnFire()) {
                         if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_FireDamageCooldown") != 0) {
@@ -88,8 +88,8 @@ public class Fudge105 {
         int player_y = (int) player.position().y();
 
         for (int y = player_y; y < player.getServer().overworld().getMaxBuildHeight(); y++) {
-            Level level = player.getLevel();
-            if (level.getBlockState(new BlockPos(player.position().x, y, player.position().z)).getMaterial().isSolid()) {
+            Level level = player.level();
+            if (level.getBlockState(new BlockPos((int) player.position().x, y, (int) player.position().z)).isSolid()) {
                 return false;
             }
         }

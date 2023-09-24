@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -39,15 +40,15 @@ public class AmbrosiaElf {
         ScaleTypes.JUMP_HEIGHT.getScaleData(player).setScale(1.5f);
 
         player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.155);
-        player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(5.5);
-        player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(5.5);
+        player.getAttribute(ForgeMod.ENTITY_REACH.get()).setBaseValue(5.5);
+        player.getAttribute(ForgeMod.BLOCK_REACH.get()).setBaseValue(5.5);
     }
 
     public static void Ability1(ServerPlayer player) {
 
-        player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.PORTAL_TRIGGER, SoundSource.PLAYERS, 1, 2);
+        player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.PORTAL_TRIGGER, SoundSource.PLAYERS, 1, 2);
 
-        for (Entity entity : player.getLevel().getAllEntities()) {
+        for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity instanceof LivingEntity) {
 
                 if (entity.position().distanceTo(player.position()) < 8) {
@@ -131,7 +132,8 @@ public class AmbrosiaElf {
             }
 
             if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon") <= 1) {
-                player.hurt(DamageSource.STARVE, 2.5f);
+                //player.hurt(DamageSource.STARVE, 2.5f);
+                player.hurt(player.damageSources().starve(), 2.5f);
             }
             player.getFoodData().setFoodLevel(20);
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10 * 20, 1, true, false, false));

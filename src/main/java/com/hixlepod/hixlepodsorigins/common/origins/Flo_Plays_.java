@@ -45,7 +45,7 @@ public class Flo_Plays_ {
 
     public static void sound(Player player, SoundEvent soundEvent) {
         for (ServerPlayer serverPlayer : player.getServer().getPlayerList().getPlayers()) {
-            serverPlayer.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, soundEvent, SoundSource.PLAYERS, 1, 1);
+            serverPlayer.level().playSound(null, player.position().x, player.position().y, player.position().z, soundEvent, SoundSource.PLAYERS, 1, 1);
         }
     }
 }

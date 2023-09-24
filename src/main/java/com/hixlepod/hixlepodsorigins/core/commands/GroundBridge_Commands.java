@@ -16,6 +16,7 @@ import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -53,7 +54,7 @@ public class GroundBridge_Commands {
                 CompoundTag Locations = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_GroundBridgeLocations");
 
                 SaveData.putString("Name", name);
-                SaveData.putString("Level", player.getLevel().dimension().location().toString());
+                SaveData.putString("Level", player.level().dimension().location().toString());
                 SaveData.putDouble("PosX", player.position().x());
                 SaveData.putDouble("PosY", player.position().y());
                 SaveData.putDouble("PosZ", player.position().z());
@@ -139,7 +140,7 @@ public class GroundBridge_Commands {
 
 
                         //Convert the level string into an actual level variable that can be used
-                        ResourceKey<Level> resourcekey = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(data.getString("Level")));
+                        ResourceKey<Level> resourcekey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(data.getString("Level")));
                         ServerLevel serverlevel = player.getServer().getLevel(resourcekey);
                         if (serverlevel == null) {
                         }
@@ -167,7 +168,7 @@ public class GroundBridge_Commands {
 
                 if (HasGroundBridge(player) && EnoughExpForTeleport(player)) {
 
-                    for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+                    for (Entity entity : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
                         if (entity instanceof Player) {
                             if (player.getTeam() == entity.getTeam()) {
                                 ServerPlayer targetedPlayer = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(entity.getName().getString());
@@ -178,7 +179,7 @@ public class GroundBridge_Commands {
 
 
                                 //Convert the level string into an actual level variable that can be used
-                                ResourceKey<Level> resourcekey = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(data.getString("Level")));
+                                ResourceKey<Level> resourcekey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(data.getString("Level")));
                                 ServerLevel serverlevel = player.getServer().getLevel(resourcekey);
                                 if (serverlevel == null) {
                                 }
@@ -200,7 +201,7 @@ public class GroundBridge_Commands {
     }
 
     public static boolean PlayerIsTeammateOrClose(Player player, Player target) {
-        if ((player.getTeam() == target.getTeam()) || (target.position().distanceTo(player.position()) < 20 && (target.getLevel() == player.getLevel()))) {
+        if ((player.getTeam() == target.getTeam()) || (target.position().distanceTo(player.position()) < 20 && (target.level() == player.level()))) {
             return true;
         }
 

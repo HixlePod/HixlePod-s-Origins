@@ -1,7 +1,6 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,6 +9,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import virtuoel.pehkui.api.ScaleTypes;
 
@@ -40,7 +40,7 @@ public class Blakpaw2244 {
     }
 
     public static void Ability1(ServerPlayer player) {
-        player.getLevel().explode(player, player.position().x(), player.position().y(), player.position().z(), 6.0F, false, Explosion.BlockInteraction.NONE);
+        player.level().explode(player, player.position().x(), player.position().y(), player.position().z(), 6.0F, false, Level.ExplosionInteraction.NONE);
     }
 
     public static void Ability2(ServerPlayer player) {
@@ -76,8 +76,8 @@ public class Blakpaw2244 {
             ScaleTypes.JUMP_HEIGHT.getScaleData(player).setScale(1.0f);
 
             player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.1);
-            player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(3.0);
-            player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(3.0);
+            player.getAttribute(ForgeMod.ENTITY_REACH.get()).setBaseValue(3.0);
+            player.getAttribute(ForgeMod.BLOCK_REACH.get()).setBaseValue(3.0);
             player.getAttribute(Attributes.ATTACK_KNOCKBACK).setBaseValue(1.0);
 
         } else if (player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_BlackBigBoi") == false) {
@@ -94,8 +94,8 @@ public class Blakpaw2244 {
             ScaleTypes.JUMP_HEIGHT.getScaleData(player).setScale(1.4f);
 
             player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.09);
-            player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(7.0);
-            player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(7.0);
+            player.getAttribute(ForgeMod.ENTITY_REACH.get()).setBaseValue(7.0);
+            player.getAttribute(ForgeMod.BLOCK_REACH.get()).setBaseValue(7.0);
             player.getAttribute(Attributes.ATTACK_KNOCKBACK).setBaseValue(3.0);
         }
     }
@@ -109,7 +109,7 @@ public class Blakpaw2244 {
             }
 
             if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon") <= 1) {
-                player.hurt(DamageSource.STARVE, 2.5f);
+                player.hurt(player.damageSources().starve(), 2.5f);
             }
             player.getFoodData().setFoodLevel(20);
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10 * 20, 1, true, false, false));

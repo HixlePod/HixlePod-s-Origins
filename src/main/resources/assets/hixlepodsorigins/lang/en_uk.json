@@ -111,6 +111,7 @@
   "entity.hixlepodsorigins.scraplet": "Scraplet",
   "entity.hixlepodsorigins.cybertron_creeper": "Cybertron Creeper",
   "entity.hixlepodsorigins.cybertron_hostile_cow": "Cybertron Bull",
+  "effect.hixlepodsorigins.cybertron_zombie": "Cybertron Zombie",
 
   "entity.hixlepodsorigins.scraplet_boss": "[BOSS] Airachnid Prime",
   "entity.hixlepodsorigins.beta_scraplet": "[BOSS-MINION] Beta Scraplet",
@@ -122,6 +123,8 @@
   "sounds.hixlepodsorigins.ground_bridge_pumps": "Ground Bridge Pumps",
   "sounds.hixlepodsorigins.ground_bridge_humming_begins": "Ground Bidge Hums",
   "sounds.hixlepodsorigins.ground_bridge_humming": "Ground Bidge Hums",
+
+  "sounds.hixlepodsorigins.cyber_bullying": "Cyber Bullying",
 
   "effect.hixlepodsorigins.ambergon": "Ambergon",
   "item.minecraft.potion.effect.ambergon_potion": "Ambergon Potion",

@@ -1,19 +1,24 @@
+/*
+
 package com.hixlepod.hixlepodsorigins.core.init;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
+@Deprecated(since = "1.20 / 0.9.5", forRemoval = true)
 public class PlacedFeatureInit {
 
     //OVERWORLD
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
-            DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, HixlePodsOrigins.MODID);
+            DeferredRegister.create(Registries.PLACED_FEATURE, HixlePodsOrigins.MODID);
 
     public static final RegistryObject<PlacedFeature> ENERGON_ORE_OVERWORLD = PLACED_FEATURES.register("energon_ore_overworld",
             () -> new PlacedFeature(ConfiguredFeatureInit.ENERGON_ORE_OVERWORLD.getHolder().get(),
@@ -74,3 +79,6 @@ public class PlacedFeatureInit {
         return List.of(count, InSquarePlacement.spread(), height, BiomeFilter.biome());
     }
 }
+
+
+ */

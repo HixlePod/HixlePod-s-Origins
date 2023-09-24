@@ -68,7 +68,7 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
     public void checkDespawn() {
         super.checkDespawn();
 
-        long DayCount = this.getLevel().getDayTime() / 24000;
+        long DayCount = this.level().getDayTime() / 24000;
 
         if (DayCount % OriginSettings.NPC_SPAWN_FREQUENCY != 0) {
             this.discard();

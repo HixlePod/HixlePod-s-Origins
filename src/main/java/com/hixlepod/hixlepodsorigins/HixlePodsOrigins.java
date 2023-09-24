@@ -12,7 +12,6 @@ import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
@@ -31,6 +30,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import sereneseasons.init.ModCreativeTab;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
@@ -40,12 +40,12 @@ public class HixlePodsOrigins
 {
     public static final String MODID = "hixlepodsorigins";
 
-    private static final String ORIGINS_VERSION = "0.9.4";
-    private static final String ORIGINS_BUILD_VERSION = "BUILD-272";
+    private static final String ORIGINS_VERSION = "0.9.5";
+    private static final String ORIGINS_BUILD_VERSION = "BUILD-14";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;
 
-    public static final String WINDOW_TITLE = "Minecraft* 1.19.2: HixlePod's Origins " + MOD_VER;
+    public static final String WINDOW_TITLE = "Minecraft* 1.20.1: HixlePod's Origins " + MOD_VER;
 
 
     public static HixlePodsOrigins MOD_INSTANCE;
@@ -61,11 +61,12 @@ public class HixlePodsOrigins
         //Register Inits
         ItemInit.ITEMS.register(eventBus);
         ComponentModuleItems.ITEMS.register(eventBus);
+        CreativeTabsInit.ORIGINS_CREATIVE_TABS.register(eventBus);
 
         BlockInit.BLOCKS.register(eventBus);
         SoundInit.SOUND_EVENTS.register(eventBus);
-        ConfiguredFeatureInit.CONFIGURED_FEATURES.register(eventBus);
-        PlacedFeatureInit.PLACED_FEATURES.register(eventBus);
+        //ConfiguredFeatureInit.CONFIGURED_FEATURES.register(eventBus);
+        //PlacedFeatureInit.PLACED_FEATURES.register(eventBus);
         EntityInit.ENTITIES.register(eventBus);
         POIInit.POI.register(eventBus);
         EffectsInit.MOB_EFFECTS.register(eventBus);

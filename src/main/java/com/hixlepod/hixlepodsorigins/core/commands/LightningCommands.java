@@ -19,12 +19,12 @@ public class LightningCommands {
             Player player = source.getPlayer();
 
             for(Entity entity : entities) {
-                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.getLevel());
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.level());
 
                 lightning.moveTo(entity.position());
                 lightning.setDamage(5);
 
-                entity.getLevel().addFreshEntity(lightning);
+                entity.level().addFreshEntity(lightning);
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Zapped " + entity.getName().getString()));
             }
@@ -39,13 +39,13 @@ public class LightningCommands {
             Player player = source.getPlayer();
 
             for(Entity entity : entities) {
-                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.getLevel());
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.level());
 
                 lightning.moveTo(entity.position());
                 lightning.setDamage(5);
                 lightning.setVisualOnly(true);
 
-                entity.getLevel().addFreshEntity(lightning);
+                entity.level().addFreshEntity(lightning);
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Smited " + entity.getName().getString()));
             }
@@ -60,13 +60,13 @@ public class LightningCommands {
             Player player = source.getPlayer();
 
             for(Entity entity : entities) {
-                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.getLevel());
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.level());
 
                 lightning.moveTo(entity.position());
                 lightning.setDamage(0);
                 lightning.setVisualOnly(true);
 
-                entity.getLevel().addFreshEntity(lightning);
+                entity.level().addFreshEntity(lightning);
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Fake Smited " + entity.getName().getString()));
             }

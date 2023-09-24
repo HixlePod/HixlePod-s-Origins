@@ -8,7 +8,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeMod;
@@ -27,14 +26,14 @@ public class Aniriai {
     }
 
     public static void Ability1(ServerPlayer player) {
-        for (Entity entity : player.getLevel().getAllEntities()) {
+        for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity instanceof LivingEntity) {
 
                 if (entity.position().distanceTo(player.position()) < 8) {
                     if (!entity.equals(player)) {
                         ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 15 * 20, 6, true, false));
 
-                        player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GOAT_SCREAMING_AMBIENT, SoundSource.PLAYERS, 1, 1);
+                        player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GOAT_SCREAMING_AMBIENT, SoundSource.PLAYERS, 1, 1);
                     }
                 }
             }

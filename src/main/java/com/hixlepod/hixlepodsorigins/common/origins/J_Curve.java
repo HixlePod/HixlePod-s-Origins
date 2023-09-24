@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.init.SoundInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +19,7 @@ public class J_Curve {
     public static String NAME = "J_Curve";
 
     public static void Ability1(ServerPlayer player) {
-        for (Entity entity : player.getLevel().getAllEntities()) {
+        for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity.position().distanceTo(player.position()) < 10) {
                 if (!entity.equals(player)) {
                     entity.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_ZA_WARUDO", true);
@@ -32,7 +33,7 @@ public class J_Curve {
         }
 
         for (ServerPlayer serverPlayer : player.getServer().getPlayerList().getPlayers()) {
-            serverPlayer.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundInit.ZA_WARUDO_ACTIVATE.get(), SoundSource.PLAYERS, 1, 1);
+            serverPlayer.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundInit.ZA_WARUDO_ACTIVATE.get(), SoundSource.PLAYERS, 1, 1);
         }
     }
 
@@ -42,13 +43,13 @@ public class J_Curve {
 
         if (player != null) {
             if ((player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_AbilityCooldown1") / OriginsManager.ticks) < 100.0) {
-                for (Entity entity : player.getLevel().getAllEntities()) {
+                for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
                     if (entity.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_ZA_WARUDO") == true) {
                         entity.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_ZA_WARUDO", false);
                     }
                 }
             } else {
-                for (Entity entity : player.getLevel().getAllEntities()) {
+                for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
                     if (entity.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_ZA_WARUDO") == true) {
                         double entity_x = entity.getPersistentData().getDouble(HixlePodsOrigins.MODID + "_ZA_WARUDO_X");
                         double entity_y = entity.getPersistentData().getDouble(HixlePodsOrigins.MODID + "_ZA_WARUDO_Y");
@@ -61,7 +62,9 @@ public class J_Curve {
 
             if (player.getName().contains(Component.literal(J_Curve.NAME))) {
                 if (player.isInWaterOrRain()) {
-                    player.hurt(DamageSource.MAGIC, 0.1f);
+                    //player.hurt(DamageSource.MAGIC, 0.1f);
+                    //player.hurt(player.damageSources().magic(), 0.1f);
+                    player.hurt(new DamageSource(DamageTypes.EXTINGUISH.getHolder().get()), 0.1f);
                 }
             }
         }

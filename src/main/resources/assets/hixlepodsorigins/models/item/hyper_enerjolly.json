@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/hyper_enerjolly",
-    "particle": "hixlepodsorigins:items/hyper_enerjolly"
+    "layer0": "hixlepodsorigins:item/hyper_enerjolly",
+    "particle": "hixlepodsorigins:item/hyper_enerjolly"
   }
 }

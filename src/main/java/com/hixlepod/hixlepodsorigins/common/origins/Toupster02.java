@@ -15,7 +15,8 @@ public class Toupster02 {
         player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(OriginsUtil.randomDouble(0.075, 0.15));
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(OriginsUtil.randomDouble(10.0, 40.0));
         player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(OriginsUtil.randomDouble(3.0, 7.0));
-
-        player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(OriginsUtil.randomDouble(4.0, 5.5));
+        
+        player.getAttribute(ForgeMod.ENTITY_REACH.get()).setBaseValue(OriginsUtil.randomDouble(4.0, 5.5));
+        player.getAttribute(ForgeMod.BLOCK_REACH.get()).setBaseValue(OriginsUtil.randomDouble(4.0, 5.5));
     }
 }

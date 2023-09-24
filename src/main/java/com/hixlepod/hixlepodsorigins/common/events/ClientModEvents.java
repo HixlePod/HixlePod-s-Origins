@@ -257,14 +257,14 @@ public class ClientModEvents {
                         event.setNewSpeed(f);
                     }
 
-                    if (!player.isOnGround()) {
+                    if (!player.onGround()) {
                         f *= 5.0F;
                         event.setNewSpeed(f);
                     }
                 }
 
                 if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
-                    if (!player.isOnGround()) {
+                    if (!player.onGround()) {
                         f *= 5.0F;
                         event.setNewSpeed(f);
                     }

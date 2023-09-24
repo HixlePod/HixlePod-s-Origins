@@ -1,10 +1,12 @@
 package com.hixlepod.hixlepodsorigins.common.items;
 
 import com.hixlepod.hixlepodsorigins.common.events.FoodLists;
+import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -46,7 +48,8 @@ public class DrinkItem extends Item {
         if (player != null) {
             if (!Arrays.asList(FoodLists.ROBOTS).contains(player.getName())) {
                 if (Arrays.asList(FoodLists.TRANSFORMERS_DRINKS).contains(player.getMainHandItem().getItem())) {
-                    OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
+                    //OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
+                    player.hurt(new DamageSource(DamageTypes.ENERGON_POISONING.getHolder().get()), 3000f);
                 }
             }
         }

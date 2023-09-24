@@ -8,6 +8,7 @@ import com.hixlepod.hixlepodsorigins.common.NPCs.Dialogues.NimbusDialogue;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
@@ -56,7 +57,7 @@ public class NPCManager {
     static Entity SpawnMethod(Entity entity, Vec3 Pos) {
         entity.moveTo(Pos);
         if (entity instanceof Mob) {
-            ((Mob) entity).finalizeSpawn(entity.getServer().getLevel(entity.getLevel().dimension()), entity.getLevel().getCurrentDifficultyAt(new BlockPos(Pos)), MobSpawnType.TRIGGERED, null, null);
+            ((Mob) entity).finalizeSpawn(entity.getServer().getLevel(entity.level().dimension()), entity.level().getCurrentDifficultyAt(new BlockPos((int) Pos.x(), (int) Pos.y(), (int) Pos.z())), MobSpawnType.TRIGGERED, null, null);
         }
 
         return entity;

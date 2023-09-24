@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/bronze_yarn",
-    "particle": "hixlepodsorigins:items/bronze_yarn"
+    "layer0": "hixlepodsorigins:item/bronze_yarn",
+    "particle": "hixlepodsorigins:item/bronze_yarn"
   }
 }

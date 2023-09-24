@@ -62,7 +62,7 @@ public class KyoWing3809 {
 
     public static void tick(Player player) {
         if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
-            for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+            for (Entity entity : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
                 if (entity instanceof LivingEntity) {
 
                     if (entity.position().distanceTo(player.position()) < 30) {
@@ -73,20 +73,20 @@ public class KyoWing3809 {
                             }
 
                             if (OriginsUtil.didChance(10)) {
-                                player.getServer().getLevel(player.getLevel().dimension()).sendParticles(ParticleTypes.HAPPY_VILLAGER, entity.position().x(), entity.position().y(), entity.position().z(), 3, 0.45d, 1d, 0.45d, 0.1);
+                                player.getServer().getLevel(player.level().dimension()).sendParticles(ParticleTypes.HAPPY_VILLAGER, entity.position().x(), entity.position().y(), entity.position().z(), 3, 0.45d, 1d, 0.45d, 0.1);
                             }
                         }
                     }
                 }
             }
 
-            BlockPos blockPos1 = new BlockPos(player.position().x(), player.position().y() - 1, player.position().z());
-            BlockPos blockPos2 = new BlockPos(player.position().x(), player.position().y() - 2, player.position().z());
-            BlockPos blockPos3 = new BlockPos(player.position().x(), player.position().y() - 3, player.position().z());
+            BlockPos blockPos1 = new BlockPos((int) player.position().x(), (int) player.position().y() - 1, (int) player.position().z());
+            BlockPos blockPos2 = new BlockPos((int) player.position().x(), (int) player.position().y() - 2, (int) player.position().z());
+            BlockPos blockPos3 = new BlockPos((int) player.position().x(), (int) player.position().y() - 3, (int) player.position().z());
 
-            Block block1 = player.getLevel().getBlockState(blockPos1).getBlock();
-            Block block2 = player.getLevel().getBlockState(blockPos2).getBlock();
-            Block block3 = player.getLevel().getBlockState(blockPos3).getBlock();
+            Block block1 = player.level().getBlockState(blockPos1).getBlock();
+            Block block2 = player.level().getBlockState(blockPos2).getBlock();
+            Block block3 = player.level().getBlockState(blockPos3).getBlock();
 
             if (Arrays.asList(GOOD_BLOCKS).contains(block1) || Arrays.asList(GOOD_BLOCKS).contains(block2) || Arrays.asList(GOOD_BLOCKS).contains(block3)) {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2 * 20, 0, true, false));
@@ -97,7 +97,7 @@ public class KyoWing3809 {
 
             if (GROW_PLANTS) {
                 if (OriginsUtil.didChance(15)) {
-                    player.getServer().getLevel(player.getLevel().dimension()).sendParticles(ParticleTypes.ELECTRIC_SPARK, player.position().x(), player.position().y() + player.getEyeHeight() + 0.5, player.position().z(), 3, 0.05d, 0.1d, 0.05d, 0.1);
+                    player.getServer().getLevel(player.level().dimension()).sendParticles(ParticleTypes.ELECTRIC_SPARK, player.position().x(), player.position().y() + player.getEyeHeight() + 0.5, player.position().z(), 3, 0.05d, 0.1d, 0.05d, 0.1);
                 }
                 if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_LET_IT_GROWW") != 0) {
                     player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_LET_IT_GROWW",
@@ -115,16 +115,16 @@ public class KyoWing3809 {
         for (int x = -8; x <= 8; x++) {
             for (int z = -8; z <= 8; z++) {
                 for (int y = -8; y <= 8; y++) {
-                    BlockPos BlockPos = new BlockPos(player.position().x() + x, player.position().y() + y, player.position().z() + z);
-                    BlockState BlockState = player.getLevel().getBlockState(BlockPos);
+                    BlockPos BlockPos = new BlockPos((int) player.position().x() + x, (int) player.position().y() + y, (int) player.position().z() + z);
+                    BlockState BlockState = player.level().getBlockState(BlockPos);
 
                     if (BlockState.getBlock() instanceof BonemealableBlock) {
                         BonemealableBlock BonemealableBlock = (BonemealableBlock) BlockState.getBlock();
 
-                        ServerLevel ServerLevel = player.getServer().getLevel(player.getLevel().dimension());
+                        ServerLevel ServerLevel = player.getServer().getLevel(player.level().dimension());
                         if (OriginsUtil.didChance(10)) {
-                            if (BonemealableBlock.isBonemealSuccess(player.getLevel(), player.getLevel().random, BlockPos, BlockState)) {
-                                BonemealableBlock.performBonemeal(ServerLevel, player.getLevel().random, BlockPos, BlockState);
+                            if (BonemealableBlock.isBonemealSuccess(player.level(), player.level().random, BlockPos, BlockState)) {
+                                BonemealableBlock.performBonemeal(ServerLevel, player.level().random, BlockPos, BlockState);
                             }
                         }
                     }

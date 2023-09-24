@@ -14,8 +14,4 @@ public class EnergonOreBlock extends Block {
         super(p_49795_);
     }
 
-    @Override
-    public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
-        return super.getDrops(p_60537_, p_60538_);
-    }
 }

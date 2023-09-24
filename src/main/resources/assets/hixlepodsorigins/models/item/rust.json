@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/rust",
-    "particle": "hixlepodsorigins:items/rust"
+    "layer0": "hixlepodsorigins:item/rust",
+    "particle": "hixlepodsorigins:item/rust"
   }
 }

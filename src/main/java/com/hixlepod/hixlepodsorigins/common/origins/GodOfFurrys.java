@@ -2,15 +2,16 @@ package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
-import com.mojang.math.Vector3f;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 public class GodOfFurrys {
 
@@ -33,12 +34,13 @@ public class GodOfFurrys {
         for (int i = 0; i < laser_distance; i++) {
             look = look.add(player.getLookAngle().x(), player.getLookAngle().y(), player.getLookAngle().z());
 
-            OriginsUtil.sendParticle(player.getLevel(), new DustParticleOptions(new Vector3f(0, 0, 0), 1), new Vec3(look.x(), look.y(), look.z()), new Vec3(0, 0, 0), 1, 2);
+            OriginsUtil.sendParticle((ServerLevel) player.level(), new DustParticleOptions(new Vector3f(0, 0, 0), 1), new Vec3(look.x(), look.y(), look.z()), new Vec3(0, 0, 0), 1, 2);
 
-            for (Entity entity : player.getLevel().getAllEntities()) {
+            for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
                 if (entity.position().distanceTo(new Vec3(look.x(), look.y(), look.z())) < 1.5) {
                     if (!entity.equals(player)) {
-                        entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(1, player));
+                        //entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(1, player));
+                        entity.hurt(player.damageSources().playerAttack(player), OriginsUtil.damageScale(1, player));
                         break LaserAttackLoop;
                     }
                 }

@@ -1,6 +1,6 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking;
 
-import com.mojang.math.Vector3d;
+import org.joml.Vector3d;
 
 public class WorldRegion {
 
@@ -14,7 +14,7 @@ public class WorldRegion {
      * @param pos    a world position
      * @param radius a block radius
      */
-    public WorldRegion(Vector3d pos, int radius,int minBuild, int maxBuild) {
+    public WorldRegion(Vector3d pos, int radius, int minBuild, int maxBuild) {
         minX = (int)pos.x - radius;
         maxX = (int)pos.x + radius;
         minY = (int)Math.max(minBuild,pos.y - 16);

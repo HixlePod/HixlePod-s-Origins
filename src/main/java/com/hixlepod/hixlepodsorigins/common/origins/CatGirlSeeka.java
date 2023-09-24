@@ -25,10 +25,10 @@ public class CatGirlSeeka {
     }
 
     public static void Ability1(ServerPlayer player) {
-        SmallFireball smallFireball = new SmallFireball(player.getLevel(), player, 0.0, -80.0, 0.0);
+        SmallFireball smallFireball = new SmallFireball(player.level(), player, 0.0, -80.0, 0.0);
         smallFireball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4.5F, 1.0F);
         smallFireball.setPos(smallFireball.getX(), player.getY(0.5D) + 0.5D, smallFireball.getZ());
-        player.getLevel().addFreshEntity(smallFireball);
+        player.level().addFreshEntity(smallFireball);
     }
 
     public static void Ability2(ServerPlayer player) {

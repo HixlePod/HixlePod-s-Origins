@@ -12,12 +12,11 @@ import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
 import com.hixlepod.hixlepodsorigins.core.init.EffectsInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -27,6 +26,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -121,7 +121,7 @@ public class ServerModEvents {
 
             if (attacker.getName().equals(Component.literal(Aniriai.NAME))) {
                 if (event.getEntity() instanceof LivingEntity) {
-                    if (event.getSource().isProjectile()) {
+                    if (event.getSource().equals(DamageTypes.MOB_PROJECTILE)) {
                         event.setAmount(event.getAmount() * 2);
                     }
                 }
@@ -224,8 +224,9 @@ public class ServerModEvents {
 
         OriginsUtil.returnAbilityMessage(player);
 
-        if (player.getLevel().dimension() == DimensionsInit.CYBERTRON_KEY && player.isInWaterOrRain() && isInRain(player)) {
-            OriginsDamageSource.hurt(player, 0.75f, OriginsDamageSource.ACID_RAIN);
+        if (player.level().dimension() == DimensionsInit.CYBERTRON_KEY && player.isInWaterOrRain() && isInRain(player)) {
+            //OriginsDamageSource.hurt(player, 0.75f, OriginsDamageSource.ACID_RAIN);
+            player.hurt(new DamageSource(com.hixlepod.hixlepodsorigins.core.init.DamageTypes.ACID_RAIN.getHolder().get()), 0.75f);
         }
 
         CompoundTag Data = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_VentiBlackhole");
@@ -236,7 +237,7 @@ public class ServerModEvents {
 
             Vec3 position = new Vec3(Data.getDouble("PosX"), Data.getDouble("PosY"), Data.getDouble("PosZ"));
 
-            ResourceKey<Level> resourcekey = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(Data.getString("Level")));
+            ResourceKey<Level> resourcekey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(Data.getString("Level")));
             ServerLevel serverlevel = player.getServer().getLevel(resourcekey);
             if (serverlevel == null) {}
 
@@ -248,7 +249,7 @@ public class ServerModEvents {
 
     public static boolean isInRain(Player player) {
         BlockPos blockpos = player.blockPosition();
-        return player.getLevel().isRainingAt(blockpos) || player.getLevel().isRainingAt(new BlockPos((double)blockpos.getX(), player.getBoundingBox().maxY, (double)blockpos.getZ()));
+        return player.level().isRainingAt(blockpos) || player.level().isRainingAt(new BlockPos((int) blockpos.getX(), (int) player.getBoundingBox().maxY, (int) blockpos.getZ()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -286,7 +287,7 @@ public class ServerModEvents {
             if (player.getName().equals(Component.literal(J_Curve.NAME))) {
 
                 if (OriginsUtil.didChance(45)) {
-                    ServerLevel level = player.getServer().getLevel(player.getLevel().dimension());
+                    ServerLevel level = player.getServer().getLevel(player.level().dimension());
 
                     SmallFireball smallFireball = new SmallFireball(level, player, (target.getX() - player.getX()), -80.0, (target.getZ() - player.getZ()));
                     smallFireball.setPos(smallFireball.getX(), player.getY(0.5D) + 0.5D, smallFireball.getZ());
@@ -310,21 +311,21 @@ public class ServerModEvents {
                     event.setNewSpeed(f);
                 }
 
-                if (!player.isOnGround()) {
+                if (!player.onGround()) {
                     f *= 5.0F;
                     event.setNewSpeed(f);
                 }
             }
 
             if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
-                if (!player.isOnGround()) {
+                if (!player.onGround()) {
                     f *= 5.0F;
                     event.setNewSpeed(f);
                 }
             }
 
             if (player.getName().equals(Component.literal(CatGirlSeeka.NAME))) {
-                if (!player.isOnGround()) {
+                if (!player.onGround()) {
                     f *= 5.0F;
                     event.setNewSpeed(f);
                 }
@@ -393,17 +394,18 @@ public class ServerModEvents {
                 if (player.getPersistentData().getBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown")) {
                     player.getPersistentData().putBoolean(HixlePodsOrigins.MODID + "_CrispyChordioid_Smackdown", false);
 
-                    for (Entity e : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+                    for (Entity e : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
                         if (e.position().distanceTo(player.position()) < 5) {
                             if (!e.equals(player) && !(e.getTeam() == player.getTeam())) {
-                                e.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(5, player));
+                                //e.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(5, player));
+                                e.hurt(e.damageSources().playerAttack(player), OriginsUtil.damageScale(5, player));
                             }
                         }
                     }
 
-                    OriginsUtil.sendParticle(player.getServer().getLevel(player.getLevel().dimension()), ParticleTypes.EXPLOSION, player.position(), new Vec3(2,2,2), 0, 15);
+                    OriginsUtil.sendParticle(player.getServer().getLevel(player.level().dimension()), ParticleTypes.EXPLOSION, player.position(), new Vec3(2,2,2), 0, 15);
 
-                    player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1, 1);
+                    player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1, 1);
 
                     event.setDistance(0);
                     event.setDamageMultiplier(0);
@@ -536,10 +538,13 @@ public class ServerModEvents {
                 Player player = (Player) event.getEntity();
 
                 if (player.getName().equals(Component.literal(GodOfFurrys.NAME))) {
-                    event.getSource().getDirectEntity().hurt(DamageSource.playerAttack(player),(event.getAmount() / 2));
+                    //event.getSource().getDirectEntity().hurt(DamageSources.playerAttack(player), (event.getAmount() / 2));
+                    event.getSource().getDirectEntity().hurt(event.getSource().getDirectEntity().damageSources().playerAttack(player), (event.getAmount() / 2));
 
-                    if (event.getSource().isProjectile()) {
-                        event.getSource().getDirectEntity().hurt(DamageSource.playerAttack(player), (event.getAmount() / 2));
+                    if (event.getSource().equals(DamageTypes.MOB_PROJECTILE)) {
+                        //event.getSource().getDirectEntity().hurt(DamageSource.playerAttack(player), (event.getAmount() / 2));
+                        event.getSource().getDirectEntity().hurt(event.getSource().getDirectEntity().damageSources().playerAttack(player), (event.getAmount() / 2));
+                        //event.getSource().getDirectEntity().damageSources().playerAttack(player);
                     }
                 }
             }
@@ -562,7 +567,7 @@ public class ServerModEvents {
 
             }
             */
-            if (event.getSource().isExplosion()) {
+            if (event.getSource().is(DamageTypes.EXPLOSION)) {
                 if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
                     event.setAmount(0);
                 }
@@ -574,12 +579,12 @@ public class ServerModEvents {
 
                 if (chance <= 20) {
 
-                    ItemEntity item = new ItemEntity(player.getLevel(), player.position().x(), player.position().y(), player.position().z(),
+                    ItemEntity item = new ItemEntity(player.level(), player.position().x(), player.position().y(), player.position().z(),
                             new ItemStack(ItemInit.DRAGON_SCALE.get(), 1));
 
                     item.position().equals(player.position());
 
-                    player.getLevel().addFreshEntity(item);
+                    player.level().addFreshEntity(item);
                 }
             }
 
@@ -587,7 +592,7 @@ public class ServerModEvents {
 
                 if (OriginsUtil.randomInt(1, 100) <= 40) {
 
-                    Entity entity = EntityType.SILVERFISH.create(player.getLevel());
+                    Entity entity = EntityType.SILVERFISH.create(player.level());
 
                     entity.moveTo(player.position());
 
@@ -595,54 +600,54 @@ public class ServerModEvents {
                         //entity
                     //}
 
-                    player.getLevel().addFreshEntity(entity);
+                    player.level().addFreshEntity(entity);
                 }
             }
 
             if (player.getName().equals(Component.literal(Flo_Plays_.NAME))) {
 
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.PARROT_HURT, SoundSource.PLAYERS, 1, 1);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.PARROT_HURT, SoundSource.PLAYERS, 1, 1);
 
-                if (event.getSource().equals(DamageSource.FLY_INTO_WALL)) {
+                if (event.getSource().equals(DamageTypes.FLY_INTO_WALL)) {
                     event.setAmount(event.getAmount() * 2);
                 }
             }
 
             if (player.getName().equals(Component.literal(KyoWing3809.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.HORSE_HURT, SoundSource.PLAYERS, 1, 1);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.HORSE_HURT, SoundSource.PLAYERS, 1, 1);
             }
 
             if (player.getName().equals(Component.literal(Aniriai.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GOAT_HURT, SoundSource.PLAYERS, 1, 2);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.GOAT_HURT, SoundSource.PLAYERS, 1, 2);
             }
 
             if (player.getName().equals(Component.literal(TricoFan.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.SILVERFISH_HURT, SoundSource.PLAYERS, 1, 2);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.SILVERFISH_HURT, SoundSource.PLAYERS, 1, 2);
             }
 
             if (player.getName().equals(Component.literal(gh0stlure.NAME))) {
 
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BAT_HURT, SoundSource.PLAYERS, 1, 1);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BAT_HURT, SoundSource.PLAYERS, 1, 1);
 
-                if (event.getSource().equals(DamageSource.FLY_INTO_WALL)) {
+                if (event.getSource().equals(DamageTypes.FLY_INTO_WALL)) {
                     event.setAmount(event.getAmount() * 2);
                 }
             }
 
             if (player.getName().equals(Component.literal(AmbrosiaElf.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BELL_BLOCK, SoundSource.PLAYERS, 1, 2);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BELL_BLOCK, SoundSource.PLAYERS, 1, 2);
             }
             if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BELL_BLOCK, SoundSource.PLAYERS, 1, 0);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.BELL_BLOCK, SoundSource.PLAYERS, 1, 0);
             }
             if (player.getName().equals(Component.literal(HixlePod.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 2);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 2);
             }
             if (player.getName().equals(Component.literal(Folf_Gaming.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 1.5f);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 1.5f);
             }
             if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
-                player.getLevel().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 0.5f);
+                player.level().playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1, 0.5f);
             }
         }
     }

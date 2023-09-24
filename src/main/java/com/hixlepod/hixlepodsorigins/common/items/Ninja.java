@@ -21,7 +21,7 @@ public class Ninja extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 
-        player.getLevel().playSound(null, player.position().x(), player.position().y(), player.position().z(), SoundInit.NINJA.get(), SoundSource.PLAYERS, 1, 1);
+        player.level().playSound(null, player.position().x(), player.position().y(), player.position().z(), SoundInit.NINJA.get(), SoundSource.PLAYERS, 1, 1);
 
         return super.use(level, player, interactionHand);
     }

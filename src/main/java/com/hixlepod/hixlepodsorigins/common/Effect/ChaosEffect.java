@@ -16,7 +16,7 @@ public class ChaosEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity livingEntity, int Amplifier) {
-        if (!livingEntity.level.isClientSide()) {
+        if (!livingEntity.level().isClientSide()) {
 
             if (OriginsUtil.didChance(25)) {
 

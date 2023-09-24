@@ -3,10 +3,9 @@ package com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.xr
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.BlockStore;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.WorldRegion;
-import com.mojang.math.Vector3d;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.joml.Vector3d;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;

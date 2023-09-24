@@ -3,7 +3,6 @@ package com.hixlepod.hixlepodsorigins.common.blocks;
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
 import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
 import com.hixlepod.hixlepodsorigins.core.utils.ModTags;
-import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -25,7 +24,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,6 +32,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
 
@@ -44,7 +43,7 @@ public class CybertronPortalBlock extends Block {
     protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
     public CybertronPortalBlock() {
-        super(Properties.of(Material.PORTAL)
+        super(Properties.of()
                 .strength(-1F)
                 .noCollission()
                 .lightLevel((state) -> 10)
@@ -119,20 +118,20 @@ public class CybertronPortalBlock extends Block {
                 entity.setPortalCooldown();
             }
             else {
-                if(!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
+                if(!entity.level().isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
-                Level entityWorld = entity.level;
+                Level entityWorld = entity.level();
                 if(entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
-                    ResourceKey<Level> destination = entity.level.dimension() == DimensionsInit.CYBERTRON_KEY ? Level.OVERWORLD : DimensionsInit.CYBERTRON_KEY;
+                    ResourceKey<Level> destination = entity.level().dimension() == DimensionsInit.CYBERTRON_KEY ? Level.OVERWORLD : DimensionsInit.CYBERTRON_KEY;
                     if(minecraftserver != null) {
                         ServerLevel destinationWorld = minecraftserver.getLevel(destination);
                         if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
-                            entity.level.getProfiler().push("undergarden_portal");
+                            entity.level().getProfiler().push("undergarden_portal");
                             entity.setPortalCooldown();
                             entity.changeDimension(destinationWorld, new ModTeleporter(destinationWorld));
-                            entity.level.getProfiler().pop();
+                            entity.level().getProfiler().pop();
                         }
                     }
                 }

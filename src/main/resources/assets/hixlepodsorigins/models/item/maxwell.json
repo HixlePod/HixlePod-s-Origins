@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/maxwell",
-    "particle": "hixlepodsorigins:items/maxwell"
+    "layer0": "hixlepodsorigins:item/maxwell",
+    "particle": "hixlepodsorigins:item/maxwell"
   }
 }

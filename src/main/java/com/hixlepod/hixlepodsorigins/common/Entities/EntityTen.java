@@ -83,7 +83,7 @@ public class EntityTen extends TamableAnimal implements NeutralMob {
                 .add(Attributes.ARMOR_TOUGHNESS, 8.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0)
                 .add(Attributes.ATTACK_KNOCKBACK, 0.5)
-                .add(ForgeMod.ATTACK_RANGE.get(), 5.5);
+                .add(ForgeMod.ENTITY_REACH.get(), 5.5);
     }
 
     private int timeToRecalcPath;
@@ -154,7 +154,7 @@ public class EntityTen extends TamableAnimal implements NeutralMob {
     public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
         ItemStack itemstack = player.getItemInHand(interactionHand);
         Item item = itemstack.getItem();
-        if (this.level.isClientSide) {
+        if (this.level().isClientSide) {
             boolean flag = this.isOwnedBy(player) || this.isTame() || itemstack.is(ItemInit.DARK_ENERGON_CUBE.get()) && !this.isTame() && !this.isAngry();
             return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
         } else {
@@ -216,9 +216,9 @@ public class EntityTen extends TamableAnimal implements NeutralMob {
                     this.tame(player);
                     this.navigation.stop();
                     this.setTarget((LivingEntity)null);
-                    this.level.broadcastEntityEvent(this, (byte)7);
+                    this.level().broadcastEntityEvent(this, (byte)7);
                 } else {
-                    this.level.broadcastEntityEvent(this, (byte)6);
+                    this.level().broadcastEntityEvent(this, (byte)6);
                 }
                 return InteractionResult.SUCCESS;
             }
@@ -228,8 +228,8 @@ public class EntityTen extends TamableAnimal implements NeutralMob {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return EntityInit.TEN.get().create(level);
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob p_146744_) {
+        return EntityInit.TEN.get().create(serverLevel);
     }
 
     @Override

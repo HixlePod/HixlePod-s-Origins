@@ -83,6 +83,6 @@ public class DingClientEvent {
 
     public static void playSound()
     {
-        Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(SoundEvents.NOTE_BLOCK_BELL.getLocation(), SoundSource.MASTER, 10, 0, SoundInstance.createUnseededRandom(), false, 0, SoundInstance.Attenuation.NONE, 0.0D, 0.0D, 0.0D, true));
+        Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(SoundEvents.NOTE_BLOCK_BELL.get().getLocation(), SoundSource.MASTER, 10, 0, SoundInstance.createUnseededRandom(), false, 0, SoundInstance.Attenuation.NONE, 0.0D, 0.0D, 0.0D, true));
     }
 }

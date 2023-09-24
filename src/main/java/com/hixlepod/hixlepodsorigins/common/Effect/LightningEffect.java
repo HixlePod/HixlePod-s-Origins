@@ -24,10 +24,10 @@ public class LightningEffect extends MobEffect {
 
     @Override
     public void applyInstantenousEffect(@Nullable Entity p_19462_, @Nullable Entity p_19463_, LivingEntity livingEntity, int p_19465_, double p_19466_) {
-        Entity entity = EntityType.LIGHTNING_BOLT.create(livingEntity.getLevel());
+        Entity entity = EntityType.LIGHTNING_BOLT.create(livingEntity.level());
 
         entity.moveTo(livingEntity.position());
 
-        livingEntity.getLevel().addFreshEntity(entity);
+        livingEntity.level().addFreshEntity(entity);
     }
 }

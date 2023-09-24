@@ -20,14 +20,14 @@ public class KaboomCommand {
             Player player = source.getPlayer();
 
             for(Entity entity : entities) {
-                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.getLevel());
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.level());
 
                 lightning.moveTo(entity.position());
                 lightning.setDamage(0);
                 lightning.setVisualOnly(true);
 
 
-                entity.getLevel().addFreshEntity(lightning);
+                entity.level().addFreshEntity(lightning);
 
                 entity.hurtMarked = true;
                 entity.setDeltaMovement(player.getDeltaMovement().add(0,8,0));

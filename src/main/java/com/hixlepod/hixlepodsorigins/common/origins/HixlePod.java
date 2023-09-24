@@ -52,7 +52,7 @@ public class HixlePod {
             }
 
             if (player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon") <= 1) {
-                player.hurt(DamageSource.STARVE, 2.5f);
+                player.hurt(player.damageSources().starve(), 2.5f);
             }
 
             player.getFoodData().setFoodLevel(20);

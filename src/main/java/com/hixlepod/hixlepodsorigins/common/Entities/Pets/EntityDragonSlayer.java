@@ -70,8 +70,8 @@ public class EntityDragonSlayer extends TamableAnimal implements NeutralMob {
                 .add(Attributes.ATTACK_DAMAGE, 20.0D)
                 .add(Attributes.ARMOR, 1.0)
                 .add(Attributes.ARMOR_TOUGHNESS, 1.0)
-                .add(ForgeMod.ATTACK_RANGE.get(), 7.0)
-                .add(ForgeMod.REACH_DISTANCE.get(), 7.0);
+                .add(ForgeMod.ENTITY_REACH.get(), 7.0);
+                //.add(ForgeMod.REACH_DISTANCE.get(), 7.0);
     }
 
     @Override
@@ -86,15 +86,16 @@ public class EntityDragonSlayer extends TamableAnimal implements NeutralMob {
                     this.attackCooldown = this.attackCooldown - 1;
                 } else {
 
-                    for (Entity entiy : this.getServer().getLevel(this.getLevel().dimension()).getAllEntities()) {
+                    for (Entity entiy : this.getServer().getLevel(this.level().dimension()).getAllEntities()) {
                         if (!entiy.equals(this) && !entiy.equals(this.getOwner()) && !(entiy.getTeam() == this.getTeam()) && entiy != null) {
                             if (entiy.position().distanceTo(this.position()) < 10) {
-                                entiy.hurt(DamageSource.mobAttack(this), OriginsUtil.damageScale(2f, (Player) this.getOwner()));
+                                //entiy.hurt(DamageSource.mobAttack(this), OriginsUtil.damageScale(2f, (Player) this.getOwner()));
+                                this.getTarget().hurt(this.damageSources().mobAttack(this), OriginsUtil.damageScale(2f, (Player) this.getOwner()));
                             }
                         }
                     }
 
-                    OriginsUtil.sendParticle(this.getServer().getLevel(this.getLevel().dimension()), ParticleTypes.SWEEP_ATTACK, this.position(), new Vec3(8, 3, 8), 2, 30);
+                    OriginsUtil.sendParticle(this.getServer().getLevel(this.level().dimension()), ParticleTypes.SWEEP_ATTACK, this.position(), new Vec3(8, 3, 8), 2, 30);
                     this.attackCooldown = OriginsUtil.randomInt(OriginsManager.ticks * 5, OriginsManager.ticks * 7);
                 }
             }
@@ -114,8 +115,8 @@ public class EntityDragonSlayer extends TamableAnimal implements NeutralMob {
         }
 
         if (this.getOwner() != null) {
-            if (this.getLevel() != this.getOwner().getLevel()) {
-                this.level = this.getOwner().getLevel();
+            if (this.level() != this.getOwner().level()) {
+                this.changeDimension((ServerLevel) this.getOwner().level());
             }
         }
     }

@@ -39,5 +39,12 @@
     "sounds": [
       "hixlepodsorigins:ninja"
     ]
+  },
+
+  "cyber_bullying": {
+    "subtitle": "sounds.hixlepodsorigins.cyber_bullying",
+    "sounds": [
+      "hixlepodsorigins:cyber_bullying"
+    ]
   }
 }

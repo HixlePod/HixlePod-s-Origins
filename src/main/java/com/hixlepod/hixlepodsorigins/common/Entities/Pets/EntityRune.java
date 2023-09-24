@@ -81,8 +81,8 @@ public class EntityRune extends TamableAnimal implements NeutralMob {
         }
 
         if (this.getOwner() != null) {
-            if (this.getLevel() != this.getOwner().getLevel()) {
-                this.level = this.getOwner().getLevel();
+            if (this.level() != this.getOwner().level()) {
+                this.changeDimension((ServerLevel) this.getOwner().level());
             }
         }
     }
@@ -101,7 +101,7 @@ public class EntityRune extends TamableAnimal implements NeutralMob {
                     Vec3 point1 = this.getEyePosition();
                     Vec3 point2 = this.getTarget().position();
 
-                    if (this.getLevel() == this.getTarget().getLevel()) {
+                    if (this.level() == this.getTarget().level()) {
 
                         Vec3 p1 = point1;
                         Vec3 p2 = point2;
@@ -112,10 +112,10 @@ public class EntityRune extends TamableAnimal implements NeutralMob {
 
                             float yOffset = OriginsUtil.randomFloat(-180, 180);
 
-                            SmallFireball smallFireball = new SmallFireball(this.getLevel(), this, OriginsUtil.randomDouble(-0.45, 0.45), -80.0, OriginsUtil.randomDouble(-0.45, 0.45));
+                            SmallFireball smallFireball = new SmallFireball(this.level(), this, OriginsUtil.randomDouble(-0.45, 0.45), -80.0, OriginsUtil.randomDouble(-0.45, 0.45));
                             smallFireball.shootFromRotation(this, this.getXRot(), this.getYRot() + yOffset, 0.0F, 4.5F, 1.0F);
                             smallFireball.setPos(smallFireball.getX(), this.getY(0.5D) + 0.5D, smallFireball.getZ());
-                            this.getLevel().addFreshEntity(smallFireball);
+                            this.level().addFreshEntity(smallFireball);
                         }
                     }
 
@@ -158,8 +158,8 @@ public class EntityRune extends TamableAnimal implements NeutralMob {
     }
 
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return EntityInit.RUNE.get().create(level);
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob p_146744_) {
+        return EntityInit.RUNE.get().create(serverLevel);
     }
 
     @Override

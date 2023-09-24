@@ -7,6 +7,7 @@ import com.hixlepod.hixlepodsorigins.common.NPCs.NPCManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
 import com.hixlepod.hixlepodsorigins.core.init.CommandsInnit;
+import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
@@ -100,7 +101,8 @@ public class GameplayEvents {
                 if (Arrays.asList(FoodLists.TRANSFORMER_FOODS).contains(player.getMainHandItem().getItem()) ||
                 Arrays.asList(FoodLists.TRANSFORMERS_DRINKS).contains(player.getMainHandItem().getItem())) {
 
-                    OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
+                    //OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
+                    player.hurt(new DamageSource(DamageTypes.ENERGON_POISONING.getHolder().get()), 3000f);
                     event.setCanceled(true);
                 }
             }
@@ -119,14 +121,14 @@ public class GameplayEvents {
        if (event.getEntity() instanceof Skeleton || event.getEntity() instanceof Zombie ||
                event.getEntity() instanceof WitherSkeleton || (event.getEntity() instanceof Creeper && !(event.getEntity() instanceof EntityCybertronCreeper))) {
 
-           event.getDrops().add(new ItemEntity(event.getEntity().getLevel(),
+           event.getDrops().add(new ItemEntity(event.getEntity().level(),
                    event.getEntity().position().x(),
                    event.getEntity().position().y(),
                    event.getEntity().position().z(), new ItemStack(ItemInit.BLOOD_BONE.get())));
        }
 
        if (event.getEntity() instanceof EntityCybertronZombie) {
-           event.getDrops().add(new ItemEntity(event.getEntity().getLevel(),
+           event.getDrops().add(new ItemEntity(event.getEntity().level(),
                    event.getEntity().position().x(),
                    event.getEntity().position().y(),
                    event.getEntity().position().z(), new ItemStack(ItemInit.RUST.get())));

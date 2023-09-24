@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/battle_donut",
-    "particle": "hixlepodsorigins:items/battle_donut"
+    "layer0": "hixlepodsorigins:item/battle_donut",
+    "particle": "hixlepodsorigins:item/battle_donut"
   }
 }

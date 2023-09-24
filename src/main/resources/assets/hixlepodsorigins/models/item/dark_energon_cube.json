@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "hixlepodsorigins:items/dark_energon_cube",
-		"particle": "hixlepodsorigins:items/dark_energon_cube"
+		"0": "hixlepodsorigins:item/dark_energon_cube",
+		"particle": "hixlepodsorigins:item/dark_energon_cube"
 	},
 	"elements": [
 		{

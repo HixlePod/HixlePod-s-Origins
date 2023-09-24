@@ -20,7 +20,7 @@ public class PetsManager {
             if (entityType != null) {
                 int count = 0;
 
-                for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+                for (Entity entity : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
                     if (entity.getType() == entityType) {
                         count++;
                     }
@@ -29,65 +29,65 @@ public class PetsManager {
                 if (player.getPersistentData().getBoolean("IsPetSummoned")) {
                     player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Your pet is already summoned!"));
                 } else {
-                    Entity entity = entityType.create(player.getLevel());
+                    Entity entity = entityType.create(player.level());
 
                     if (entityType == EntityInit.ECHO.get()) {
-                        EntityEcho echo = new EntityEcho(entityType, player.getLevel());
+                        EntityEcho echo = new EntityEcho(entityType, player.level());
 
                         echo.setEntityOwner(player);
                         echo.moveTo(player.position());
                         echo.setCustomName(Component.literal("Echo"));
                         echo.setCustomNameVisible(true);
 
-                        player.getLevel().addFreshEntity(echo);
+                        player.level().addFreshEntity(echo);
                     }
 
                     if (entityType == EntityInit.COMPASS.get()) {
-                        EntityCompass compass = new EntityCompass(entityType, player.getLevel());
+                        EntityCompass compass = new EntityCompass(entityType, player.level());
 
                         compass.setEntityOwner(player);
                         compass.moveTo(player.position());
                         compass.setCustomName(Component.literal("Compass"));
                         compass.setCustomNameVisible(true);
 
-                        player.getLevel().addFreshEntity(compass);
+                        player.level().addFreshEntity(compass);
                     }
 
                     if (entityType == EntityInit.RUNE.get()) {
-                        EntityRune rune = new EntityRune(entityType, player.getLevel());
+                        EntityRune rune = new EntityRune(entityType, player.level());
 
                         rune.setEntityOwner(player);
                         rune.moveTo(player.position());
                         rune.setCustomName(Component.literal("Rune"));
                         rune.setCustomNameVisible(true);
 
-                        player.getLevel().addFreshEntity(rune);
+                        player.level().addFreshEntity(rune);
                     }
 
                     if (entityType == EntityInit.PUMKIN.get()) {
-                        EntityPumkin pumkin = new EntityPumkin(entityType, player.getLevel());
+                        EntityPumkin pumkin = new EntityPumkin(entityType, player.level());
 
                         pumkin.setEntityOwner(player);
                         pumkin.moveTo(player.position());
                         pumkin.setCustomName(Component.literal("Pumkin"));
                         pumkin.setCustomNameVisible(true);
 
-                        player.getLevel().addFreshEntity(pumkin);
+                        player.level().addFreshEntity(pumkin);
                     }
 
                     if (entityType == EntityInit.DRAGON_SLAYER.get()) {
-                        EntityDragonSlayer dragonSlayer = new EntityDragonSlayer(entityType, player.getLevel());
+                        EntityDragonSlayer dragonSlayer = new EntityDragonSlayer(entityType, player.level());
 
                         dragonSlayer.setEntityOwner(player);
                         dragonSlayer.moveTo(player.position());
                         dragonSlayer.setCustomName(Component.literal("Dragon Slayer"));
                         dragonSlayer.setCustomNameVisible(true);
 
-                        player.getLevel().addFreshEntity(dragonSlayer);
+                        player.level().addFreshEntity(dragonSlayer);
                     }
 
                     if (entityType == EntityInit.POSSUM.get()) {
-                        EntityPossum entityPossum = new EntityPossum(entityType, player.getLevel());
+                        EntityPossum entityPossum = new EntityPossum(entityType, player.level());
 
                         entityPossum.setEntityOwner(player);
                         entityPossum.moveTo(player.position());
@@ -95,7 +95,7 @@ public class PetsManager {
                         entityPossum.setCustomNameVisible(true);
 
                         for (int i = 0; i < 3; i++) {
-                            player.getLevel().addFreshEntity(entityPossum);
+                            player.level().addFreshEntity(entityPossum);
                         }
                     }
 
@@ -116,7 +116,7 @@ public class PetsManager {
 
 
             if (player.getPersistentData().getBoolean("IsPetSummoned")) {
-                for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+                for (Entity entity : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
                     if (entity.getType() == entityType) {
                         count++;
                         entity.remove(Entity.RemovalReason.DISCARDED);

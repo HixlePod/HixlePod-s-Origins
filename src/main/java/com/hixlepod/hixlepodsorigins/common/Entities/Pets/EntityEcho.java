@@ -98,7 +98,7 @@ public class EntityEcho extends TamableAnimal implements NeutralMob {
                     Vec3 point2 = this.getTarget().position();
                     double points = 15;
 
-                    if (this.getLevel() == this.getTarget().getLevel()) {
+                    if (this.level() == this.getTarget().level()) {
 
                         Vec3 p1 = point1;
                         Vec3 p2 = point2;
@@ -109,13 +109,14 @@ public class EntityEcho extends TamableAnimal implements NeutralMob {
 
                         for (int i = 0; i < points; i++) {
                             p1 = p1.add(vector);
-                            this.getServer().getLevel(this.getLevel().dimension()).sendParticles(ParticleTypes.SCULK_CHARGE_POP, p1.x(), p1.y(), p1.z(), 0, 0d, 0d, 0d, 0d);
+                            this.getServer().getLevel(this.level().dimension()).sendParticles(ParticleTypes.SCULK_CHARGE_POP, p1.x(), p1.y(), p1.z(), 0, 0d, 0d, 0d, 0d);
 
                         }
                     }
 
 
-                    this.getTarget().hurt(DamageSource.mobAttack(this), OriginsUtil.damageScale(3, (Player) this.getOwner()));
+                    //this.getTarget().hurt(DamageSource.mobAttack(this), OriginsUtil.damageScale(3, (Player) this.getOwner()));
+                    this.getTarget().hurt(this.damageSources().mobAttack(this), OriginsUtil.damageScale(3, (Player) this.getOwner()));
                     this.attackCooldown = OriginsUtil.randomInt(OriginsManager.ticks * 5, OriginsManager.ticks * 7);
                 }
             }
@@ -135,8 +136,8 @@ public class EntityEcho extends TamableAnimal implements NeutralMob {
         }
 
         if (this.getOwner() != null) {
-            if (this.getLevel() != this.getOwner().getLevel()) {
-                this.level = this.getOwner().getLevel();
+            if (this.level() != this.getOwner().level()) {
+                this.changeDimension((ServerLevel) this.getOwner().level());
             }
         }
     }

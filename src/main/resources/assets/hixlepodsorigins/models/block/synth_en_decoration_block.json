@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "hixlepodsorigins:blocks/synth_en_decoration_block",
-		"particle": "hixlepodsorigins:blocks/synth_en_decoration_block"
+		"0": "hixlepodsorigins:block/synth_en_decoration_block",
+		"particle": "hixlepodsorigins:block/synth_en_decoration_block"
 	},
 	"elements": [
 		{

@@ -19,21 +19,41 @@ public class PetMenuScreen extends Screen {
         super.init();
 
         //Pet summoning
-        addRenderableWidget(new Button(this.width / 2 - 110, this.height / 2 - 80, 100, 20, Component.literal("Summon Pet"),
-                PetMenuScreen::SummonPet));
+        addRenderableWidget(Button.builder(Component.literal("Summon Pet"), PetMenuScreen::SummonPet)
+                //x, y, width, height
+                .bounds(this.width / 2 - 110, this.height / 2 - 80, 100, 20)
+                .build());
 
-        addRenderableWidget(new Button(this.width / 2 + 10, this.height / 2 - 80, 100, 20, Component.literal("Unsummon pet"),
-                PetMenuScreen::UnsummonPet));
+        //addRenderableWidget(new Button(this.width / 2 - 110, this.height / 2 - 80, 100, 20, Component.literal("Summon Pet"), PetMenuScreen::SummonPet));
+
+        addRenderableWidget(Button.builder(Component.literal("Unsummon pet"), PetMenuScreen::UnsummonPet)
+                //x, y, width, height
+                .bounds(this.width / 2 + 10, this.height / 2 - 80, 100, 20)
+                .build());
+
+        //addRenderableWidget(new Button(this.width / 2 + 10, this.height / 2 - 80, 100, 20, Component.literal("Unsummon pet"), PetMenuScreen::UnsummonPet));
 
         //Pet behaviour
-        addRenderableWidget(new Button(this.width / 2 - 165, this.height / 2 - 50, 100, 20, Component.literal("Set to Friendly"),
-                PetMenuScreen::SetFriendly));
+        addRenderableWidget(Button.builder(Component.literal("Set to Friendly"), PetMenuScreen::SetFriendly)
+                //x, y, width, height
+                .bounds(this.width / 2 - 165, this.height / 2 - 50, 100, 20)
+                .build());
 
-        addRenderableWidget(new Button(this.width / 2 - 55, this.height / 2 - 50, 100, 20, Component.literal("Set to Neutral"),
-                PetMenuScreen::SetNeutral));
+        //addRenderableWidget(new Button(this.width / 2 - 165, this.height / 2 - 50, 100, 20, Component.literal("Set to Friendly"), PetMenuScreen::SetFriendly));
 
-        addRenderableWidget(new Button(this.width / 2 + 55, this.height / 2 - 50, 100, 20, Component.literal("Set to Aggressive"),
-                PetMenuScreen::SetAggressive));
+        addRenderableWidget(Button.builder(Component.literal("Set to Neutral"), PetMenuScreen::SetNeutral)
+                //x, y, width, height
+                .bounds(this.width / 2 - 55, this.height / 2 - 50, 100, 20)
+                .build());
+
+        //addRenderableWidget(new Button(this.width / 2 - 55, this.height / 2 - 50, 100, 20, Component.literal("Set to Neutral"), PetMenuScreen::SetNeutral));
+
+        addRenderableWidget(Button.builder(Component.literal("Set to Aggressive"), PetMenuScreen::SetAggressive)
+                //x, y, width, height
+                .bounds(this.width / 2 + 55, this.height / 2 - 50, 100, 20)
+                .build());
+
+        //addRenderableWidget(new Button(this.width / 2 + 55, this.height / 2 - 50, 100, 20, Component.literal("Set to Aggressive"), PetMenuScreen::SetAggressive));
     }
 
     private static void SummonPet(Button button) {

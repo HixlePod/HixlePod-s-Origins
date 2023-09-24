@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/dark_high_grade_drink",
-    "particle": "hixlepodsorigins:items/dark_high_grade_drink"
+    "layer0": "hixlepodsorigins:item/dark_high_grade_drink",
+    "particle": "hixlepodsorigins:item/dark_high_grade_drink"
   }
 }

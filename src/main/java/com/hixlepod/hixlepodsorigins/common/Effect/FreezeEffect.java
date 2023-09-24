@@ -15,7 +15,7 @@ public class FreezeEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity livingEntity, int Amplifier) {
-        if (!livingEntity.level.isClientSide()) {
+        if (!livingEntity.level().isClientSide()) {
             livingEntity.setTicksFrozen(20 * 10);
         }
         super.applyEffectTick(livingEntity, Amplifier);

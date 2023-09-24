@@ -1,21 +1,17 @@
 package com.hixlepod.hixlepodsorigins.common.items;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
-import com.mojang.math.Vector3f;
-import net.minecraft.core.Position;
 import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -23,12 +19,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import org.joml.Vector3f;
 
 import java.util.function.Predicate;
 
@@ -90,7 +85,7 @@ public class TheStringlessBow extends ProjectileWeaponItem {
                     if (!((double) powerTime < 0.1D)) {
 
                         ArrowItem arrowitem = (ArrowItem) (itemstack1.getItem() instanceof ArrowItem ? itemstack1.getItem() : Items.ARROW);
-                        AbstractArrow abstractarrow = arrowitem.createArrow(player.getLevel(), itemstack1, player);
+                        AbstractArrow abstractarrow = arrowitem.createArrow(player.level(), itemstack1, player);
                         abstractarrow = customArrow(abstractarrow);
                         abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, powerTime * 2.0F, 0.0F);
 
@@ -109,9 +104,9 @@ public class TheStringlessBow extends ProjectileWeaponItem {
                             abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                         }
 
-                        player.getLevel().addFreshEntity(abstractarrow);
+                        player.level().addFreshEntity(abstractarrow);
 
-                        player.getLevel().playSound((Player) null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 1.2F) + powerTime * 0.5F);
+                        player.level().playSound((Player) null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 1.2F) + powerTime * 0.5F);
                         if (!flag1 && !player.getAbilities().instabuild) {
                             itemstack1.shrink(1);
                             if (itemstack1.isEmpty()) {
@@ -130,7 +125,7 @@ public class TheStringlessBow extends ProjectileWeaponItem {
     }
 
     private void BowAbility(Player player, ItemStack bow) {
-        Level Unknownlevel = player.getLevel();
+        Level Unknownlevel = player.level();
 
         if (!Unknownlevel.isClientSide()) {
 
@@ -138,7 +133,7 @@ public class TheStringlessBow extends ProjectileWeaponItem {
 
             CompoundTag SaveData = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_VentiBlackhole");
             SaveData.putInt("Ticks", 20 * 15);
-            SaveData.putString("Level", player.getLevel().dimension().location().toString());
+            SaveData.putString("Level", player.level().dimension().location().toString());
             SaveData.putDouble("PosX", player.position().x());
             SaveData.putDouble("PosY", player.position().y() + 2);
             SaveData.putDouble("PosZ", player.position().z());
@@ -154,10 +149,11 @@ public class TheStringlessBow extends ProjectileWeaponItem {
         OriginsUtil.sendParticle(level, ParticleTypes.PORTAL, position, new Vec3(0, 0, 0), 10, 25);
         OriginsUtil.sendParticle(level, new DustParticleOptions(new Vector3f(0.3f, 0.9f, 0.8f), 1), position, new Vec3(3, 3, 3), 1, 10);
 
-        for (Entity entity : player.getServer().getLevel(player.getLevel().dimension()).getAllEntities()) {
+        for (Entity entity : player.getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity.position().distanceTo(position) < 25 && (entity != null) && (player != null)) {
                 if (!entity.equals(player) && !(entity.getTeam() == player.getTeam())) {
-                    OriginsDamageSource.hurt(entity, OriginsUtil.damageScale(1, player), OriginsDamageSource.ANEMO_VORTEXT);
+                    //OriginsDamageSource.hurt(entity, OriginsUtil.damageScale(1, player), OriginsDamageSource.ANEMO_VORTEXT);
+                    player.hurt(new DamageSource(DamageTypes.ANEMO_VORTEXT.getHolder().get()), 3000f);
 
                 }
             }

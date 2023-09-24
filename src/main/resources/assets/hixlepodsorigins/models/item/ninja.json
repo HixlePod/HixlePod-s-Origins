@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/ninja",
-    "particle": "hixlepodsorigins:items/ninja"
+    "layer0": "hixlepodsorigins:item/ninja",
+    "particle": "hixlepodsorigins:item/ninja"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/battle_burrito",
-    "particle": "hixlepodsorigins:items/battle_burrito"
+    "layer0": "hixlepodsorigins:item/battle_burrito",
+    "particle": "hixlepodsorigins:item/battle_burrito"
   }
 }

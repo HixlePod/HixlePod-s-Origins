@@ -3,8 +3,6 @@ package com.hixlepod.hixlepodsorigins.common.Entities.Pets;
 import com.hixlepod.hixlepodsorigins.common.origins.OriginsManager;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,8 +11,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -31,6 +29,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -144,7 +143,7 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
                     Vec3 point2 = this.getTarget().position();
                     double points = 15;
 
-                    if (this.getLevel() == this.getTarget().getLevel()) {
+                    if (this.level() == this.getTarget().level()) {
 
                         Vec3 p1 = point1;
                         Vec3 p2 = point2;
@@ -155,11 +154,14 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
 
                         for (int i = 0; i < points; i++) {
                             p1 = p1.add(vector);
-                            this.getServer().getLevel(this.getLevel().dimension()).sendParticles(new DustParticleOptions(new Vector3f(255, 0,0), 1), p1.x(), p1.y(), p1.z(), 0, 0d, 0d, 0d, 0d);
+                            this.getServer().getLevel(this.level().dimension()).sendParticles(new DustParticleOptions(new Vector3f(255, 0,0), 1), p1.x(), p1.y(), p1.z(), 0, 0d, 0d, 0d, 0d);
 
                         }
                     }
-                    this.getTarget().hurt(DamageSource.mobAttack(this), OriginsUtil.damageScale(1, (Player) this.getOwner()));
+
+
+                    //this.getTarget().hurt(DamageSources, OriginsUtil.damageScale(1, (Player) this.getOwner()));
+                    this.getTarget().hurt(this.damageSources().mobAttack(this), OriginsUtil.damageScale(1, (Player) this.getOwner()));
                     this.attackCooldown = OriginsUtil.randomInt(OriginsManager.ticks * 3, OriginsManager.ticks * 5);
                 }
             }
@@ -177,8 +179,8 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
         }
 
         if (this.getOwner() != null) {
-            if (this.getLevel() != this.getOwner().getLevel()) {
-                this.level = this.getOwner().getLevel();
+            if (this.level() != this.getOwner().level()) {
+                this.changeDimension((ServerLevel) this.getOwner().level());
             }
         }
     }
@@ -214,30 +216,30 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
         BlockPos blockpos1 = blockpos.above();
         if (this.isResting()) {
             boolean flag = this.isSilent();
-            if (this.level.getBlockState(blockpos1).isRedstoneConductor(this.level, blockpos)) {
-                if (this.random.nextInt(200) == 0) {
+            if (this.level().getBlockState(blockpos1).isRedstoneConductor(this.level(), blockpos)) {
+                if (this.random.nextInt(150) == 0) {
                     this.yHeadRot = (float)this.random.nextInt(360);
                 }
 
-                if (this.level.getNearestPlayer(BAT_RESTING_TARGETING, this) != null) {
+                if (this.level().getNearestPlayer(BAT_RESTING_TARGETING, this) != null) {
                     this.setResting(false);
                     if (!flag) {
-                        this.level.levelEvent((Player)null, 1025, blockpos, 0);
+                        this.level().levelEvent((Player)null, 1025, blockpos, 0);
                     }
                 }
             } else {
                 this.setResting(false);
                 if (!flag) {
-                    this.level.levelEvent((Player)null, 1025, blockpos, 0);
+                    this.level().levelEvent((Player)null, 1025, blockpos, 0);
                 }
             }
         } else {
-            if (this.targetPosition != null && (!this.level.isEmptyBlock(this.targetPosition) || this.targetPosition.getY() <= this.level.getMinBuildHeight())) {
+            if (this.targetPosition != null && (!this.level().isEmptyBlock(this.targetPosition) || this.targetPosition.getY() <= this.level().getMinBuildHeight())) {
                 this.targetPosition = null;
             }
 
             if (this.targetPosition == null || this.random.nextInt(30) == 0 || this.targetPosition.closerToCenterThan(this.position(), 2.0D)) {
-                this.targetPosition = new BlockPos(this.getX() + (double)this.random.nextInt(7) - (double)this.random.nextInt(7), this.getY() + (double)this.random.nextInt(6) - 2.0D, this.getZ() + (double)this.random.nextInt(7) - (double)this.random.nextInt(7));
+                this.targetPosition = new BlockPos((int) this.getX() + this.random.nextInt(7) - this.random.nextInt(7), (int) this.getY() + this.random.nextInt(6) - 2, (int) this.getZ() + this.random.nextInt(7) - this.random.nextInt(7));
             }
 
             double d2 = (double)this.targetPosition.getX() + 0.5D - this.getX();
@@ -250,7 +252,7 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
             float f1 = Mth.wrapDegrees(f - this.getYRot());
             this.zza = 0.5F;
             this.setYRot(this.getYRot() + f1);
-            if (this.random.nextInt(100) == 0 && this.level.getBlockState(blockpos1).isRedstoneConductor(this.level, blockpos1)) {
+            if (this.random.nextInt(100) == 0 && this.level().getBlockState(blockpos1).isRedstoneConductor(this.level(), blockpos1)) {
                 this.setResting(true);
             }
         }
@@ -274,7 +276,7 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
         if (this.isInvulnerableTo(p_27424_)) {
             return false;
         } else {
-            if (!this.level.isClientSide && this.isResting()) {
+            if (!this.level().isClientSide && this.isResting()) {
                 this.setResting(false);
             }
 

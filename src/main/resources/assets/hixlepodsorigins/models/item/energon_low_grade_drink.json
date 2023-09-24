@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/energon_low_grade_drink",
-    "particle": "hixlepodsorigins:items/energon_low_grade_drink"
+    "layer0": "hixlepodsorigins:item/energon_low_grade_drink",
+    "particle": "hixlepodsorigins:item/energon_low_grade_drink"
   }
 }

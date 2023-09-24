@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
+import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.Position;
@@ -21,7 +22,7 @@ public class Maxwell {
     public static String NAME = "CorkyPorky3379";
 
     public static void Ability1(ServerPlayer player) {
-        for (Entity entity : player.getLevel().getAllEntities()) {
+        for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
             if (entity instanceof LivingEntity) {
                 if (entity.position().distanceTo(player.position()) < 12) {
                     if (player.getTeam() != entity.getTeam()) {
@@ -30,7 +31,8 @@ public class Maxwell {
                         Vec3 normalizedDifference = difference.normalize();
                         entity.setDeltaMovement(normalizedDifference.multiply(-7, -2, -7));
 
-                        entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(4, player));
+                        //entity.hurt(DamageSource.playerAttack(player), OriginsUtil.damageScale(4, player));
+                        entity.hurt(player.damageSources().playerAttack(player), OriginsUtil.damageScale(4, player));
 
                         entity.setRemainingFireTicks(10 * 20);
                     }
@@ -49,7 +51,7 @@ public class Maxwell {
 
             if (player.isInWaterOrRain()) {
 
-                OriginsDamageSource.hurt(player, 1f, OriginsDamageSource.EXTINGUISH);
+                player.hurt(new DamageSource(DamageTypes.EXTINGUISH.getHolder().get()), 0.1f);
             }
         }
     }

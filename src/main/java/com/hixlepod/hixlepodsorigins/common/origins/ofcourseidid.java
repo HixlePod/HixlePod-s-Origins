@@ -28,7 +28,7 @@ public class ofcourseidid {
     }
 
     public static void Ability1(ServerPlayer player) {
-        Level level = player.getLevel();
+        Level level = player.level();
         
         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide()) {
@@ -40,7 +40,7 @@ public class ofcourseidid {
 
     public static void tick(Player player) {
         if (player.getName().equals(Component.literal(ofcourseidid.NAME))) {
-            player.getServer().getLevel(player.getLevel().dimension()).sendParticles(ParticleTypes.PORTAL, player.position().x(), player.position().y() + 1, player.position().z(), 0, 0.4d, 1d, 0.4d, 0d);
+            player.getServer().getLevel(player.level().dimension()).sendParticles(ParticleTypes.PORTAL, player.position().x(), player.position().y() + 1, player.position().z(), 0, 0.4d, 1d, 0.4d, 0d);
 
 
             if (player.isInWaterOrRain()) {
@@ -48,7 +48,7 @@ public class ofcourseidid {
                     player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_WaterDamageCooldown",
                             player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_WaterDamageCooldown") - 1);
                 } else {
-                    player.hurt(DamageSource.DROWN, 3);
+                    player.hurt(player.damageSources().drown(), 2.5f);
                     player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_WaterDamageCooldown", 2 * OriginsManager.ticks);
                 }
             }

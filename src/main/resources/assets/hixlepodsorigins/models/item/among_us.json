@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hixlepodsorigins:items/among_us",
-    "particle": "hixlepodsorigins:items/among_us"
+    "layer0": "hixlepodsorigins:item/among_us",
+    "particle": "hixlepodsorigins:item/among_us"
   }
 }
