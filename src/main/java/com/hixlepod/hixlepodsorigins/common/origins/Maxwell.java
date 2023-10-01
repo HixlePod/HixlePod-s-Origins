@@ -18,7 +18,7 @@ import net.minecraft.world.phys.Vec3;
 public class Maxwell {
 
     //CorkyPorky3379
-    public static String NAME = "CorkyPorky3379";
+    public static String NAME = "Nycticorax_";
 
     public static void Ability1(ServerPlayer player) {
         for (Entity entity : player.getLevel().getAllEntities()) {
