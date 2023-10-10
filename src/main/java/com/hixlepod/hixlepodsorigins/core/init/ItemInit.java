@@ -3,7 +3,9 @@ package com.hixlepod.hixlepodsorigins.core.init;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.items.*;
 import com.hixlepod.hixlepodsorigins.common.items.HolyLyre.The_Holy_Lyre_Item;
-import net.minecraft.core.registries.Registries;
+import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.BetsyBattleAxeItem;
+import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.TheStringlessBow;
+import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.WhispersHammerItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -50,14 +52,14 @@ public class ItemInit {
             .build())));
 
     public static final RegistryObject<Item> ENERGON_CUBE = ITEMS.register("energon_cube", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat()
-            .effect(new MobEffectInstance(MobEffects.REGENERATION,5 * 20, 4), 1)
+            .effect(new MobEffectInstance(MobEffects.REGENERATION,5 * 20, 2), 1)
             .build())));
     public static final RegistryObject<Item> SYNTH_EN_CUBE = ITEMS.register("synth_en_cube", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat()
-            .effect(new MobEffectInstance(MobEffects.REGENERATION,20 * 20, 4), 1)
+            .effect(new MobEffectInstance(MobEffects.REGENERATION,20 * 20, 3), 1)
             .effect(new MobEffectInstance(MobEffects.ABSORPTION,  120 * 20, 2), 1)
             .build())));
     public static final RegistryObject<Item> DARK_ENERGON_CUBE = ITEMS.register("dark_energon_cube", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat()
-            .effect(new MobEffectInstance(MobEffects.REGENERATION,     120 * 20, 4), 1)
+            .effect(new MobEffectInstance(MobEffects.REGENERATION,     120 * 20, 3), 1)
             .effect(new MobEffectInstance(MobEffects.ABSORPTION,       30 * 20,  4), 1)
             .effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,  300 * 20, 0), 1)
             .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,300 * 20, 0), 1)
@@ -85,10 +87,10 @@ public class ItemInit {
     public static final RegistryObject<Item> BATTLE_DONUT = ITEMS.register("battle_donut", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
             .effect(new MobEffectInstance(MobEffects.GLOWING,         20 * 20, 1), 1)
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,  20 * 20, 2), 1)
-            .effect(new MobEffectInstance(MobEffects.REGENERATION,    20 * 20, 2), 1)
+            .effect(new MobEffectInstance(MobEffects.REGENERATION,    20 * 20, 3), 1)
             .effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 20, 0), 1)
             .effect(new MobEffectInstance(MobEffects.NIGHT_VISION,    20 * 20, 0), 1)
-            .effect(new MobEffectInstance(MobEffects.ABSORPTION,      20 * 20, 2), 1)
+            .effect(new MobEffectInstance(MobEffects.ABSORPTION,      20 * 20, 3), 1)
             .build())));
 
     public static final RegistryObject<Item> ENERGON_LOW_GRADE_DRINK = ITEMS.register("energon_low_grade_drink", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).food(new FoodProperties.Builder().alwaysEat().build())));
@@ -131,6 +133,9 @@ public class ItemInit {
 
     //Weapons
     public static final RegistryObject<Item> THE_STRINGLESS = ITEMS.register("the_stringless", () -> new TheStringlessBow(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> BETSY_BATTLE_AXE = ITEMS.register("betsy_battle_axe", () -> new BetsyBattleAxeItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> WHISPERS_HAMMER = ITEMS.register("whispers_hammer", () -> new WhispersHammerItem(new Item.Properties().stacksTo(1)));
 
     //Meme items
     public static final RegistryObject<Item> NINJA = ITEMS.register("ninja", () -> new Ninja(new Item.Properties()));

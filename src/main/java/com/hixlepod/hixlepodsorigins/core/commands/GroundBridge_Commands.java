@@ -195,7 +195,7 @@ public class GroundBridge_Commands {
                     }
                 } else { player.sendSystemMessage(Component.literal(ChatFormatting.RED + "You do not have a Ground Bridge or you do not have enough levels.")); }
             } else { source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "Ground bridge commands have been disabled by the server administrator.")); }
-        } else {source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "You must be a player to execute that command."));}
+        } else {source.getSource().sendSystemMessage(Component.literal(ChatFormatting.RED + "You must be a player to execute that command.")); }
 
         return 1;
     }
@@ -217,7 +217,10 @@ public class GroundBridge_Commands {
     }
 
     public static boolean EnoughExpForTeleport(Player player) {
-        if (player.experienceLevel >= 1) {
+        if (player.isCreative()) {
+            return true;
+
+        } else if (player.experienceLevel >= 1) {
             player.giveExperienceLevels(-1);
             return true;
         }

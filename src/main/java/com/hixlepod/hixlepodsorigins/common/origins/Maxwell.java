@@ -1,10 +1,8 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
-import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
-import net.minecraft.core.Position;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -13,13 +11,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.phys.Vec3;
 
 public class Maxwell {
 
     //CorkyPorky3379
-    public static String NAME = "CorkyPorky3379";
+    public static String NAME = "Nycticorax_";
 
     public static void Ability1(ServerPlayer player) {
         for (Entity entity : player.level().getServer().getLevel(player.level().dimension()).getAllEntities()) {
@@ -50,8 +47,7 @@ public class Maxwell {
             player.clearFire();
 
             if (player.isInWaterOrRain()) {
-
-                player.hurt(new DamageSource(DamageTypes.EXTINGUISH.getHolder().get()), 0.1f);
+                player.hurt(new DamageSources(player.level().registryAccess()).extinguish(), 0.1f);
             }
         }
     }

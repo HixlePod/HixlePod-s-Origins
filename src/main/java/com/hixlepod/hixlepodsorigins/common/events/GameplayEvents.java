@@ -3,13 +3,8 @@ package com.hixlepod.hixlepodsorigins.common.events;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCreeper;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronZombie;
-import com.hixlepod.hixlepodsorigins.common.NPCs.NPCManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
-import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
-import com.hixlepod.hixlepodsorigins.core.init.CommandsInnit;
-import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
-import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
+import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -22,7 +17,6 @@ import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.BasicItemListing;
@@ -101,9 +95,7 @@ public class GameplayEvents {
                 if (Arrays.asList(FoodLists.TRANSFORMER_FOODS).contains(player.getMainHandItem().getItem()) ||
                 Arrays.asList(FoodLists.TRANSFORMERS_DRINKS).contains(player.getMainHandItem().getItem())) {
 
-                    //OriginsDamageSource.hurt(player, 3000f, OriginsDamageSource.ENERGON_POISONING);
-                    player.hurt(new DamageSource(DamageTypes.ENERGON_POISONING.getHolder().get()), 3000f);
-                    event.setCanceled(true);
+                    player.hurt(new DamageSources(player.level().registryAccess()).energon_poisoning(), 3000f);
                 }
             }
         }

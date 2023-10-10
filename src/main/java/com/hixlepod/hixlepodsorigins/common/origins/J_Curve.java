@@ -1,16 +1,14 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.init.SoundInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
@@ -64,7 +62,8 @@ public class J_Curve {
                 if (player.isInWaterOrRain()) {
                     //player.hurt(DamageSource.MAGIC, 0.1f);
                     //player.hurt(player.damageSources().magic(), 0.1f);
-                    player.hurt(new DamageSource(DamageTypes.EXTINGUISH.getHolder().get()), 0.1f);
+                    //player.hurt(new DamageSource(DamageTypes.EXTINGUISH.getHolder().get()), 0.1f);
+                    player.hurt(new DamageSources(player.level().registryAccess()).extinguish(), 0.1f);
                 }
             }
         }

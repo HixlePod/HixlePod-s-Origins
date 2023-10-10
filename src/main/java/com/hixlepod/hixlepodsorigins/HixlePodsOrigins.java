@@ -40,7 +40,7 @@ public class HixlePodsOrigins
 {
     public static final String MODID = "hixlepodsorigins";
 
-    private static final String ORIGINS_VERSION = "0.9.5";
+    private static final String ORIGINS_VERSION = "0.9.6";
     private static final String ORIGINS_BUILD_VERSION = "BUILD-14";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;

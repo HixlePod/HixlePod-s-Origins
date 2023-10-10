@@ -2,12 +2,13 @@ package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
-import com.hixlepod.hixlepodsorigins.common.items.TheStringlessBow;
+import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.TheStringlessBow;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;
 import com.hixlepod.hixlepodsorigins.common.origins.CrispyChordioid;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
 import com.hixlepod.hixlepodsorigins.common.origins.GodOfFurrys;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
 import com.hixlepod.hixlepodsorigins.core.init.EffectsInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
@@ -26,6 +27,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -226,7 +228,8 @@ public class ServerModEvents {
 
         if (player.level().dimension() == DimensionsInit.CYBERTRON_KEY && player.isInWaterOrRain() && isInRain(player)) {
             //OriginsDamageSource.hurt(player, 0.75f, OriginsDamageSource.ACID_RAIN);
-            player.hurt(new DamageSource(com.hixlepod.hixlepodsorigins.core.init.DamageTypes.ACID_RAIN.getHolder().get()), 0.75f);
+            //player.hurt(new DamageSource(com.hixlepod.hixlepodsorigins.core.init.DamageTypes.ACID_RAIN.getHolder().get()), 0.75f);
+            player.hurt(new DamageSources(player.level().registryAccess()).acid_rain(), 1);
         }
 
         CompoundTag Data = player.getPersistentData().getCompound(HixlePodsOrigins.MODID + "_VentiBlackhole");

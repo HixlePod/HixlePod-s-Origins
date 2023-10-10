@@ -10,26 +10,17 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-public class DamageTypes {
+public interface DamageTypes {
 
-    public static final DeferredRegister<DamageType> DAMAGE_TYPES = DeferredRegister.create(Registries.DAMAGE_TYPE, HixlePodsOrigins.MODID);
+    ResourceKey<DamageType> RUST = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(HixlePodsOrigins.MODID, "rust"));
 
-    public static final RegistryObject<DamageType> RUST = DAMAGE_TYPES.register("rust",
-            () -> new DamageType("rust", 1));
+    ResourceKey<DamageType> ACID_RAIN = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(HixlePodsOrigins.MODID, "acid_rain"));
 
-    public static final RegistryObject<DamageType> ACID_RAIN = DAMAGE_TYPES.register("acid_rain",
-            () -> new DamageType("acid_rain", 1));
+    ResourceKey<DamageType> ENERGON_POISONING = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(HixlePodsOrigins.MODID, "energon_poisoning"));
 
-    public static final RegistryObject<DamageType> ENERGON_POISONING = DAMAGE_TYPES.register("energon_poisoning",
-            () -> new DamageType("energon_poisoning", 1));
+    ResourceKey<DamageType> ANEMO_VORTEXT = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(HixlePodsOrigins.MODID, "anemo_vortext"));
 
-    public static final RegistryObject<DamageType> ANEMO_VORTEXT = DAMAGE_TYPES.register("anemo_vortext",
-            () -> new DamageType("anemo_vortext", 1));
+    ResourceKey<DamageType> EXTINGUISH = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(HixlePodsOrigins.MODID, "extinguish"));
 
-    public static final RegistryObject<DamageType> EXTINGUISH = DAMAGE_TYPES.register("extinguish",
-            () -> new DamageType("extinguish", 1));
-
-    public static final RegistryObject<DamageType> SCULK_DRAIN = DAMAGE_TYPES.register("sculk_drain",
-            () -> new DamageType("sculk_drain", 1));
-
+    ResourceKey<DamageType> SCULK_DRAIN = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(HixlePodsOrigins.MODID, "sculk_drain"));
 }

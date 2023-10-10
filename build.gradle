@@ -117,6 +117,7 @@ repositories {
     maven { url = 'https://maven.maxhenkel.de/repository/public' }
 
     //maven { url = 'https://maven.maxhenkel.de/repository/public' }
+
 }
 
 dependencies {

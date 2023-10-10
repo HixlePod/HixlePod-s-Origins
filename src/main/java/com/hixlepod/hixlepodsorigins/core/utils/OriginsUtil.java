@@ -3,11 +3,13 @@ package com.hixlepod.hixlepodsorigins.core.utils;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +28,10 @@ public class OriginsUtil {
 
     public static float randomFloat(float minimum, float maximum) {
         return ((float) (Math.random() * (maximum - minimum))) + minimum;
+    }
+
+    public static double returnAttackSpeed(double AttackSpeed) {
+        return AttackSpeed - 4;
     }
 
     public static double DamageScale(double BaseDamage, Player player) {
@@ -47,6 +53,7 @@ public class OriginsUtil {
     public static float damageScale(float baseDamage, Player player) {
         return (float) DamageScale(baseDamage, player);
     }
+
 
     public static boolean didChance(int Chance) {
         int Roll = randomInt(1, 100);
