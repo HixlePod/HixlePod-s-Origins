@@ -9,7 +9,10 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.xra
 import com.hixlepod.hixlepodsorigins.common.PotionRecipes.*;
 import com.hixlepod.hixlepodsorigins.common.events.*;
 import com.hixlepod.hixlepodsorigins.core.init.*;
+import com.hixlepod.hixlepodsorigins.core.init.CreateAPI.PortalTracksSupport;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
+import com.simibubi.create.content.trains.track.AllPortalTracks;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.item.ItemStack;
@@ -70,6 +73,9 @@ public class HixlePodsOrigins
         BlockInit.VANILLA_BLOCKS.register(eventBus);
         ItemInit.VANILLA_ITEMS.register(eventBus);
 
+        //Create API
+        AllPortalTracks.registerIntegration(new ResourceLocation(HixlePodsOrigins.MODID, "cybertron_portal"), PortalTracksSupport::cybertron);
+
         BlockStoreBuilder.init();
 
         //Event listeners
@@ -87,6 +93,8 @@ public class HixlePodsOrigins
             MinecraftForge.EVENT_BUS.register(new DingClientEvent());
         });
     }
+
+
 
     public static class PlayerEvents {
         @OnlyIn(Dist.CLIENT)
@@ -119,6 +127,7 @@ public class HixlePodsOrigins
 
             //Goofy potions
             BrewingRecipeRegistry.addRecipe(new ChaosPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())), Ingredient.of(Items.BEDROCK), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.CHAOS_POTION.get())));
+
 
 
             replaceAttributeValue((RangedAttribute) Attributes.MAX_HEALTH, 9999999); // 9,999,999

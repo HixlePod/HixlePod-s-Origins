@@ -130,7 +130,7 @@ public class CybertronPortalBlock extends Block {
                         if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
                             entity.level().getProfiler().push("undergarden_portal");
                             entity.setPortalCooldown();
-                            entity.changeDimension(destinationWorld, new ModTeleporter(destinationWorld));
+                            entity.changeDimension(destinationWorld, new CybertronPortalForcer(destinationWorld));
                             entity.level().getProfiler().pop();
                         }
                     }
