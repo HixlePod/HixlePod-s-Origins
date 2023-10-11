@@ -120,7 +120,7 @@ public class CreativeTabsInit {
 
     public static final RegistryObject<CreativeModeTab> ORIGINS_COMPONENT_TAB = ORIGINS_CREATIVE_TABS.register("hixlepods_origins_component_tab",
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(ItemInit.THE_HOLY_LYRE.get()))
+                    .icon(() -> new ItemStack(ComponentModuleItems.ELECTRONIC_SCRAP.get()))
                     .title(Component.literal("HixlePod's Origins: Components"))
                     .displayItems((itemDisplayParameters, output) -> {
 
