@@ -92,6 +92,11 @@
   "item.hixlepodsorigins.betsy_battle_axe": "Betsy Battle Axe",
   "item.hixlepodsorigins.whispers_hammer": "Whisper's Hammer",
 
+  "Comment_": "Component Items",
+  "item.hixlepodsorigins.electronic_scrap": "Electronic Scrap",
+  "item.hixlepodsorigins.simple_component": "Simple Component",
+  "item.hixlepodsorigins.comms": "Comms",
+
   "block.hixlepodsorigins.ground_bridge": "Ground Bridge",
 
   "entity.hixlepodsorigins.blue_slime": "Blue Slime",
@@ -164,6 +169,7 @@
   "key.hixlepodsorigins.lore_menu": "Lore Menu",
   "key.hixlepodsorigins.pet_menu": "Pet menu",
 
+  "curios.identifier.tech": "Tech Slot",
 
   "death.attack.hixlepodsorigins_rust": "%1$s died to rust infection",
   "death.attack.hixlepodsorigins_rust.player": "%1$s died to rust infection whilst fighting %2$s",
