@@ -12,6 +12,8 @@ import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.init.CreateAPI.PortalTracksSupport;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
@@ -29,16 +31,16 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(HixlePodsOrigins.MODID)
-public class HixlePodsOrigins
-{
+public class HixlePodsOrigins {
     public static final String MODID = "hixlepodsorigins";
 
     private static final String ORIGINS_VERSION = "0.9.6";
-    private static final String ORIGINS_BUILD_VERSION = "BUILD-57";
+    private static final String ORIGINS_BUILD_VERSION = "BUILD-64";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;
 
@@ -80,6 +82,7 @@ public class HixlePodsOrigins
 
         //Event listeners
         eventBus.addListener(this::onCommonSetup);
+        eventBus.addListener(this::onClientSetup);
 
         MinecraftForge.EVENT_BUS.register(new ClientModEvents());
         MinecraftForge.EVENT_BUS.register(new ServerModEvents());
@@ -93,7 +96,6 @@ public class HixlePodsOrigins
             MinecraftForge.EVENT_BUS.register(new DingClientEvent());
         });
     }
-
 
 
     public static class PlayerEvents {
@@ -129,10 +131,15 @@ public class HixlePodsOrigins
             BrewingRecipeRegistry.addRecipe(new ChaosPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())), Ingredient.of(Items.BEDROCK), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.CHAOS_POTION.get())));
 
 
-
             replaceAttributeValue((RangedAttribute) Attributes.MAX_HEALTH, 9999999); // 9,999,999
         });
     }
+
+    private void onClientSetup(final FMLClientSetupEvent event) {
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.CYBERTRON_PORTAL.get(), RenderType.translucent());
+
+    }
+
 
     protected static void replaceAttributeValue(RangedAttribute attribute, double maxValue) {
         attribute.maxValue = maxValue;
