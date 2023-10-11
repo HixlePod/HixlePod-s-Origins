@@ -126,6 +126,7 @@ public class CreativeTabsInit {
 
                         output.accept(ComponentModuleItems.ELECTRONIC_SCRAP.get());
                         output.accept(ComponentModuleItems.SIMPLE_COMPONENT.get());
+                        output.accept(ComponentModuleItems.COMMS.get());
                     })
                     .build());
 }

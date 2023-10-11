@@ -25,15 +25,9 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import sereneseasons.init.ModCreativeTab;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotTypeMessage;
-import top.theillusivec4.curios.api.SlotTypePreset;
 
 @Mod(HixlePodsOrigins.MODID)
 public class HixlePodsOrigins
@@ -41,7 +35,7 @@ public class HixlePodsOrigins
     public static final String MODID = "hixlepodsorigins";
 
     private static final String ORIGINS_VERSION = "0.9.6";
-    private static final String ORIGINS_BUILD_VERSION = "BUILD-14";
+    private static final String ORIGINS_BUILD_VERSION = "BUILD-57";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;
 
@@ -80,7 +74,6 @@ public class HixlePodsOrigins
 
         //Event listeners
         eventBus.addListener(this::onCommonSetup);
-        eventBus.addListener(this::enqueue);
 
         MinecraftForge.EVENT_BUS.register(new ClientModEvents());
         MinecraftForge.EVENT_BUS.register(new ServerModEvents());
@@ -134,11 +127,5 @@ public class HixlePodsOrigins
 
     protected static void replaceAttributeValue(RangedAttribute attribute, double maxValue) {
         attribute.maxValue = maxValue;
-    }
-
-    //Curios
-    private void enqueue(final InterModEnqueueEvent event) {
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.HEAD.getMessageBuilder().size(2).build());
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().size(1).build());
     }
 }

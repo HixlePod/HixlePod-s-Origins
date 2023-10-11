@@ -16,5 +16,7 @@ public class ComponentModuleItems {
 
     public static final RegistryObject<Item> SIMPLE_COMPONENT = ITEMS.register("simple_component", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> COMMS = ITEMS.register("comms", () -> new Item(new Item.Properties()));
+
 
 }
