@@ -76,7 +76,7 @@ public class EntityScrapletBoss extends Spider {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.12F)
-                .add(Attributes.MAX_HEALTH, 800.0)
+                .add(Attributes.MAX_HEALTH, 400.0)
                 .add(Attributes.ATTACK_DAMAGE, 25.0D)
                 .add(Attributes.ARMOR, 20.0)
                 .add(Attributes.ARMOR_TOUGHNESS, 20.0)

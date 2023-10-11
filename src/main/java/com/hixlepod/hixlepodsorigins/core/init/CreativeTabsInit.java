@@ -1,7 +1,6 @@
 package com.hixlepod.hixlepodsorigins.core.init;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -82,7 +81,10 @@ public class CreativeTabsInit {
                         output.accept(ItemInit.BLOOD_BONE.get());
                         output.accept(ItemInit.BATTLE_BURRITO.get());
 
+                        //Weapons
                         output.accept(ItemInit.THE_STRINGLESS.get());
+                        output.accept(ItemInit.BETSY_BATTLE_AXE.get());
+                        output.accept(ItemInit.WHISPERS_HAMMER.get());
 
                         output.accept(ItemInit.DRAGON_SCALE.get());
 
@@ -124,6 +126,7 @@ public class CreativeTabsInit {
 
                         output.accept(ComponentModuleItems.ELECTRONIC_SCRAP.get());
                         output.accept(ComponentModuleItems.SIMPLE_COMPONENT.get());
+                        output.accept(ComponentModuleItems.COMMS.get());
                     })
                     .build());
 }

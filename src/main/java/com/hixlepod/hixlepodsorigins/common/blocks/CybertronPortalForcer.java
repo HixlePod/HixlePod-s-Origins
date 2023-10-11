@@ -29,10 +29,10 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Function;
 
-public class ModTeleporter implements ITeleporter {
+public class CybertronPortalForcer implements ITeleporter {
     protected final ServerLevel level;
 
-    public ModTeleporter(ServerLevel worldIn) {
+    public CybertronPortalForcer(ServerLevel worldIn) {
         this.level = worldIn;
     }
 

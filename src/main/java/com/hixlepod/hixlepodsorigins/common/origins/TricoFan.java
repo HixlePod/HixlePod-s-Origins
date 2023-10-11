@@ -1,29 +1,18 @@
 package com.hixlepod.hixlepodsorigins.common.origins;
 
-import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.ForgeMod;
-import org.checkerframework.checker.units.qual.C;
-import virtuoel.pehkui.Pehkui;
 import virtuoel.pehkui.api.*;
-import virtuoel.pehkui.command.PehkuiEntitySelectorOptions;
-import virtuoel.pehkui.util.PehkuiEntityExtensions;
-import virtuoel.pehkui.util.ScaleUtils;
 
 public class TricoFan {
 
@@ -64,8 +53,7 @@ public class TricoFan {
 
             if (block1 == Blocks.SCULK || block1 == Blocks.SCULK_SENSOR) {
                 player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5 * 20, 0, true, false));
-                //OriginsDamageSource.hurt(player, 1, OriginsDamageSource.SCULK_DRAIN);
-                player.hurt(new DamageSource(DamageTypes.SCULK_DRAIN.getHolder().get()), 1f);
+                player.hurt(new DamageSources(player.level().registryAccess()).sculk_drain(), 1);
             }
         }
     }

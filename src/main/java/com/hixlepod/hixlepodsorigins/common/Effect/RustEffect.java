@@ -1,8 +1,8 @@
 package com.hixlepod.hixlepodsorigins.common.Effect;
 
 import com.hixlepod.hixlepodsorigins.common.origins.*;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
@@ -36,8 +36,7 @@ public class RustEffect extends MobEffect {
 
                         float TOTAL_DAMAGE = OriginsUtil.randomFloat(0.4f, 3f) * ((float) Amplifier + 1.5f);
 
-                        //OriginsDamageSource.hurt(player, TOTAL_DAMAGE, OriginsDamageSource.RUST);
-                        player.hurt(new DamageSource(DamageTypes.RUST.getHolder().get()), TOTAL_DAMAGE);
+                        player.hurt(new DamageSources(player.level().registryAccess()).rust(), TOTAL_DAMAGE);
                     }
                 } else {
                     player.addEffect(new MobEffectInstance(MobEffects.POISON, 20 * 2, Amplifier));

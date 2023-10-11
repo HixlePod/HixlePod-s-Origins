@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.common.items;
+package com.hixlepod.hixlepodsorigins.common.items.OriginWeapons;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -9,14 +9,14 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 
-public class PanItem extends Item {
+public class BetsyBattleAxeItem extends Item {
 
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
-    double ATTACK_DAMAGE = 3;
-    double ATTACK_SPEED = OriginsUtil.returnAttackSpeed(2.2);
+    double ATTACK_DAMAGE = 15;
+    double ATTACK_SPEED = OriginsUtil.returnAttackSpeed(0.4);
 
-    public PanItem(Properties p_41383_) {
+    public BetsyBattleAxeItem(Properties p_41383_) {
         super(p_41383_);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", ATTACK_DAMAGE, AttributeModifier.Operation.ADDITION));

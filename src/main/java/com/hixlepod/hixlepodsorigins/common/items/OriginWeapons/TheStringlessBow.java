@@ -1,8 +1,8 @@
-package com.hixlepod.hixlepodsorigins.common.items;
+package com.hixlepod.hixlepodsorigins.common.items.OriginWeapons;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsDamageSource;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -153,7 +153,8 @@ public class TheStringlessBow extends ProjectileWeaponItem {
             if (entity.position().distanceTo(position) < 25 && (entity != null) && (player != null)) {
                 if (!entity.equals(player) && !(entity.getTeam() == player.getTeam())) {
                     //OriginsDamageSource.hurt(entity, OriginsUtil.damageScale(1, player), OriginsDamageSource.ANEMO_VORTEXT);
-                    player.hurt(new DamageSource(DamageTypes.ANEMO_VORTEXT.getHolder().get()), 3000f);
+                    //player.hurt(new DamageSource(DamageTypes.ANEMO_VORTEXT.getHolder().get()), 3000f);
+                    entity.hurt(new DamageSources(entity.level().registryAccess()).anemo_vortext(), OriginsUtil.damageScale(1, player));
 
                 }
             }
