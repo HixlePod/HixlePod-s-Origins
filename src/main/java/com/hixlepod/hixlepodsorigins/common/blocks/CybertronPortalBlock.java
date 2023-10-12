@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.blocks;
 
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
-import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
+import com.hixlepod.hixlepodsorigins.core.init.DimensionInit;
 import com.hixlepod.hixlepodsorigins.core.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -124,7 +124,7 @@ public class CybertronPortalBlock extends Block {
                 Level entityWorld = entity.level();
                 if(entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
-                    ResourceKey<Level> destination = entity.level().dimension() == DimensionsInit.CYBERTRON_KEY ? Level.OVERWORLD : DimensionsInit.CYBERTRON_KEY;
+                    ResourceKey<Level> destination = entity.level().dimension() == DimensionInit.CYBERTRON_KEY ? Level.OVERWORLD : DimensionInit.CYBERTRON_KEY;
                     if(minecraftserver != null) {
                         ServerLevel destinationWorld = minecraftserver.getLevel(destination);
                         if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {

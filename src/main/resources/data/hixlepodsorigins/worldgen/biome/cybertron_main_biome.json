@@ -8,6 +8,7 @@
     "water_color": 7697781,
     "water_fog_color": 2500134,
     "grass_color": 7638492,
+    "foliage_color": 0,
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000,
@@ -118,8 +119,7 @@
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-
+      "minecraft:disk_gravel"
     ],
     [],
     [

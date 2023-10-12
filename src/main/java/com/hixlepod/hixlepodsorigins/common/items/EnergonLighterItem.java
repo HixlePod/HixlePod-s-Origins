@@ -2,7 +2,7 @@ package com.hixlepod.hixlepodsorigins.common.items;
 
 import com.hixlepod.hixlepodsorigins.common.blocks.CybertronPortalBlock;
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
-import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
+import com.hixlepod.hixlepodsorigins.core.init.DimensionInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -35,7 +35,7 @@ public class EnergonLighterItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
 
         if (context.getPlayer() != null) {
-            if (context.getPlayer().level().dimension() == DimensionsInit.CYBERTRON_KEY || context.getPlayer().level().dimension() == Level.OVERWORLD) {
+            if (context.getPlayer().level().dimension() == DimensionInit.CYBERTRON_KEY || context.getPlayer().level().dimension() == Level.OVERWORLD) {
                 for (Direction direction : Direction.Plane.VERTICAL) {
                     BlockPos framePos = context.getClickedPos().relative(direction);
 

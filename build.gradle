@@ -125,10 +125,11 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.1.47'
+    //MinecraftForge API
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     //Mixin AP
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
     //JEI API
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
@@ -136,21 +137,21 @@ dependencies {
     runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
 
     //Caelus API
-    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:3.1.0+1.20")
-    compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:3.1.0+1.20")
+    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
+    compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
 
     //Pehkui API
-    implementation fg.deobf("com.github.Virtuoel:Pehkui:3.7.8-1.20.1-forge")
+    implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}-${mc_version}-forge")
 
     //Curios
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.3.5+1.20.1")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.3.5+1.20.1:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}+${mc_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}+${mc_version}:api")
 
     //Voice Chat API
     //implementation "de.maxhenkel.voicechat:voicechat-api:${voicechat_api_version}"
 
     //Season Mod API
-    implementation fg.deobf("com.github.glitchfiend:SereneSeasons:1.20.1-9.0.0.43")
+    implementation fg.deobf("com.github.glitchfiend:SereneSeasons:${mc_version}-${sereneseasons_version}")
 
     //Create
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }

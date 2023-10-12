@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.blocks;
 
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
-import com.hixlepod.hixlepodsorigins.core.init.DimensionsInit;
+import com.hixlepod.hixlepodsorigins.core.init.DimensionInit;
 import com.hixlepod.hixlepodsorigins.core.init.POIInit;
 import net.minecraft.BlockUtil;
 import net.minecraft.server.level.ServerPlayer;
@@ -164,8 +164,8 @@ public class CybertronPortalForcer implements ITeleporter {
     @Nullable
     @Override
     public PortalInfo getPortalInfo(Entity entity, ServerLevel level, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-        boolean destinationIsUG = level.dimension() == DimensionsInit.CYBERTRON_KEY;
-        if (entity.level().dimension() != DimensionsInit.CYBERTRON_KEY && !destinationIsUG) {
+        boolean destinationIsUG = level.dimension() == DimensionInit.CYBERTRON_KEY;
+        if (entity.level().dimension() != DimensionInit.CYBERTRON_KEY && !destinationIsUG) {
             return null;
         }
         else {
