@@ -75,6 +75,9 @@ public class Ability2C2SPacket {
         } else if (player.getName().equals(Component.literal(Stamce.NAME))) {
             Stamce.Ability2(player);
 
+        } else if (player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            Kira_uwu69.Ability2(player);
+
         }
     }
 }

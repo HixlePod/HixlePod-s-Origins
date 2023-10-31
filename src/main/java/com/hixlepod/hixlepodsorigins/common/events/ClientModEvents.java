@@ -1,13 +1,17 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.client.Model.Bosses.Corruptling.CorruptlingModel;
+import com.hixlepod.hixlepodsorigins.client.Model.Pets.*;
 import com.hixlepod.hixlepodsorigins.client.NPC.BooNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.NPC.NimbusNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.NPC.SmudgeNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.OnCharacters.*;
 import com.hixlepod.hixlepodsorigins.client.OnCharacters.Model.*;
 import com.hixlepod.hixlepodsorigins.client.Renderer.*;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets.*;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.Corruptling.CorruptlingRenderer;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.ScrapletBoss.BetaScrapletRenderer;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.ScrapletBoss.ScrapletBossRenderer;
 import com.hixlepod.hixlepodsorigins.client.Renderer.Pets.*;
 import com.hixlepod.hixlepodsorigins.client.screen.LoreMenuScreen;
 import com.hixlepod.hixlepodsorigins.client.screen.PetMenuScreen;
@@ -15,7 +19,6 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.Blo
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.BlockStore;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.Ores;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.xray.Controller;
-import com.hixlepod.hixlepodsorigins.common.Entities.Pets.PetsManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;
 import com.hixlepod.hixlepodsorigins.common.origins.Fudge.Fudge105;
@@ -23,31 +26,14 @@ import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability1C2SPacket;
 import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability2C2SPacket;
-import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.common.ForgeMod;
@@ -56,7 +42,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.lwjgl.opengl.GL11;
 
 public class ClientModEvents {
 
@@ -343,6 +328,9 @@ public class ClientModEvents {
             event.registerLayerDefinition(DragonSlayerModel.LAYER_LOCATION, DragonSlayerModel::createBodyLayer);
             event.registerLayerDefinition(PossumModel.LAYER_LOCATION, PossumModel::createBodyLayer);
 
+            //Bosses
+            event.registerLayerDefinition(CorruptlingModel.LAYER_LOCATION, CorruptlingModel::createBodyLayer);
+
             event.registerLayerDefinition(FloElytraLayer.WINGS_LOCATION, FloElytraModel::createLayer);
             event.registerLayerDefinition(GhostElytraLayer.WINGS_LOCATION, GhostElytraModel::createLayer);
             event.registerLayerDefinition(WhirlElytraLayer.WINGS_LOCATION, WhirlElytraModel::createLayer);
@@ -388,6 +376,8 @@ public class ClientModEvents {
             //Bosses
             event.registerEntityRenderer(EntityInit.SCRAPLET_BOSS.get(), ScrapletBossRenderer::new);
             event.registerEntityRenderer(EntityInit.BETA_SCRAPLET.get(), BetaScrapletRenderer::new);
+
+            event.registerEntityRenderer(EntityInit.CORRUPTLING.get(), CorruptlingRenderer::new);
 
             //NPC
             event.registerEntityRenderer(EntityInit.NPC_NIMBUS.get(), NimbusNPCRenderer::new);

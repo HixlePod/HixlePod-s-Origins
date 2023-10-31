@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.TenModel;
+import com.hixlepod.hixlepodsorigins.client.Model.TenModel;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityTen;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;

@@ -2,21 +2,14 @@ package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.google.common.collect.Maps;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.CybertronHorseModel;
+import com.hixlepod.hixlepodsorigins.client.Model.CybertronHorseModel;
 import com.hixlepod.hixlepodsorigins.common.Entities.CybertronVariants;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronHorse;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
-import net.minecraft.client.model.HorseModel;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.entity.AbstractHorseRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.layers.HorseArmorLayer;
-import net.minecraft.client.renderer.entity.layers.HorseMarkingLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.animal.horse.Horse;
-import net.minecraft.world.entity.animal.horse.Variant;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -25,16 +18,16 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public final class CybertronHorseRenderer extends CybertronAbstractHorseRenderer<EntityCybertronHorse, CybertronHorseModel<EntityCybertronHorse>> {
 
-    private static final Map<CybertronVariants, ResourceLocation> LOCATION_BY_VARIANT = Util.make(Maps.newEnumMap(CybertronVariants.class), (killmyself) -> {
-        killmyself.put(CybertronVariants.AQUAMARINE, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_aquamarine.png"));
-        killmyself.put(CybertronVariants.AMETHYST, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_amethyst.png"));
-        killmyself.put(CybertronVariants.EMERALD, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_emerald.png"));
-        killmyself.put(CybertronVariants.JASPER, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_jasper.png"));
-        killmyself.put(CybertronVariants.QUARTZ, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_quartz.png"));
-        killmyself.put(CybertronVariants.LAPIS, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_lapis.png"));
-        killmyself.put(CybertronVariants.RUBY, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_ruby.png"));
-        killmyself.put(CybertronVariants.TOPAZ, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_topaz.png"));
-        killmyself.put(CybertronVariants.DIAMOND, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_diamond.png"));
+    private static final Map<CybertronVariants, ResourceLocation> LOCATION_BY_VARIANT = Util.make(Maps.newEnumMap(CybertronVariants.class), (horse_types) -> {
+        horse_types.put(CybertronVariants.AQUAMARINE, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_aquamarine.png"));
+        horse_types.put(CybertronVariants.AMETHYST, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_amethyst.png"));
+        horse_types.put(CybertronVariants.EMERALD, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_emerald.png"));
+        horse_types.put(CybertronVariants.JASPER, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_jasper.png"));
+        horse_types.put(CybertronVariants.QUARTZ, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_quartz.png"));
+        horse_types.put(CybertronVariants.LAPIS, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_lapis.png"));
+        horse_types.put(CybertronVariants.RUBY, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_ruby.png"));
+        horse_types.put(CybertronVariants.TOPAZ, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_topaz.png"));
+        horse_types.put(CybertronVariants.DIAMOND, new ResourceLocation(HixlePodsOrigins.MODID, "textures/entities/cybertron_entities/animal/horses/cybertron_horse_diamond.png"));
 
 
     });

@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets;
+package com.hixlepod.hixlepodsorigins.client.Model.Pets;
 
 import com.google.common.collect.ImmutableList;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;

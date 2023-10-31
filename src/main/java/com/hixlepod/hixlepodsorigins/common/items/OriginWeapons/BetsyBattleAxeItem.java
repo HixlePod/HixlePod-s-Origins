@@ -13,7 +13,7 @@ public class BetsyBattleAxeItem extends Item {
 
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
-    double ATTACK_DAMAGE = 15;
+    double ATTACK_DAMAGE = 17;
     double ATTACK_SPEED = OriginsUtil.returnAttackSpeed(0.4);
 
     public BetsyBattleAxeItem(Properties p_41383_) {

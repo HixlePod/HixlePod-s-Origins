@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
+package com.hixlepod.hixlepodsorigins.client.Model;
 
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;

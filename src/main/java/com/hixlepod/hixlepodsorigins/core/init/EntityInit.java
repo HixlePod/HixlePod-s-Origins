@@ -2,6 +2,7 @@ package com.hixlepod.hixlepodsorigins.core.init;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.*;
+import com.hixlepod.hixlepodsorigins.common.Entities.Bosses.Corruptling.EntityCorruptling;
 import com.hixlepod.hixlepodsorigins.common.Entities.Bosses.ScrapletBoss.EntityBetaScraplet;
 import com.hixlepod.hixlepodsorigins.common.Entities.Bosses.ScrapletBoss.EntityScrapletBoss;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityBooNPC;
@@ -101,7 +102,9 @@ public class EntityInit {
                     build(new ResourceLocation(HixlePodsOrigins.MODID, "beta_scraplet").toString()));
 
      //Corruptling
-
+     public static final RegistryObject<EntityType<EntityCorruptling>> CORRUPTLING = ENTITIES.register("corruptling_boss",
+             () -> EntityType.Builder.of(EntityCorruptling::new, MobCategory.MONSTER).sized(2F, 4F).
+                     build(new ResourceLocation(HixlePodsOrigins.MODID, "corruptling_boss").toString()));
 
     //NPC
     public static final RegistryObject<EntityType<EntityNimbusNPC>> NPC_NIMBUS = ENTITIES.register("npc_nimbus",

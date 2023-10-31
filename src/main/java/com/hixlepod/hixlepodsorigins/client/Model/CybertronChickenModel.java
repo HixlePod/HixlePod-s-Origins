@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
+package com.hixlepod.hixlepodsorigins.client.Model;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.AgeableListModel;

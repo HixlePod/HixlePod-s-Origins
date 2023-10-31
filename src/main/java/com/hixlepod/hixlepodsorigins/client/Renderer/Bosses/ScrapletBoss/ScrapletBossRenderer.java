@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer;
+package com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.ScrapletBoss;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.Bosses.ScrapletBoss.EntityScrapletBoss;

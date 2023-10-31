@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model.Pets;
+package com.hixlepod.hixlepodsorigins.client.Model.Pets;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import net.minecraft.client.model.HierarchicalModel;

@@ -1,17 +1,14 @@
 package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.client.Renderer.Model.CybertronCreeperModel;
+import com.hixlepod.hixlepodsorigins.client.Model.CybertronCreeperModel;
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCreeper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.CreeperPowerLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.monster.Creeper;
 
 public class CybertronCreeperRenderer extends MobRenderer<EntityCybertronCreeper, CybertronCreeperModel<EntityCybertronCreeper>> {
 

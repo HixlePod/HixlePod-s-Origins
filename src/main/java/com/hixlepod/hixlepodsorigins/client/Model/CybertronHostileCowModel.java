@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
+package com.hixlepod.hixlepodsorigins.client.Model;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -9,8 +9,8 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
 
-public class CybertronCowModel<T extends Entity> extends QuadrupedModel<T> {
-    public CybertronCowModel(ModelPart p_170515_) {
+public class CybertronHostileCowModel<T extends Entity> extends QuadrupedModel<T> {
+    public CybertronHostileCowModel(ModelPart p_170515_) {
         super(p_170515_, false, 10.0F, 4.0F, 2.0F, 2.0F, 24);
     }
 

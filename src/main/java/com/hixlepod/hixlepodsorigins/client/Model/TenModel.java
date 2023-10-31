@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.client.Renderer.Model;
+package com.hixlepod.hixlepodsorigins.client.Model;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.EntityTen;
 import net.minecraft.client.model.HierarchicalModel;
