@@ -1,8 +1,8 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCreeper;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronZombie;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronZombie;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
@@ -10,7 +10,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Skeleton;

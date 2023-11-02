@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.client.Model.CybertronHorseModel;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronHorse;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronHorse;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.geom.EntityModelSet;

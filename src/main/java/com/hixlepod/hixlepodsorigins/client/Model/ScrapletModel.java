@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Model;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -10,10 +10,8 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
 public class ScrapletModel<T extends EntityScraplet> extends HierarchicalModel<T> {
 

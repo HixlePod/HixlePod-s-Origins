@@ -39,7 +39,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class HixlePodsOrigins {
     public static final String MODID = "hixlepodsorigins";
 
-    private static final String ORIGINS_VERSION = "0.9.6";
+    private static final String ORIGINS_VERSION = "1.0";
     private static final String ORIGINS_BUILD_VERSION = "BUILD-64";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;
@@ -64,8 +64,6 @@ public class HixlePodsOrigins {
 
         BlockInit.BLOCKS.register(eventBus);
         SoundInit.SOUND_EVENTS.register(eventBus);
-        //ConfiguredFeatureInit.CONFIGURED_FEATURES.register(eventBus);
-        //PlacedFeatureInit.PLACED_FEATURES.register(eventBus);
         EntityInit.ENTITIES.register(eventBus);
         POIInit.POI.register(eventBus);
         EffectsInit.MOB_EFFECTS.register(eventBus);

@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
 import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.TheStringlessBow;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy.AllyIsAngy;

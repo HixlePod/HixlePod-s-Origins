@@ -1,15 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.Pets;
 
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
-import com.hixlepod.hixlepodsorigins.common.origins.OriginsManager;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
-import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -25,11 +17,7 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;

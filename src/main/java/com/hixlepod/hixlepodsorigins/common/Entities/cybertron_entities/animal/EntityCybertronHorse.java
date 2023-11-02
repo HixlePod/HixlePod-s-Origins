@@ -1,5 +1,6 @@
-package com.hixlepod.hixlepodsorigins.common.Entities;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal;
 
+import com.hixlepod.hixlepodsorigins.common.Entities.CybertronVariants;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
@@ -33,7 +34,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.UUID;

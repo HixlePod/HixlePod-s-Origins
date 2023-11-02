@@ -2,7 +2,7 @@ package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Model.CybertronHostileCowModel;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronHostileCow;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronHostileCow;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

@@ -1,6 +1,9 @@
-package com.hixlepod.hixlepodsorigins.common.Entities;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import net.minecraft.core.BlockPos;

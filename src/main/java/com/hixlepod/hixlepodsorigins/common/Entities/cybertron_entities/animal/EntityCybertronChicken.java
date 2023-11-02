@@ -1,5 +1,6 @@
-package com.hixlepod.hixlepodsorigins.common.Entities;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal;
 
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -15,7 +16,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;

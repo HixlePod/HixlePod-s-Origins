@@ -2,7 +2,7 @@ package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Model.CybertronCreeperModel;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCreeper;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

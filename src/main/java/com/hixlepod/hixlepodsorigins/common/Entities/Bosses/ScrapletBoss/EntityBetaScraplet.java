@@ -1,8 +1,8 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.Bosses.ScrapletBoss;
 
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronChicken;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronCow;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronPig;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import net.minecraft.core.BlockPos;

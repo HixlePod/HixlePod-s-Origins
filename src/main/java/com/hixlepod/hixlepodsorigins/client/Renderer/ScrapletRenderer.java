@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SpiderModel;
 import net.minecraft.client.model.geom.ModelLayers;

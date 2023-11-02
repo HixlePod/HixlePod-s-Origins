@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Model.CybertronHorseModel;
 import com.hixlepod.hixlepodsorigins.common.Entities.CybertronVariants;
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityCybertronHorse;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronHorse;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayers;

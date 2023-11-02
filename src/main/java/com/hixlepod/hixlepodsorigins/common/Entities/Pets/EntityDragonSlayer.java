@@ -1,6 +1,6 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.Pets;
 
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
 import com.hixlepod.hixlepodsorigins.common.origins.OriginsManager;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;

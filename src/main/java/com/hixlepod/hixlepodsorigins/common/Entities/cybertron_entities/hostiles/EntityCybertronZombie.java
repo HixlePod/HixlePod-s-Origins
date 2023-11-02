@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.common.Entities;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
 import com.hixlepod.hixlepodsorigins.core.init.EffectsInit;
 import net.minecraft.world.effect.MobEffectInstance;
