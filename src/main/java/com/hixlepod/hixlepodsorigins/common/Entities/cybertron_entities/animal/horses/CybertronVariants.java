@@ -1,6 +1,4 @@
-package com.hixlepod.hixlepodsorigins.common.Entities;
-
-import net.minecraft.world.entity.animal.horse.Variant;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses;
 
 import java.util.Arrays;
 import java.util.Comparator;

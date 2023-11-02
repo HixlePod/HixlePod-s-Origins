@@ -11,7 +11,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntitySmudgeNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.*;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronHorse;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses.EntityCybertronHorse;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronHostileCow;

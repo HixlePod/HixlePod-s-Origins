@@ -1,6 +1,5 @@
-package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses;
 
-import com.hixlepod.hixlepodsorigins.common.Entities.CybertronVariants;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
