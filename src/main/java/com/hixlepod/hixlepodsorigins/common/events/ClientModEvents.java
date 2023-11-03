@@ -2,6 +2,7 @@ package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Model.Bosses.Corruptling.CorruptlingModel;
+import com.hixlepod.hixlepodsorigins.client.Model.LaswerbeakModel;
 import com.hixlepod.hixlepodsorigins.client.Model.Pets.*;
 import com.hixlepod.hixlepodsorigins.client.NPC.BooNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.NPC.NimbusNPCRenderer;
@@ -321,6 +322,8 @@ public class ClientModEvents {
 
         @SubscribeEvent
         public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+
+            //Characters
             event.registerLayerDefinition(EchoModel.LAYER_LOCATION, EchoModel::createBodyLayer);
             event.registerLayerDefinition(CompassModel.LAYER_LOCATION, CompassModel::createBodyLayer);
             event.registerLayerDefinition(RuneModel.LAYER_LOCATION, RuneModel::createBodyLayer);
@@ -328,15 +331,19 @@ public class ClientModEvents {
             event.registerLayerDefinition(DragonSlayerModel.LAYER_LOCATION, DragonSlayerModel::createBodyLayer);
             event.registerLayerDefinition(PossumModel.LAYER_LOCATION, PossumModel::createBodyLayer);
 
-            //Bosses
-            event.registerLayerDefinition(CorruptlingModel.LAYER_LOCATION, CorruptlingModel::createBodyLayer);
-
             event.registerLayerDefinition(FloElytraLayer.WINGS_LOCATION, FloElytraModel::createLayer);
             event.registerLayerDefinition(GhostElytraLayer.WINGS_LOCATION, GhostElytraModel::createLayer);
             event.registerLayerDefinition(WhirlElytraLayer.WINGS_LOCATION, WhirlElytraModel::createLayer);
             event.registerLayerDefinition(TricoElytraLayer.WINGS_LOCATION, TricoElytraModel::createLayer);
             event.registerLayerDefinition(RaccGoatHornsLayer.LAYER_LOCATION, RaccGoatHornsModel::createLayer);
             event.registerLayerDefinition(KyoUnicronHornLayer.LAYER_LOCATION, KyoUnicornHornModel::createLayer);
+
+            //Bosses
+            event.registerLayerDefinition(CorruptlingModel.LAYER_LOCATION, CorruptlingModel::createBodyLayer);
+
+            //Cybertron entities
+            //Hostile
+            event.registerLayerDefinition(LaswerbeakModel.LAYER_LOCATION, LaswerbeakModel::createBodyLayer);
         }
 
         @SubscribeEvent
@@ -372,6 +379,7 @@ public class ClientModEvents {
             event.registerEntityRenderer(EntityInit.CYBERTRON_CREEPER.get(), CybertronCreeperRenderer::new);
             event.registerEntityRenderer(EntityInit.CYBERTRON_HOSTILE_COW.get(), CybertronHostileCowRenderer::new);
             event.registerEntityRenderer(EntityInit.CYBERTRON_ZOMBIE.get(), CybertronZombieRenderer::new);
+            event.registerEntityRenderer(EntityInit.LASERBEAK.get(), LaserbeakRenderer::new);
 
             //Bosses
             event.registerEntityRenderer(EntityInit.SCRAPLET_BOSS.get(), ScrapletBossRenderer::new);

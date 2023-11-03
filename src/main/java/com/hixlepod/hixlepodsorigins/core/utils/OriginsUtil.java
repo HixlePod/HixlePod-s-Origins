@@ -14,6 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class OriginsUtil {
@@ -38,7 +39,7 @@ public class OriginsUtil {
         double ExperienceLevel = player.experienceLevel;
         double DayCount = player.getServer().overworld().getDayTime() / 24000;
 
-        //BaseDamage added twice to calculation so it has a bigger effect on the final damage.
+        //BaseDamage added twice to calculation, so it has a bigger effect on the final damage.
         double CalculatedDamage = BaseDamage + ((ExperienceLevel / 10) + (DayCount / 500));
         double FinalDamage = BaseDamage + (Math.log(CalculatedDamage) / Math.log(1.105));
 
@@ -67,6 +68,10 @@ public class OriginsUtil {
 
     public static void sendParticle(ServerLevel level, ParticleOptions particleType, Vec3 position, Vec3 Delta, double Speed, int Count) {
         level.sendParticles(particleType, position.x(), position.y(), position.z(), Count, Delta.x(), Delta.y(), Delta.z(), Speed);
+    }
+
+    public static void addClientParticle(Level level, ParticleOptions particleType, Vec3 position, Vec3 Delta, boolean isForced) {
+        level.addParticle(particleType, isForced, position.x(), position.y(), position.z(), Delta.x() * OriginsUtil.randomInt(-1, 1), Delta.y() * OriginsUtil.randomInt(-1, 1), Delta.z() * OriginsUtil.randomInt(-1, 1));
     }
 
     public static void returnAbilityMessage(Player player) {

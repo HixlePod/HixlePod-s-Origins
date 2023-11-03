@@ -13,10 +13,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.E
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses.EntityCybertronHorse;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronHostileCow;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronZombie;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.*;
 import com.hixlepod.hixlepodsorigins.common.origins.Flo_Plays_;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
@@ -60,6 +57,7 @@ public class CommonModEvents {
             event.put(EntityInit.CYBERTRON_CREEPER.get(), EntityCybertronCreeper.createAttributes().build());
             event.put(EntityInit.CYBERTRON_HOSTILE_COW.get(), EntityCybertronHostileCow.createAttributes().build());
             event.put(EntityInit.CYBERTRON_ZOMBIE.get(), EntityCybertronZombie.createAttributes().build());
+            event.put(EntityInit.LASERBEAK.get(), EntityLaserbeak.createAttributes().build());
 
 
             //Bosses

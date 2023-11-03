@@ -13,10 +13,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.E
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses.EntityCybertronHorse;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronHostileCow;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronZombie;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -97,6 +94,10 @@ public class EntityInit {
     public static final RegistryObject<EntityType<EntityCybertronZombie>> CYBERTRON_ZOMBIE = ENTITIES.register("cybertron_zombie",
             () -> EntityType.Builder.of(EntityCybertronZombie::new, MobCategory.MONSTER).sized(0.75F, 2.4375F).
                     build(new ResourceLocation(HixlePodsOrigins.MODID, "cybertron_zombie").toString()));
+
+    public static final RegistryObject<EntityType<EntityLaserbeak>> LASERBEAK = ENTITIES.register("laserbeak",
+            () -> EntityType.Builder.of(EntityLaserbeak::new, MobCategory.MONSTER).sized(0.9F, 0.3F).
+                    build(new ResourceLocation(HixlePodsOrigins.MODID, "laserbeak").toString()));
 
     //Bosses
 

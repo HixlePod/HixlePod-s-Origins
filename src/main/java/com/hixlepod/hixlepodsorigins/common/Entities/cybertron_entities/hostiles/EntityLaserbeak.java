@@ -1,10 +1,17 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
+import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
@@ -15,9 +22,12 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
+import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.Iterator;
@@ -29,12 +39,12 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
     BlockPos anchorPoint;
     EntityLaserbeak.AttackPhase attackPhase;
 
-    protected EntityLaserbeak(EntityType<? extends FlyingMob> p_20806_, Level p_20807_) {
+    public EntityLaserbeak(EntityType<? extends EntityLaserbeak> p_20806_, Level p_20807_) {
         super(p_20806_, p_20807_);
         this.moveTargetPoint = Vec3.ZERO;
         this.anchorPoint = BlockPos.ZERO;
         this.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
-        this.xpReward = 5;
+        this.xpReward = 10;
         this.moveControl = new EntityLaserbeak.LaserbeakMoveControl(this);
         this.lookControl = new EntityLaserbeak.LaserbeakLookControl(this);
     }
@@ -50,18 +60,58 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
         this.targetSelector.addGoal(1, new EntityLaserbeak.LaserbeakAttackPlayerTargetGoal());
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 60.0)
+                .add(Attributes.ARMOR, 2.0)
+                .add(Attributes.ARMOR_TOUGHNESS, 2.0)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
+                .add(Attributes.ATTACK_KNOCKBACK, 1.0)
+                .add(Attributes.ATTACK_DAMAGE, 15.0);
+    }
+
+    double rangeX = -0.3d, rangeY = 0.3d;
+
     public void tick() {
         super.tick();
-        if (this.level().isClientSide) {
+        if (this.level().isClientSide()) {
 
-            int $$2 = 2;
+            /*
+            float $$2 = 0.5f;
+            float distance = 0.1f;
             float $$3 = Mth.cos(this.getYRot() * 0.017453292F) * (1.3F + 0.21F * (float)$$2);
             float $$4 = Mth.sin(this.getYRot() * 0.017453292F) * (1.3F + 0.21F * (float)$$2);
             float $$5 = (0.3F * 0.45F) * ((float)$$2 * 0.2F + 1.0F);
-            this.level().addParticle(ParticleTypes.MYCELIUM, this.getX() + (double)$$3, this.getY() + (double)$$5, this.getZ() + (double)$$4, 0.0, 0.0, 0.0);
-            this.level().addParticle(ParticleTypes.MYCELIUM, this.getX() - (double)$$3, this.getY() + (double)$$5, this.getZ() - (double)$$4, 0.0, 0.0, 0.0);
-        }
 
+            OriginsUtil.addClientParticle(this.level(), ParticleTypes.FLAME, new Vec3(this.getX() + (double)$$3, this.getY() + (double)$$5, this.getZ() + (double)$$4), new Vec3(0, 0, 0), false);
+            OriginsUtil.addClientParticle(this.level(), ParticleTypes.FLAME, new Vec3(this.getX() - (double)$$3, this.getY() + (double)$$5, this.getZ() - (double)$$4), new Vec3(0, 0, 0), false);
+            */
+
+            //TEMP
+            //OriginsUtil.addClientParticle(this.level(), ParticleTypes.FLAME, this.position().add(new Vec3(0, 0.25, 0)), new Vec3(0.01, 0.01, 0.01), false);
+
+            OriginsUtil.addClientParticle(this.level(), new DustParticleOptions(new Vector3f(0, 0, 0), 1), this.position().add(new Vec3(OriginsUtil.randomDouble(rangeX, rangeY), OriginsUtil.randomDouble(rangeX, rangeY), OriginsUtil.randomDouble(rangeX, rangeY))), new Vec3(0, 0,0 ), false);
+            OriginsUtil.addClientParticle(this.level(), new DustParticleOptions(new Vector3f(0, 0, 0), 1), this.position().add(new Vec3(OriginsUtil.randomDouble(rangeX, rangeY), OriginsUtil.randomDouble(rangeX, rangeY), OriginsUtil.randomDouble(rangeX, rangeY))), new Vec3(0, 0,0 ), false);
+        }
+    }
+
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_33126_, DifficultyInstance p_33127_, MobSpawnType p_33128_, @Nullable SpawnGroupData p_33129_, @Nullable CompoundTag p_33130_) {
+        this.anchorPoint = this.blockPosition().above(10);
+        return super.finalizeSpawn(p_33126_, p_33127_, p_33128_, p_33129_, p_33130_);
+    }
+
+    public void readAdditionalSaveData(CompoundTag p_33132_) {
+        super.readAdditionalSaveData(p_33132_);
+        if (p_33132_.contains("AX")) {
+            this.anchorPoint = new BlockPos(p_33132_.getInt("AX"), p_33132_.getInt("AY"), p_33132_.getInt("AZ"));
+        }
+    }
+
+    public void addAdditionalSaveData(CompoundTag p_33141_) {
+        super.addAdditionalSaveData(p_33141_);
+        p_33141_.putInt("AX", this.anchorPoint.getX());
+        p_33141_.putInt("AY", this.anchorPoint.getY());
+        p_33141_.putInt("AZ", this.anchorPoint.getZ());
     }
 
     private static enum AttackPhase {
@@ -73,7 +123,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
     }
 
     class LaserbeakMoveControl extends MoveControl {
-        private float speed = 0.1F;
+        private float speed = 0.5F;
 
         public LaserbeakMoveControl(Mob p_33241_) {
             super(p_33241_);
@@ -82,7 +132,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
         public void tick() {
             if (EntityLaserbeak.this.horizontalCollision) {
                 EntityLaserbeak.this.setYRot(EntityLaserbeak.this.getYRot() + 180.0F);
-                this.speed = 0.1F;
+                this.speed = 0.5F;
             }
 
             double $$0 = EntityLaserbeak.this.moveTargetPoint.x - EntityLaserbeak.this.getX();
