@@ -4,6 +4,7 @@ import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.items.*;
 import com.hixlepod.hixlepodsorigins.common.items.HolyLyre.The_Holy_Lyre_Item;
 import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.BetsyBattleAxeItem;
+import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.DragonBoneDagger;
 import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.TheStringlessBow;
 import com.hixlepod.hixlepodsorigins.common.items.OriginWeapons.WhispersHammerItem;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -136,6 +137,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> BETSY_BATTLE_AXE = ITEMS.register("betsy_battle_axe", () -> new BetsyBattleAxeItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> WHISPERS_HAMMER = ITEMS.register("whispers_hammer", () -> new WhispersHammerItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DRAGON_BONE_DAGGER = ITEMS.register("dragon_bone_dagger", () -> new DragonBoneDagger(new Item.Properties().stacksTo(2)));
+
 
     //Meme items
     public static final RegistryObject<Item> NINJA = ITEMS.register("ninja", () -> new Ninja(new Item.Properties()));
