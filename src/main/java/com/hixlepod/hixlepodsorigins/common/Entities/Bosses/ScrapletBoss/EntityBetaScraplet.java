@@ -15,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
@@ -40,6 +41,8 @@ public class EntityBetaScraplet extends Spider {
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+
+        this.targetSelector.addGoal(2, new EntityBetaScraplet.SpiderTargetGoal<>(this, IronGolem.class));
         this.targetSelector.addGoal(2, new EntityBetaScraplet.SpiderTargetGoal<>(this, Player.class));
 
         this.targetSelector.addGoal(3, new EntityBetaScraplet.SpiderTargetGoal<>(this, EntityEcho.class));

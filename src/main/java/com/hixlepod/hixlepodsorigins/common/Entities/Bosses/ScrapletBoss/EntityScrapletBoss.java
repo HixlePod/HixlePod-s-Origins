@@ -139,7 +139,7 @@ public class EntityScrapletBoss extends Spider {
         SpawnBetaScaplet();
 
         for (Entity entity : this.getServer().getLevel(this.level().dimension()).getAllEntities()) {
-            if (entity instanceof Player) {
+            if (entity instanceof LivingEntity) {
                 if (entity.position().distanceTo(this.position()) < 10) {
                     Vec3 difference = this.position().subtract(entity.position());
                     Vec3 normalizedDifference = difference.normalize();
