@@ -46,5 +46,12 @@
     "sounds": [
       "hixlepodsorigins:cyber_bullying"
     ]
+  },
+
+  "laser_shoot": {
+    "subtitle": "sounds.hixlepodsorigins.laser_shoot",
+    "sounds": [
+      "hixlepodsorigins:laser_shoot"
+    ]
   }
 }

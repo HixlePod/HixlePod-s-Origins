@@ -85,7 +85,7 @@ public class ItemInit {
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,30 * 20, 11), 1)
             .build())));
 
-    public static final RegistryObject<Item> BATTLE_DONUT = ITEMS.register("battle_donut", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
+    public static final RegistryObject<Item> BATTLE_DONUT = ITEMS.register("battle_donut", () -> new Item(new Item.Properties().stacksTo(16).food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
             .effect(new MobEffectInstance(MobEffects.GLOWING,         20 * 20, 1), 1)
             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,  20 * 20, 2), 1)
             .effect(new MobEffectInstance(MobEffects.REGENERATION,    20 * 20, 3), 1)
@@ -142,6 +142,7 @@ public class ItemInit {
 
     //Meme items
     public static final RegistryObject<Item> NINJA = ITEMS.register("ninja", () -> new Ninja(new Item.Properties()));
+    public static final RegistryObject<Item> TAKE_THE_L = ITEMS.register("take_the_l", () -> new TakeTheL(new Item.Properties()));
 
     public static final RegistryObject<Item> WEED = ITEMS.register("weed", () -> new Weed(new Item.Properties().food(new FoodProperties.Builder()
             .effect(new MobEffectInstance(MobEffects.LEVITATION,            10 * 20, 4), 1)

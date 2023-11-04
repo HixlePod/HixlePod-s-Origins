@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
+import com.hixlepod.hixlepodsorigins.core.init.SoundInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -281,26 +282,31 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
                 if (this.laserbeak.getBoundingBox().inflate(0.20000000298023224).intersects(target.getBoundingBox())) {
                     this.laserbeak.doHurtTarget(target);
                     this.laserbeak.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
+                    /* Must be the audio
                     if (!this.laserbeak.isSilent()) {
                         this.laserbeak.level().levelEvent(1039, this.laserbeak.blockPosition(), 0);
                     }
+                     */
                 } else if (this.laserbeak.horizontalCollision || this.laserbeak.hurtTime > 0) {
                     this.laserbeak.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
                 }
 
+                //Shoot laser
                 if (ATTACK_COUNT == 0) {
-                    //Shoot laser
                     if (target.distanceToSqr(this.laserbeak) < 4096.0 && this.laserbeak.hasLineOfSight(target)) {
                         Level level = this.laserbeak.level();
 
                         Vec3 LaserbeakViewVector = this.laserbeak.getViewVector(1.0F);
-                        double X = target.getX() - (this.laserbeak.getX() + LaserbeakViewVector.x * 4.0);
-                        double Y = target.getY(0.5) - (0.5 + this.laserbeak.getY(-0.25));
-                        double Z = target.getZ() - (this.laserbeak.getZ() + LaserbeakViewVector.z * 4.0);
+                        double rotX = target.getX() - (this.laserbeak.getX() + LaserbeakViewVector.x * 4.0);
+                        double rotY = target.getY(0.5) - (0.5 + this.laserbeak.getY(-0.5));
+                        double rotZ = target.getZ() - (this.laserbeak.getZ() + LaserbeakViewVector.z * 4.0);
 
-                        EntityLaserProjectile laser = new EntityLaserProjectile(level, this.laserbeak, X, Y, Z, 1f);
-                        laser.setPos(this.laserbeak.getX() + LaserbeakViewVector.x * 4.0, this.laserbeak.getY(0.5) + 0.5, laser.getZ() + LaserbeakViewVector.z * 4.0);
+                        EntityLaserProjectile laser = new EntityLaserProjectile(level, this.laserbeak, rotX, rotY, rotZ, 1f);
+                        laser.setPos(this.laserbeak.getX() + LaserbeakViewVector.x * 4.0, this.laserbeak.getY() - 1, laser.getZ() + LaserbeakViewVector.z * 4.0);
                         level.addFreshEntity(laser);
+
+                        //level.playSound(null, this.laserbeak.position().x(), this.laserbeak.position().y(), this.laserbeak.position().z(), SoundInit.LASER_SHOOT.get(), SoundSource.HOSTILE, 0.1f, 2);
+                        this.laserbeak.playSound(SoundInit.LASER_SHOOT.get(), 0.1f, 2);
                     }
                     ATTACK_COUNT = ATTACK_COOLDOWN;
                 } else {

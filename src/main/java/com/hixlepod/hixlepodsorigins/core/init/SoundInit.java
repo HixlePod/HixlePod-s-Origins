@@ -30,6 +30,7 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> GROUND_BRIDGE_HUMMING = registrySoundEvent("ground_bridge_humming");
 
     public static final RegistryObject<SoundEvent> CYBER_BULLYING = registrySoundEvent("cyber_bullying");
+    public static final RegistryObject<SoundEvent> LASER_SHOOT = registrySoundEvent("laser_shoot");
 
     private static RegistryObject<SoundEvent> registrySoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(HixlePodsOrigins.MODID, name)));

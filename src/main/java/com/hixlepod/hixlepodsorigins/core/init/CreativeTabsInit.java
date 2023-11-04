@@ -112,6 +112,7 @@ public class CreativeTabsInit {
 
                         //Cursed
                         output.accept(ItemInit.NINJA.get());
+                        output.accept(ItemInit.TAKE_THE_L.get());
                         output.accept(ItemInit.WEED.get());
                         output.accept(ItemInit.MAXWELL.get());
                         output.accept(ItemInit.AMONG_US.get());

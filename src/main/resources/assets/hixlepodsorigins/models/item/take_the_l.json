@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:item/take_the_l",
+    "particle": "hixlepodsorigins:item/take_the_l"
+  }
+}

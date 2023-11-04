@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
 import com.hixlepod.hixlepodsorigins.core.init.EffectsInit;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -51,7 +52,9 @@ public class EntityCybertronZombie extends Monster {
     public boolean doHurtTarget(Entity entity) {
         if (super.doHurtTarget(entity)) {
             if (entity instanceof LivingEntity) {
-                ((LivingEntity)entity).addEffect(new MobEffectInstance(EffectsInit.RUST.get(), 20 * 60 * 60 * 60, 0), this);
+                if (OriginsUtil.didChance(10)) {
+                    ((LivingEntity) entity).addEffect(new MobEffectInstance(EffectsInit.RUST.get(), 20 * 60 * 60 * 60, 0), this);
+                }
             }
             return true;
         } else {

@@ -5,6 +5,7 @@ import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,8 +35,8 @@ public class EntityLaserProjectile extends AbstractHurtingProjectile {
         super.onHit(p_37218_);
         if (!this.level().isClientSide) {
             //boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level(), this.getOwner());
-            OriginsUtil.addClientParticle(this.level(), ParticleTypes.LAVA, this.position().add(0, 1, 0), new Vec3(0, 0,0 ), false);
-            this.playSound(SoundEvents.GENERIC_EXPLODE, 1, 1);
+            OriginsUtil.sendParticle((ServerLevel) this.level(), ParticleTypes.LAVA, this.position(), new Vec3(0, 0,0 ), 1, 1);
+            this.playSound(SoundEvents.GENERIC_EXPLODE, 0.2f, 1.5f);
             this.discard();
         }
 
@@ -44,10 +45,13 @@ public class EntityLaserProjectile extends AbstractHurtingProjectile {
     protected void onHitEntity(EntityHitResult p_37216_) {
         super.onHitEntity(p_37216_);
         if (!this.level().isClientSide) {
-            LivingEntity target = (LivingEntity) p_37216_.getEntity();
-            LivingEntity attacker = (LivingEntity) this.getOwner();
 
-            if (target instanceof LivingEntity && attacker instanceof LivingEntity) {
+
+            if (p_37216_.getEntity() instanceof LivingEntity && this.getOwner() instanceof LivingEntity) {
+
+                LivingEntity target = (LivingEntity) p_37216_.getEntity();
+                LivingEntity attacker = (LivingEntity) this.getOwner();
+
                 if (target != attacker) {
                     target.hurt(this.damageSources().mobAttack(attacker), baseDamage);
                 }
