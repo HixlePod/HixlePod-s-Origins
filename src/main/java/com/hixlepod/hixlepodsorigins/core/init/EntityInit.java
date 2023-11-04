@@ -9,6 +9,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityBooNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityNimbusNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntitySmudgeNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.*;
+import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses.EntityCybertronHorse;
@@ -96,8 +97,8 @@ public class EntityInit {
                     build(new ResourceLocation(HixlePodsOrigins.MODID, "cybertron_zombie").toString()));
 
     public static final RegistryObject<EntityType<EntityLaserbeak>> LASERBEAK = ENTITIES.register("laserbeak",
-            () -> EntityType.Builder.of(EntityLaserbeak::new, MobCategory.MONSTER).sized(0.9F, 0.3F).
-                    build(new ResourceLocation(HixlePodsOrigins.MODID, "laserbeak").toString()));
+            () -> EntityType.Builder.of(EntityLaserbeak::new, MobCategory.MONSTER).sized(0.9F, 0.3F).fireImmune()
+                    .build(new ResourceLocation(HixlePodsOrigins.MODID, "laserbeak").toString()));
 
     //Bosses
 
@@ -128,4 +129,10 @@ public class EntityInit {
             () -> EntityType.Builder.of(EntitySmudgeNPC::new, MobCategory.CREATURE).sized(0.6F, 1.8F).
                     build(new ResourceLocation(HixlePodsOrigins.MODID, "npc_smudge").toString()));
 
+
+    //Projectiles
+    public static final RegistryObject<EntityType<EntityLaserProjectile>> LASER = ENTITIES.register("laser",
+            () -> EntityType.Builder.<EntityLaserProjectile>of(EntityLaserProjectile::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .build(new ResourceLocation(HixlePodsOrigins.MODID, "laser").toString()));
 }

@@ -24,6 +24,7 @@ public class DragonBoneDagger extends Item  {
 
     public DragonBoneDagger(Properties p_41383_) {
         super(p_41383_);
+        BuildNewAttributes();
     }
 
     private void BuildNewAttributes() {
@@ -36,20 +37,22 @@ public class DragonBoneDagger extends Item  {
     @Override
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
 
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
+        if (itemStack != null && level != null && entity != null) {
+            if (entity instanceof Player) {
+                Player player = (Player) entity;
 
-            ItemStack MainHand = player.getMainHandItem();
-            ItemStack Offhand = player.getOffhandItem();
+                ItemStack MainHand = player.getMainHandItem();
+                ItemStack Offhand = player.getOffhandItem();
 
-            if (MainHand.getItem().equals(ItemInit.DRAGON_BONE_DAGGER.get()) && Offhand.getItem().equals(ItemInit.DRAGON_BONE_DAGGER.get())) {
-                ATTACK_DAMAGE = 4;
-                ATTACK_SPEED = OriginsUtil.returnAttackSpeed(4);
-                BuildNewAttributes();
-            } else {
-                ATTACK_DAMAGE = 2;
-                ATTACK_SPEED = OriginsUtil.returnAttackSpeed(2);
-                BuildNewAttributes();
+                if (MainHand.getItem().equals(ItemInit.DRAGON_BONE_DAGGER.get()) && Offhand.getItem().equals(ItemInit.DRAGON_BONE_DAGGER.get())) {
+                    ATTACK_DAMAGE = 4;
+                    ATTACK_SPEED = OriginsUtil.returnAttackSpeed(4);
+                    BuildNewAttributes();
+                } else {
+                    ATTACK_DAMAGE = 2;
+                    ATTACK_SPEED = OriginsUtil.returnAttackSpeed(2);
+                    BuildNewAttributes();
+                }
             }
         }
         super.inventoryTick(itemStack, level, entity, p_41407_, p_41408_);

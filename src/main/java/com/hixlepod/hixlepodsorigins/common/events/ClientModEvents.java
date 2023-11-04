@@ -4,6 +4,7 @@ import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Model.Bosses.Corruptling.CorruptlingModel;
 import com.hixlepod.hixlepodsorigins.client.Model.LaswerbeakModel;
 import com.hixlepod.hixlepodsorigins.client.Model.Pets.*;
+import com.hixlepod.hixlepodsorigins.client.Model.Projectile.LaserProjectileModel;
 import com.hixlepod.hixlepodsorigins.client.NPC.BooNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.NPC.NimbusNPCRenderer;
 import com.hixlepod.hixlepodsorigins.client.NPC.SmudgeNPCRenderer;
@@ -14,6 +15,7 @@ import com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.Corruptling.Corruptl
 import com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.ScrapletBoss.BetaScrapletRenderer;
 import com.hixlepod.hixlepodsorigins.client.Renderer.Bosses.ScrapletBoss.ScrapletBossRenderer;
 import com.hixlepod.hixlepodsorigins.client.Renderer.Pets.*;
+import com.hixlepod.hixlepodsorigins.client.Renderer.Projectile.LaserProjectileRenderer;
 import com.hixlepod.hixlepodsorigins.client.screen.LoreMenuScreen;
 import com.hixlepod.hixlepodsorigins.client.screen.PetMenuScreen;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.BlockData;
@@ -344,6 +346,9 @@ public class ClientModEvents {
             //Cybertron entities
             //Hostile
             event.registerLayerDefinition(LaswerbeakModel.LAYER_LOCATION, LaswerbeakModel::createBodyLayer);
+
+            //Projectile
+            event.registerLayerDefinition(LaserProjectileModel.LAYER_LOCATION, LaserProjectileModel::createBodyLayer);
         }
 
         @SubscribeEvent
@@ -391,6 +396,9 @@ public class ClientModEvents {
             event.registerEntityRenderer(EntityInit.NPC_NIMBUS.get(), NimbusNPCRenderer::new);
             event.registerEntityRenderer(EntityInit.NPC_BOO.get(), BooNPCRenderer::new);
             event.registerEntityRenderer(EntityInit.NPC_SMUDGE.get(), SmudgeNPCRenderer::new);
+
+            //Projectiles
+            event.registerEntityRenderer(EntityInit.LASER.get(), LaserProjectileRenderer::new);
         }
     }
 }

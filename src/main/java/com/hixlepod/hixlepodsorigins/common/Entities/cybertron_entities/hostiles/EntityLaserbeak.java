@@ -1,5 +1,6 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
+import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -19,8 +20,10 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -55,7 +58,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new EntityLaserbeak.LaserbeakAttackStrategyGoal());
-        this.goalSelector.addGoal(2, new EntityLaserbeak.LaserbeakSweepAttackGoal());
+        this.goalSelector.addGoal(2, new EntityLaserbeak.LaserbeakSweepAttackGoal(this));
         this.goalSelector.addGoal(3, new EntityLaserbeak.LaserbeakCircleAroundAnchorGoal());
         this.targetSelector.addGoal(1, new EntityLaserbeak.LaserbeakAttackPlayerTargetGoal());
     }
@@ -218,8 +221,13 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
         private boolean isScaredOfCat;
         private int catSearchTick;
 
-        LaserbeakSweepAttackGoal() {
-            super();
+        private int ATTACK_COOLDOWN = 5;
+        private int ATTACK_COUNT = 0;
+
+        private final EntityLaserbeak laserbeak;
+
+        LaserbeakSweepAttackGoal(EntityLaserbeak laserbeak) {
+            this.laserbeak = laserbeak;
         }
 
         public boolean canUse() {
@@ -265,22 +273,41 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
         }
 
         public void stop() {
-            EntityLaserbeak.this.setTarget((LivingEntity)null);
-            EntityLaserbeak.this.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
+            this.laserbeak.setTarget((LivingEntity)null);
+            this.laserbeak.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
         }
 
         public void tick() {
-            LivingEntity $$0 = EntityLaserbeak.this.getTarget();
-            if ($$0 != null) {
-                EntityLaserbeak.this.moveTargetPoint = new Vec3($$0.getX(), $$0.getY(0.5), $$0.getZ());
-                if (EntityLaserbeak.this.getBoundingBox().inflate(0.20000000298023224).intersects($$0.getBoundingBox())) {
-                    EntityLaserbeak.this.doHurtTarget($$0);
-                    EntityLaserbeak.this.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
-                    if (!EntityLaserbeak.this.isSilent()) {
-                        EntityLaserbeak.this.level().levelEvent(1039, EntityLaserbeak.this.blockPosition(), 0);
+            LivingEntity target = this.laserbeak.getTarget();
+            if (target != null) {
+                this.laserbeak.moveTargetPoint = new Vec3(target.getX(), target.getY(0.5), target.getZ());
+                if (this.laserbeak.getBoundingBox().inflate(0.20000000298023224).intersects(target.getBoundingBox())) {
+                    this.laserbeak.doHurtTarget(target);
+                    this.laserbeak.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
+                    if (!this.laserbeak.isSilent()) {
+                        this.laserbeak.level().levelEvent(1039, this.laserbeak.blockPosition(), 0);
                     }
-                } else if (EntityLaserbeak.this.horizontalCollision || EntityLaserbeak.this.hurtTime > 0) {
-                    EntityLaserbeak.this.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
+                } else if (this.laserbeak.horizontalCollision || this.laserbeak.hurtTime > 0) {
+                    this.laserbeak.attackPhase = EntityLaserbeak.AttackPhase.CIRCLE;
+                }
+
+                if (ATTACK_COUNT == 0) {
+                    //Shoot laser
+                    if (target.distanceToSqr(this.laserbeak) < 4096.0 && this.laserbeak.hasLineOfSight(target)) {
+                        Level level = this.laserbeak.level();
+
+                        Vec3 LaserbeakViewVector = this.laserbeak.getViewVector(1.0F);
+                        double X = target.getX() - (this.laserbeak.getX() + LaserbeakViewVector.x * 4.0);
+                        double Y = target.getY(0.5) - (0.5 + this.laserbeak.getY(0.5));
+                        double Z = target.getZ() - (this.laserbeak.getZ() + LaserbeakViewVector.z * 4.0);
+
+                        EntityLaserProjectile laser = new EntityLaserProjectile(level, this.laserbeak, X, Y, Z, 1f);
+                        laser.setPos(this.laserbeak.getX() + LaserbeakViewVector.x * 4.0, this.laserbeak.getY(0.5) + 0.5, laser.getZ() + LaserbeakViewVector.z * 4.0);
+                        level.addFreshEntity(laser);
+                    }
+                    ATTACK_COUNT = ATTACK_COOLDOWN;
+                } else {
+                    ATTACK_COUNT--;
                 }
 
             }
