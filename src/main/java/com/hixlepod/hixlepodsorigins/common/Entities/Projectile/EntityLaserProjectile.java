@@ -48,7 +48,9 @@ public class EntityLaserProjectile extends AbstractHurtingProjectile {
             LivingEntity attacker = (LivingEntity) this.getOwner();
 
             if (target instanceof LivingEntity && attacker instanceof LivingEntity) {
-                target.hurt(this.damageSources().mobAttack(attacker), (float) baseDamage);
+                if (target != attacker) {
+                    target.hurt(this.damageSources().mobAttack(attacker), baseDamage);
+                }
             }
         }
 

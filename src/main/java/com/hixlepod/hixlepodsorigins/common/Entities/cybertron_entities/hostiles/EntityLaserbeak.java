@@ -4,9 +4,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProje
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
@@ -20,10 +18,7 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.Ghast;
-import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -31,7 +26,6 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
@@ -99,7 +93,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_33126_, DifficultyInstance p_33127_, MobSpawnType p_33128_, @Nullable SpawnGroupData p_33129_, @Nullable CompoundTag p_33130_) {
-        this.anchorPoint = this.blockPosition().above(10);
+        this.anchorPoint = this.blockPosition().above(6);
         return super.finalizeSpawn(p_33126_, p_33127_, p_33128_, p_33129_, p_33130_);
     }
 
@@ -201,7 +195,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
                     EntityLaserbeak.this.attackPhase = EntityLaserbeak.AttackPhase.SWOOP;
                     this.setAnchorAboveTarget();
                     this.nextSweepTick = this.adjustedTickDelay((8 + EntityLaserbeak.this.random.nextInt(4)) * 20);
-                    EntityLaserbeak.this.playSound(SoundEvents.PHANTOM_SWOOP, 10.0F, 0.95F + EntityLaserbeak.this.random.nextFloat() * 0.1F);
+                    //EntityLaserbeak.this.playSound(SoundEvents.PHANTOM_SWOOP, 10.0F, 0.95F + EntityLaserbeak.this.random.nextFloat() * 0.1F);
                 }
             }
 
@@ -298,7 +292,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
 
                         Vec3 LaserbeakViewVector = this.laserbeak.getViewVector(1.0F);
                         double X = target.getX() - (this.laserbeak.getX() + LaserbeakViewVector.x * 4.0);
-                        double Y = target.getY(0.5) - (0.5 + this.laserbeak.getY(0.5));
+                        double Y = target.getY() - 0.5;
                         double Z = target.getZ() - (this.laserbeak.getZ() + LaserbeakViewVector.z * 4.0);
 
                         EntityLaserProjectile laser = new EntityLaserProjectile(level, this.laserbeak, X, Y, Z, 1f);
