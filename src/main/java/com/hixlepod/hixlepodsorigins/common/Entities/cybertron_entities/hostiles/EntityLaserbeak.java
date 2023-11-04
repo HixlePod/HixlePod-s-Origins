@@ -5,7 +5,6 @@ import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -93,8 +92,12 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_33126_, DifficultyInstance p_33127_, MobSpawnType p_33128_, @Nullable SpawnGroupData p_33129_, @Nullable CompoundTag p_33130_) {
-        this.anchorPoint = this.blockPosition().above(6);
+        this.anchorPoint = this.blockPosition().above(5);
         return super.finalizeSpawn(p_33126_, p_33127_, p_33128_, p_33129_, p_33130_);
+    }
+
+    public boolean shouldRenderAtSqrDistance(double p_33107_) {
+        return true;
     }
 
     public void readAdditionalSaveData(CompoundTag p_33132_) {
@@ -292,7 +295,7 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
 
                         Vec3 LaserbeakViewVector = this.laserbeak.getViewVector(1.0F);
                         double X = target.getX() - (this.laserbeak.getX() + LaserbeakViewVector.x * 4.0);
-                        double Y = target.getY() - 0.5;
+                        double Y = target.getY(0.5) - (0.5 + this.laserbeak.getY(-0.25));
                         double Z = target.getZ() - (this.laserbeak.getZ() + LaserbeakViewVector.z * 4.0);
 
                         EntityLaserProjectile laser = new EntityLaserProjectile(level, this.laserbeak, X, Y, Z, 1f);
