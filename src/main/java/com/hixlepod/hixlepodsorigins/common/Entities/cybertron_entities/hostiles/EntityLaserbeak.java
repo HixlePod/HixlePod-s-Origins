@@ -1,11 +1,13 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
+import com.hixlepod.hixlepodsorigins.common.events.FoodLists;
 import com.hixlepod.hixlepodsorigins.core.init.SoundInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -17,7 +19,7 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -26,11 +28,12 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 
-public class EntityLaserbeak extends FlyingMob implements Enemy {
+public class EntityLaserbeak extends FlyingMob {
 
     Vec3 moveTargetPoint;
     BlockPos anchorPoint;
@@ -386,8 +389,8 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
         private final TargetingConditions attackTargeting = TargetingConditions.forCombat().range(64.0);
         private int nextScanTick = reducedTickDelay(20);
 
-        LaserbeakAttackPlayerTargetGoal() {
-        }
+
+        LaserbeakAttackPlayerTargetGoal() {}
 
         public boolean canUse() {
             if (this.nextScanTick > 0) {
@@ -395,16 +398,22 @@ public class EntityLaserbeak extends FlyingMob implements Enemy {
                 return false;
             } else {
                 this.nextScanTick = reducedTickDelay(60);
-                List<Player> $$0 = EntityLaserbeak.this.level().getNearbyPlayers(this.attackTargeting, EntityLaserbeak.this, EntityLaserbeak.this.getBoundingBox().inflate(16.0, 64.0, 16.0));
+                List<LivingEntity> $$0 = EntityLaserbeak.this.level().getNearbyEntities(LivingEntity.class, this.attackTargeting, EntityLaserbeak.this, EntityLaserbeak.this.getBoundingBox().inflate(16.0, 64.0, 16.0));
                 if (!$$0.isEmpty()) {
                     //$$0.sort(Comparator.comparing(Entity::getY).reversed());
                     Iterator var2 = $$0.iterator();
 
                     while(var2.hasNext()) {
-                        Player $$1 = (Player)var2.next();
-                        if (EntityLaserbeak.this.canAttack($$1, TargetingConditions.DEFAULT)) {
-                            EntityLaserbeak.this.setTarget($$1);
-                            return true;
+                        LivingEntity target = (LivingEntity)var2.next();
+                        if (EntityLaserbeak.this.canAttack(target, TargetingConditions.DEFAULT)) {
+                            if (target instanceof EntityScraplet ||
+                                target instanceof EntityCybertronZombie ||
+                                target instanceof EntityCybertronHostileCow ||
+                                !Arrays.asList(FoodLists.ROBOTS).contains(target.getName())) {
+
+                                EntityLaserbeak.this.setTarget(target);
+                                return true;
+                            }
                         }
                     }
                 }
