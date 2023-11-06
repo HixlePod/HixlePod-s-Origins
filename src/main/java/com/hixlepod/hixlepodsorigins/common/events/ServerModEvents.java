@@ -20,6 +20,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -43,6 +44,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.*;
@@ -77,6 +79,33 @@ public class ServerModEvents {
                 OriginsManager.setOriginStats(player);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void PlayerChatEvent(ServerChatEvent event) {
+        ServerPlayer player = event.getPlayer();
+
+        String message = event.getMessage().getString();
+
+        player.sendSystemMessage(Component.literal("MESSAGE: " + message));
+
+        message .replace('a', '!').replace('n', 'G')
+                .replace('b', 'e').replace('o', '*')
+                .replace('c', '>').replace('p', 'j')
+                .replace('d', '@').replace('q', ']')
+                .replace('e', '?').replace('r', 'y')
+                .replace('f', 'x').replace('s', 'ꓵ')
+                .replace('g', '2').replace('t', '|')
+                .replace('h', '/').replace('u', '+')
+                .replace('i', 'l').replace('v', 'r')
+                .replace('j', ',').replace('w', '.')
+                .replace('k', 'u').replace('x', '=')
+                .replace('l', 'c').replace('y', '1')
+                .replace('m', 'x').replace('z', 'Z');
+
+        player.sendSystemMessage(Component.literal("NEW: " + message));
+
+        event.setMessage(Component.literal(message));
     }
 
     @SubscribeEvent

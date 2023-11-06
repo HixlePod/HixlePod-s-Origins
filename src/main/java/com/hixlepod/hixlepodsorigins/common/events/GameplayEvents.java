@@ -10,6 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Skeleton;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -82,6 +84,38 @@ public class GameplayEvents {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void PlayerChatEvent(ServerChatEvent event) {
+        ServerPlayer player = event.getPlayer();
+
+        String message = event.getMessage().getString();
+
+        player.sendSystemMessage(Component.literal("MESSAGE: " + message));
+
+        /*
+        message .re('a', '!').replace('n', 'G')
+                .replace('b', 'e').replace('o', '*')
+                .replace('c', '>').replace('p', 'j')
+                .replace('d', '@').replace('q', ']')
+                .replace('e', '?').replace('r', 'y')
+                .replace('f', 'x').replace('s', 'ꓵ')
+                .replace('g', '2').replace('t', '|')
+                .replace('h', '/').replace('u', '+')
+                .replace('i', 'l').replace('v', 'r')
+                .replace('j', ',').replace('w', '.')
+                .replace('k', 'u').replace('x', '=')
+                .replace('l', 'c').replace('y', '1')
+                .replace('m', 'x').replace('z', 'Z');
+
+         */
+
+        message.replace("abcdefghijklmopqrstuvwxyz", "e>@?x2/l,ucx*j]yꓵ|+r.=1z");
+
+        player.sendSystemMessage(Component.literal("NEW: " + message));
+
+        event.setMessage(Component.literal(message));
     }
 
 

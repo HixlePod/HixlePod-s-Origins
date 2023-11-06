@@ -413,6 +413,8 @@ public class EntityLaserbeak extends FlyingMob {
 
                                 EntityLaserbeak.this.setTarget(target);
                                 return true;
+                            } else {
+                                var2.remove();
                             }
                         }
                     }
