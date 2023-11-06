@@ -19,6 +19,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -33,8 +34,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.transformer.meta.MixinMerged;
+import virtuoel.pehkui.util.ScaleUtils;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.UUID;
 
 public class EntityCybertronHorse extends AbstractHorse {
@@ -48,11 +54,13 @@ public class EntityCybertronHorse extends AbstractHorse {
 
     public EntityCybertronHorse(EntityType<? extends EntityCybertronHorse> horse, Level level) {
         super(horse, level);
+        this.setMaxUpStep(1.5F);
     }
 
+    @Override
     protected void randomizeAttributes(RandomSource p_218815_) {
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) OriginsUtil.randomDouble(40, 50));
-        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(OriginsUtil.randomDouble(0.3, 0.5));
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(OriginsUtil.randomDouble(0.3, 0.4));
         this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(OriginsUtil.randomDouble(0.4, 1));
     }
 
@@ -100,6 +108,7 @@ public class EntityCybertronHorse extends AbstractHorse {
         this.setDropChance(EquipmentSlot.CHEST, 0.0F);
     }
 
+
     public boolean canMate(Animal p_30553_) {
         return true;
     }
@@ -143,12 +152,9 @@ public class EntityCybertronHorse extends AbstractHorse {
 
     }
 
+    @Override
     public double getPassengersRidingOffset() {
-        return -0.1D;
-    }
-
-    protected float getSinglePassengerXOffset() {
-        return 0.0F;
+        return 1.75D;
     }
 
 
@@ -295,53 +301,35 @@ public class EntityCybertronHorse extends AbstractHorse {
 
 
     public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
-        ItemStack itemstack = player.getItemInHand(interactionHand);
-        if (!this.isBaby()) {
-            if (this.isTamed() && player.isSecondaryUseActive()) {
-                this.openCustomInventoryScreen(player);
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
-
-            if (this.isVehicle()) {
-                return super.mobInteract(player, interactionHand);
-            }
-        }
-
-        if (!itemstack.isEmpty()) {
-            if (this.isFood(itemstack)) {
-
-
-                if (!this.isInLove()) {
-                    this.setInLove(player);
+        boolean flag = !this.isBaby() && this.isTamed() && player.isSecondaryUseActive();
+        if (!this.isVehicle() && !flag) {
+            ItemStack itemstack = player.getItemInHand(interactionHand);
+            if (!itemstack.isEmpty()) {
+                if (this.isFood(itemstack)) {
+                    return this.fedFood(player, itemstack);
                 }
 
-                return this.fedFood(player, itemstack);
+                if (!this.isTamed()) {
+                    this.makeMad();
+                    return InteractionResult.sidedSuccess(this.level().isClientSide);
+                }
             }
 
             InteractionResult interactionresult = itemstack.interactLivingEntity(player, this, interactionHand);
             if (interactionresult.consumesAction()) {
                 return interactionresult;
-            }
+            } else if (this.isFood(itemstack)) {
+                return this.fedFood(player, itemstack);
+            } else {
+                if (this.getPassengers().size() < 2 && !this.isBaby()) {
+                    this.doPlayerRide(player);
+                }
 
-            if (!this.isTamed()) {
-                this.makeMad();
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
 
-            boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.is(Items.SADDLE);
-            if (this.isArmor(itemstack) || flag) {
-                this.openCustomInventoryScreen(player);
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
-
-
-        }
-
-        if (this.isBaby()) {
-            return super.mobInteract(player, interactionHand);
         } else {
-            this.doPlayerRide(player);
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+            return super.mobInteract(player, interactionHand);
         }
     }
 

@@ -2,10 +2,8 @@ package com.hixlepod.hixlepodsorigins.common.Effect;
 
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
-import com.hixlepod.hixlepodsorigins.core.init.DamageTypes;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,11 +28,12 @@ public class RustEffect extends MobEffect {
                         || player.getName().equals(Component.literal(AmbrosiaElf.NAME))
                         || player.getName().equals(Component.literal(Blakpaw2244.NAME))
                         || player.getName().equals(Component.literal(Folf_Gaming.NAME))
-                        || player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+                        || player.getName().equals(Component.literal(Kira_uwu69.NAME))
+                        || player.getName().equals(Component.literal("Dev"))) {
 
-                    if (OriginsUtil.didChance(15)) {
+                    if (OriginsUtil.didChance(5)) {
 
-                        float TOTAL_DAMAGE = OriginsUtil.randomFloat(0.4f, 3f) * ((float) Amplifier + 1.5f);
+                        float TOTAL_DAMAGE = OriginsUtil.randomFloat(0.5f, 2.5f) * ((float) Amplifier + 1.5f);
 
                         player.hurt(new DamageSources(player.level().registryAccess()).rust(), TOTAL_DAMAGE);
                     }
