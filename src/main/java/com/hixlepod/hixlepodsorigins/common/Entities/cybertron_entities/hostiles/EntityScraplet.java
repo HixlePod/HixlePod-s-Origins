@@ -24,7 +24,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EntityScraplet extends Spider implements LaserbeakTarget {
+public class EntityScraplet extends Spider {
 
     public EntityScraplet(EntityType<? extends EntityScraplet> p_33786_, Level p_33787_) {
         super(p_33786_, p_33787_);
