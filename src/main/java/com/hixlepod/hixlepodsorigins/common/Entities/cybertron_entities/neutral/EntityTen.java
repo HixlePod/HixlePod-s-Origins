@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.common.Entities;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.neutral;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;

@@ -1,4 +1,4 @@
-package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
+package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
 import com.hixlepod.hixlepodsorigins.common.events.FoodLists;
@@ -7,7 +7,6 @@ import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -398,25 +396,28 @@ public class EntityLaserbeak extends FlyingMob {
                 return false;
             } else {
                 this.nextScanTick = reducedTickDelay(60);
-                List<LivingEntity> $$0 = EntityLaserbeak.this.level().getNearbyEntities(LivingEntity.class, this.attackTargeting, EntityLaserbeak.this, EntityLaserbeak.this.getBoundingBox().inflate(16.0, 64.0, 16.0));
-                if (!$$0.isEmpty()) {
+                List<LivingEntity> mobs = EntityLaserbeak.this.level().getNearbyEntities(LivingEntity.class, this.attackTargeting, EntityLaserbeak.this, EntityLaserbeak.this.getBoundingBox().inflate(16.0, 64.0, 16.0));
+                if (!mobs.isEmpty()) {
                     //$$0.sort(Comparator.comparing(Entity::getY).reversed());
-                    Iterator var2 = $$0.iterator();
 
-                    while(var2.hasNext()) {
-                        LivingEntity target = (LivingEntity)var2.next();
-                        if (EntityLaserbeak.this.canAttack(target, TargetingConditions.DEFAULT)) {
-                            if (target instanceof EntityScraplet ||
-                                target instanceof EntityCybertronZombie ||
-                                target instanceof EntityCybertronHostileCow ||
-                                !Arrays.asList(FoodLists.ROBOTS).contains(target.getName())) {
+                    Iterator iterator = mobs.listIterator();
+
+                    while(iterator.hasNext()) {
+                        LivingEntity target = (LivingEntity) iterator.next();
+
+                        if (target instanceof LaserbeakTarget || target instanceof Player) {
+
+                            if (target instanceof Player && Arrays.asList(FoodLists.ROBOTS).contains(target.getName())) {
+                                iterator.remove();
+                            }
+
+                            if (EntityLaserbeak.this.canAttack(target, TargetingConditions.DEFAULT)) {
 
                                 EntityLaserbeak.this.setTarget(target);
                                 return true;
-                            } else {
-                                var2.remove();
-                                return false;
                             }
+                        } else {
+                            iterator.remove();
                         }
                     }
                 }

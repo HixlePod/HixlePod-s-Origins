@@ -1,5 +1,6 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles;
 
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.LaserbeakTarget;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -16,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EntityCybertronHostileCow extends Monster {
+public class EntityCybertronHostileCow extends Monster implements LaserbeakTarget {
 
     public EntityCybertronHostileCow(EntityType<? extends EntityCybertronHostileCow> p_28285_, Level p_28286_) {
         super(p_28285_, p_28286_);

@@ -4,6 +4,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Pets.EntityEcho;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.LaserbeakTarget;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -23,7 +24,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EntityScraplet extends Spider {
+public class EntityScraplet extends Spider implements LaserbeakTarget {
 
     public EntityScraplet(EntityType<? extends EntityScraplet> p_33786_, Level p_33787_) {
         super(p_33786_, p_33787_);

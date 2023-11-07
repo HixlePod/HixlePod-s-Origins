@@ -2,13 +2,12 @@ package com.hixlepod.hixlepodsorigins.client.Renderer;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.client.Model.LaswerbeakModel;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityLaserbeak;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.EntityLaserbeak;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.monster.Phantom;
 
 public class LaserbeakRenderer<T extends EntityLaserbeak> extends MobRenderer<T, LaswerbeakModel<T>> {
 

@@ -1,7 +1,7 @@
 package com.hixlepod.hixlepodsorigins.client.Model;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
-import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityLaserbeak;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.EntityLaserbeak;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HierarchicalModel;

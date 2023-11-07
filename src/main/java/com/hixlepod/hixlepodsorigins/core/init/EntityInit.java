@@ -15,6 +15,8 @@ import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.E
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses.EntityCybertronHorse;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.*;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.EntityLaserbeak;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.neutral.EntityTen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

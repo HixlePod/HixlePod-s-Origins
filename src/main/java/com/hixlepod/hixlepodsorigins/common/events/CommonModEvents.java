@@ -14,6 +14,8 @@ import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.E
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.horses.EntityCybertronHorse;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronPig;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.*;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.EntityLaserbeak;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.neutral.EntityTen;
 import com.hixlepod.hixlepodsorigins.common.origins.Flo_Plays_;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;

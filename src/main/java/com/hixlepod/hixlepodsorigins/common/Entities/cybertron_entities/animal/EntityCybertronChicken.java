@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal;
 
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityScraplet;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.Laserbeak.LaserbeakTarget;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class EntityCybertronChicken extends Animal {
+public class EntityCybertronChicken extends Animal implements LaserbeakTarget {
 
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.ENERGON_BITS.get());
     public float flap;

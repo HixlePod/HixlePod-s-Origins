@@ -1,12 +1,11 @@
 package com.hixlepod.hixlepodsorigins.client.Model;
 
-import com.hixlepod.hixlepodsorigins.common.Entities.EntityTen;
+import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.neutral.EntityTen;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.IronGolem;
 
 public class TenModel<T extends EntityTen> extends HierarchicalModel<T> {
     private final ModelPart root;
