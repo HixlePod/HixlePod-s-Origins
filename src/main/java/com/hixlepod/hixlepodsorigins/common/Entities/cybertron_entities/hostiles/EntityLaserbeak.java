@@ -415,6 +415,7 @@ public class EntityLaserbeak extends FlyingMob {
                                 return true;
                             } else {
                                 var2.remove();
+                                return false;
                             }
                         }
                     }
