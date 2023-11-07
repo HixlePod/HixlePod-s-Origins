@@ -407,7 +407,7 @@ public class EntityLaserbeak extends FlyingMob {
 
                         if (target instanceof LaserbeakTarget || target instanceof Player) {
 
-                            if (target instanceof Player && Arrays.asList(FoodLists.ROBOTS).contains(target.getName())) {
+                            if (target instanceof Player && Arrays.asList(FoodLists.ROBOTS).contains(target.getName().getString())) {
                                 iterator.remove();
                             }
 
