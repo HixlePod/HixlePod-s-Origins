@@ -74,6 +74,9 @@ public class ItemInit {
     public static final RegistryObject<Item> DARK_ENERGON_BITS = ITEMS.register("dark_energon_bits", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().build())));
     public static final RegistryObject<Item> RED_ENERGON_BITS = ITEMS.register("red_energon_bits", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().build())));
 
+    public static final RegistryObject<BlockItem> STEELWOOD = ITEMS.register("steelwood", () -> new BlockItem(BlockInit.STEELWOOD.get(), new Item.Properties()));
+
+    public static final RegistryObject<BlockItem> STEEL_LEAVES = ITEMS.register("steel_leaves", () -> new BlockItem(BlockInit.STEEL_LEAVES.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> ENERGON_PIZZA = ITEMS.register("energon_pizza", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().build())));
     public static final RegistryObject<Item> AZZIP_NOGRENE = ITEMS.register("azzip_nogrene", () -> new Item(new Item.Properties().rarity(Rarity.RARE).food(new FoodProperties.Builder().alwaysEat().build())));

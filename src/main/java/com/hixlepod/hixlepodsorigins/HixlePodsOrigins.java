@@ -135,6 +135,7 @@ public class HixlePodsOrigins {
 
     private void onClientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(BlockInit.CYBERTRON_PORTAL.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.STEEL_LEAVES.get(), RenderType.translucent());
 
     }
 

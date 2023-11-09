@@ -2,8 +2,12 @@ package com.hixlepod.hixlepodsorigins.core.init;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.blocks.CybertronPortalBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,9 +50,12 @@ public class BlockInit {
 
     public static final RegistryObject<Block> RED_ENERGON_DECORATION_BLOCK = BLOCKS.register("red_energon_decoration_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)));
 
+    public static final RegistryObject<Block> STEELWOOD = BLOCKS.register("steelwood", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+            .strength(5.0f, 20.0f)));
+    public static final RegistryObject<Block> STEEL_LEAVES = BLOCKS.register("steel_leaves", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+            .strength(1.0f, 10.0f).noOcclusion().isViewBlocking(BlockInit::never)));
+
     public static final RegistryObject<Block> CYBERTRON_PORTAL = registerBlockWithoutBlockItem("cybertron_portal", CybertronPortalBlock::new);
-
-
 
     public static final RegistryObject<Block> BRONZE_TROPHY_BLOCK = BLOCKS.register("bronze_trophy", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).noOcclusion()));
 
@@ -64,4 +71,8 @@ public class BlockInit {
     public static final DeferredRegister<Block> VANILLA_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "minecraft");
 
     //public static final RegistryObject<Block> CUSTOM_STONE = VANILLA_BLOCKS.register("stone", () -> new StoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+
+    private static boolean never(BlockState p_50806_, BlockGetter p_50807_, BlockPos p_50808_) {
+        return false;
+    }
 }

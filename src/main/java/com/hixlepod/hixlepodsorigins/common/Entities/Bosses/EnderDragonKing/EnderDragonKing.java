@@ -12,9 +12,8 @@ import javax.annotation.Nullable;
 
 public class EnderDragonKing extends Mob {
 
-    @Nullable
-    private final EndDragonFight dragonFight;
-    private final EnderKingTaskManager taskManager;
+    //private final EndDragonFight dragonFight;
+    //private final EnderKingTaskManager taskManager;
 
     public EnderDragonKing(EntityType<? extends EnderDragonKing> entityType, Level level) {
         super(entityType, level);
@@ -23,14 +22,15 @@ public class EnderDragonKing extends Mob {
         this.noCulling = true;
 
         this.setHealth(3000f);
-
+        /*
         if (level instanceof ServerLevel) {
-            this.dragonFight = ((ServerLevel) level).dragonFight();
+            this.dragonFight = ((ServerLevel) level).dragonFight;
         } else {
             this.dragonFight = null;
         }
+        */
 
-        this.taskManager = new EnderKingTaskManager(this);
+        //this.taskManager = new EnderKingTaskManager(this);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

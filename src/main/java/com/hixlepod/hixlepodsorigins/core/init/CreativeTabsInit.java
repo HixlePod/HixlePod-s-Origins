@@ -55,6 +55,9 @@ public class CreativeTabsInit {
                         output.accept(ItemInit.DARK_ENERGON_BITS.get());
                         output.accept(ItemInit.RED_ENERGON_BITS.get());
 
+                        output.accept(ItemInit.STEELWOOD.get());
+                        output.accept(ItemInit.STEEL_LEAVES.get());
+
                         output.accept(ItemInit.ENERGON_PIZZA.get());
                         output.accept(ItemInit.ENERJOLLY.get());
                         output.accept(ItemInit.HYPER_ENERJOLLY.get());
