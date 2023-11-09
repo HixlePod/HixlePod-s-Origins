@@ -25,8 +25,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class EntityBetaScraplet extends Spider {
 
-    public EntityBetaScraplet(EntityType<? extends EntityBetaScraplet> p_33786_, Level p_33787_) {
-        super(p_33786_, p_33787_);
+    public EntityBetaScraplet(EntityType<? extends EntityBetaScraplet> entityType, Level level) {
+        super(entityType, level);
     }
 
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.CUSTOM_IRON_INGOT.get());
@@ -69,7 +69,7 @@ public class EntityBetaScraplet extends Spider {
         return SoundEvents.SPIDER_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_33814_) {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.SPIDER_HURT;
     }
 
@@ -77,12 +77,12 @@ public class EntityBetaScraplet extends Spider {
         return SoundEvents.SPIDER_DEATH;
     }
 
-    protected void playStepSound(BlockPos p_33804_, BlockState p_33805_) {
+    protected void playStepSound(BlockPos blockPos, BlockState blockState) {
         this.playSound(SoundEvents.SPIDER_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    public boolean causeFallDamage(float p_148859_, float p_148860_, DamageSource p_148861_) {
+    public boolean causeFallDamage(float p_148859_, float p_148860_, DamageSource damageSource) {
         return false;
     }
 
