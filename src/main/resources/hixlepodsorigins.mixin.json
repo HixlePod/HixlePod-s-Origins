@@ -6,7 +6,8 @@
   "refmap": "hixlepodsorigins.mixin.refmap.json",
   "client": [
     "DisableVanillaTitle",
-    "DingOnStartup"
+    "DingOnStartup",
+    "AcidRainRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
