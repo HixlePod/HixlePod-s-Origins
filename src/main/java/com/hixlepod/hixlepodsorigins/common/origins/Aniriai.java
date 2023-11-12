@@ -18,7 +18,7 @@ public class Aniriai {
     public static String NAME = "Aniriai";
 
     public static void setStats(Player player) {
-        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.3);
+        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4);
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(17.0);
         player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).setBaseValue(3.0);
 
