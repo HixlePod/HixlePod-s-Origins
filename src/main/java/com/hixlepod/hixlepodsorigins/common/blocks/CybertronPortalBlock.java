@@ -2,7 +2,7 @@ package com.hixlepod.hixlepodsorigins.common.blocks;
 
 import com.hixlepod.hixlepodsorigins.core.init.BlockInit;
 import com.hixlepod.hixlepodsorigins.core.init.DimensionInit;
-import com.hixlepod.hixlepodsorigins.core.utils.ModTags;
+import com.hixlepod.hixlepodsorigins.core.init.TagsInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -243,13 +243,13 @@ public class CybertronPortalBlock extends Block {
             int i;
             for(i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.relative(directionIn, i);
-                if(!this.canConnect(this.level.getBlockState(blockpos)) || !(this.level.getBlockState(blockpos.below()).is(ModTags.Blocks.PORTAL_FRAME_BLOCKS))) {
+                if(!this.canConnect(this.level.getBlockState(blockpos)) || !(this.level.getBlockState(blockpos.below()).is(TagsInit.Blocks.PORTAL_FRAME_BLOCKS))) {
                     break;
                 }
             }
 
             BlockPos framePos = pos.relative(directionIn, i);
-            return this.level.getBlockState(framePos).is(ModTags.Blocks.PORTAL_FRAME_BLOCKS) ? i : 0;
+            return this.level.getBlockState(framePos).is(TagsInit.Blocks.PORTAL_FRAME_BLOCKS) ? i : 0;
         }
 
         public int getHeight() {
@@ -277,12 +277,12 @@ public class CybertronPortalBlock extends Block {
 
                     if (i == 0) {
                         BlockPos framePos = blockpos.relative(this.leftDir);
-                        if (!(this.level.getBlockState(framePos).is(ModTags.Blocks.PORTAL_FRAME_BLOCKS))) {
+                        if (!(this.level.getBlockState(framePos).is(TagsInit.Blocks.PORTAL_FRAME_BLOCKS))) {
                             break label56;
                         }
                     } else if (i == this.width - 1) {
                         BlockPos framePos = blockpos.relative(this.rightDir);
-                        if (!(this.level.getBlockState(framePos).is(ModTags.Blocks.PORTAL_FRAME_BLOCKS))) {
+                        if (!(this.level.getBlockState(framePos).is(TagsInit.Blocks.PORTAL_FRAME_BLOCKS))) {
                             break label56;
                         }
                     }
@@ -291,7 +291,7 @@ public class CybertronPortalBlock extends Block {
 
             for(int j = 0; j < this.width; ++j) {
                 BlockPos framePos = this.bottomLeft.relative(this.rightDir, j).above(this.height);
-                if (!(this.level.getBlockState(framePos).is(ModTags.Blocks.PORTAL_FRAME_BLOCKS))) {
+                if (!(this.level.getBlockState(framePos).is(TagsInit.Blocks.PORTAL_FRAME_BLOCKS))) {
                     this.height = 0;
                     break;
                 }

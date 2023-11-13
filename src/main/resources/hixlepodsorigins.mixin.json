@@ -4,6 +4,9 @@
   "minVersion": "0.8",
   "package": "com.hixlepod.hixlepodsorigins.mixin",
   "refmap": "hixlepodsorigins.mixin.refmap.json",
+  "mixins": [
+    "BlockBehaviourMixin"
+  ],
   "client": [
     "DisableVanillaTitle",
     "DingOnStartup",
