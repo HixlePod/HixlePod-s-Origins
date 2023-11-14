@@ -16,6 +16,7 @@ import net.minecraft.world.phys.Vec3;
 public class Maxwell {
 
     //CorkyPorky3379
+    //Nerd
     public static String NAME = "Nycticorax_";
 
     public static void Ability1(ServerPlayer player) {

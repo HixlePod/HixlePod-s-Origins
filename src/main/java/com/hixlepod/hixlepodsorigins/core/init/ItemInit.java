@@ -174,15 +174,15 @@ public class ItemInit {
     public static final RegistryObject<Item> MYSTERY_BUNDLE = ITEMS.register("mystery_bundle", () -> new MysteryBundleItem(new Item.Properties().stacksTo(16)));
 
     //YARN ITEMS
-    public static final RegistryObject<Item> BRONZE_YARN = ITEMS.register("bronze_yarn", () -> new Item(new Item.Properties().stacksTo(100)));
+    public static final RegistryObject<Item> BRONZE_YARN = ITEMS.register("bronze_yarn", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> SILVER_YARN = ITEMS.register("silver_yarn", () -> new Item(new Item.Properties().stacksTo(100)));
+    public static final RegistryObject<Item> SILVER_YARN = ITEMS.register("silver_yarn", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> GOLD_YARN = ITEMS.register("gold_yarn", () -> new Item(new Item.Properties().stacksTo(100)));
+    public static final RegistryObject<Item> GOLD_YARN = ITEMS.register("gold_yarn", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> PLATINUM_YARN = ITEMS.register("platinum_yarn", () -> new Item(new Item.Properties().stacksTo(100)));
+    public static final RegistryObject<Item> PLATINUM_YARN = ITEMS.register("platinum_yarn", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> DIAMOND_YARN = ITEMS.register("diamond_yarn", () -> new Item(new Item.Properties().stacksTo(100)));
+    public static final RegistryObject<Item> DIAMOND_YARN = ITEMS.register("diamond_yarn", () -> new Item(new Item.Properties()));
 
 
     //Trophy items

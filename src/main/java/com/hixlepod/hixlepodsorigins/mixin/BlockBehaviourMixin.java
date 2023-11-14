@@ -10,6 +10,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -72,7 +73,7 @@ public abstract class BlockBehaviourMixin {
 
             if (player.level() != null) {
                 if (phasThroughTop) {
-                    if (reader.getBlockState(pos).is(TagsInit.Blocks.TRICO_PHASABLE)) {
+                    if (reader.getBlockState(pos).getBlock() == Blocks.STONE) {
                         return true;
                     }
                 }
