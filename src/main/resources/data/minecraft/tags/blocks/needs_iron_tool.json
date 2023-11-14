@@ -4,6 +4,11 @@
     "hixlepodsorigins:energon_ore_block",
     "hixlepodsorigins:synth_en_ore_block",
     "hixlepodsorigins:dark_energon_ore_block",
-    "hixlepodsorigins:red_energon_ore_block"
+    "hixlepodsorigins:red_energon_ore_block",
+
+    "hixlepodsorigins:energon_decoration_block",
+    "hixlepodsorigins:synth_en_decoration_block",
+    "hixlepodsorigins:dark_energon_decoration_block",
+    "hixlepodsorigins:red_energon_decoration_block"
   ]
 }

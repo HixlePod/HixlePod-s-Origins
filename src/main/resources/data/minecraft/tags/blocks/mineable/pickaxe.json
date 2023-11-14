@@ -5,8 +5,19 @@
     "hixlepodsorigins:synth_en_ore_block",
     "hixlepodsorigins:dark_energon_ore_block",
     "hixlepodsorigins:red_energon_ore_block",
+
+    "hixlepodsorigins:energon_decoration_block",
+    "hixlepodsorigins:synth_en_decoration_block",
+    "hixlepodsorigins:dark_energon_decoration_block",
+    "hixlepodsorigins:red_energon_decoration_block",
+
     "hixlepodsorigins:steelwood",
     "hixlepodsorigins:steel_leaves",
+
+    "hixlepodsorigins:bronze_trophy",
+    "hixlepodsorigins:silver_trophy",
+    "hixlepodsorigins:gold_trophy",
+
     "hixlepodsorigins:ground_bridge"
   ]
 }

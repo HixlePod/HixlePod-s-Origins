@@ -60,7 +60,7 @@ public class HixlePodsOrigins {
         //Register Inits
         ItemInit.ITEMS.register(eventBus);
         ComponentModuleItems.ITEMS.register(eventBus);
-        CreativeTabsInit.ORIGINS_CREATIVE_TABS.register(eventBus);
+        CreativeTabsInit.register(eventBus);
 
         BlockInit.BLOCKS.register(eventBus);
         SoundInit.SOUND_EVENTS.register(eventBus);
