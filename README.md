@@ -29,7 +29,7 @@ Thanks to everyone who has contributed to this project in big or small ways, the
 + [Anxiety-Elf](https://anxietyelf.wixsite.com/elfshobbithut)
 + [FloDraws](https://flodrawsalot.wixsite.com/flo-draws-portfolio)
 + gh0stlure
-+ TricoFan
++ [TricoFan](https://tricofan.carrd.co/)
 + stam
 
 #### Let me know if I missed any credits or links!
