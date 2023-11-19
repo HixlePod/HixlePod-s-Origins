@@ -193,6 +193,11 @@ public class ItemInit {
     public static final RegistryObject<BlockItem> GOLD_TROPHY = ITEMS.register("gold_trophy", () -> new BlockItem(BlockInit.GOLD_TROPHY_BLOCK.get(), new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
 
+    public static final RegistryObject<Item> MAGIC_DUST = ITEMS.register("magic_dust", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<BlockItem> VOIDSTONE_ORE = ITEMS.register("voidstone_ore", () -> new BlockItem(BlockInit.VOIDSTONE_ORE.get(), new Item.Properties()));
+
+
     //Vanilla items
     public static final DeferredRegister<Item> VANILLA_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "minecraft");
 

@@ -42,33 +42,11 @@ public class LightningCommands {
                 LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.level());
 
                 lightning.moveTo(entity.position());
-                lightning.setDamage(5);
                 lightning.setVisualOnly(true);
 
                 entity.level().addFreshEntity(lightning);
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Smited " + entity.getName().getString()));
-            }
-        }
-        return 1;
-    }
-
-    public static int FakeSmite(CommandSourceStack source, Collection<? extends Entity> entities) {
-
-        if (source.isPlayer()) {
-
-            Player player = source.getPlayer();
-
-            for(Entity entity : entities) {
-                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(entity.level());
-
-                lightning.moveTo(entity.position());
-                lightning.setDamage(0);
-                lightning.setVisualOnly(true);
-
-                entity.level().addFreshEntity(lightning);
-
-                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Fake Smited " + entity.getName().getString()));
             }
         }
         return 1;

@@ -5,11 +5,14 @@ import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -26,6 +29,9 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -48,6 +54,7 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
     public EntityCompass(EntityType<EntityCompass> entityType, Level level) {
         super(entityType, level);
         this.setResting(false);
+        this.noPhysics = true;
     }
 
     @Override
@@ -117,6 +124,43 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
 
     }
 
+    private boolean isSitting = false;
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+
+        ItemStack itemstack = player.getItemInHand(interactionHand);
+        Item item = itemstack.getItem();
+
+        if (this.isTame() && this.getOwner() == player) {
+
+            InteractionResult interactionresult = super.mobInteract(player, interactionHand);
+            if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
+
+                isSitting = !isSitting;
+
+                if (isSitting) {
+                    this.startRiding(player);
+                    this.navigation.stop();
+                    this.setResting(true);
+                    this.setTarget((LivingEntity)null);
+                    return InteractionResult.SUCCESS;
+
+                } else {
+
+                    this.stopRiding();
+                    this.setResting(false);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+
+            return interactionresult;
+
+        }
+
+        return super.mobInteract(player, interactionHand);
+    }
+
     public void tick() {
         super.tick();
         if (this.isResting()) {
@@ -154,7 +198,7 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
 
                         for (int i = 0; i < points; i++) {
                             p1 = p1.add(vector);
-                            this.getServer().getLevel(this.level().dimension()).sendParticles(new DustParticleOptions(new Vector3f(255, 0,0), 1), p1.x(), p1.y(), p1.z(), 0, 0d, 0d, 0d, 0d);
+                            this.getServer().getLevel(this.level().dimension()).sendParticles(ParticleTypes.SCULK_CHARGE_POP, p1.x(), p1.y(), p1.z(), 0, 0d, 0d, 0d, 0d);
 
                         }
                     }
@@ -221,7 +265,7 @@ public class EntityCompass extends TamableAnimal implements NeutralMob {
                     this.yHeadRot = (float)this.random.nextInt(360);
                 }
 
-                if (this.level().getNearestPlayer(BAT_RESTING_TARGETING, this) != null) {
+                if (this.level().getNearestPlayer(BAT_RESTING_TARGETING, this) != null && isSitting == false) {
                     this.setResting(false);
                     if (!flag) {
                         this.level().levelEvent((Player)null, 1025, blockpos, 0);

@@ -3,6 +3,7 @@ package com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostile
 import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
 import com.hixlepod.hixlepodsorigins.common.events.FoodLists;
 import com.hixlepod.hixlepodsorigins.core.init.SoundInit;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginPlayerUtils;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -407,7 +408,7 @@ public class EntityLaserbeak extends FlyingMob {
 
                         if (target instanceof LaserbeakTarget || target instanceof Player) {
 
-                            if (target instanceof Player && Arrays.asList(FoodLists.ROBOTS).contains(target.getName().getString())) {
+                            if (target instanceof Player && OriginPlayerUtils.isRobotPlayer((Player) target)) {
                                 iterator.remove();
                             }
 

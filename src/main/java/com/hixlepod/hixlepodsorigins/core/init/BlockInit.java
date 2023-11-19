@@ -37,6 +37,11 @@ public class BlockInit {
                 return 8;
             })));
 
+
+    public static final RegistryObject<Block> VOIDSTONE_ORE = BLOCKS.register("voidstone_ore", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+            .strength(10.0f, 18.0f)
+    ));
+
     public static final RegistryObject<Block> GROUND_BRIDGE_BLOCK = BLOCKS.register("ground_bridge", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
             .strength(1.0f, 3600000.0f).lightLevel((amount) -> {
                 return 15;

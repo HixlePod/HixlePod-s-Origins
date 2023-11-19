@@ -12,6 +12,7 @@ import com.hixlepod.hixlepodsorigins.core.init.DamageSources;
 import com.hixlepod.hixlepodsorigins.core.init.DimensionInit;
 import com.hixlepod.hixlepodsorigins.core.init.EffectsInit;
 import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
+import com.hixlepod.hixlepodsorigins.core.utils.OriginPlayerUtils;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
 import net.minecraft.ChatFormatting;
@@ -392,11 +393,7 @@ public class ServerModEvents {
                 }
 
                 if (attacker instanceof EntityScraplet) {
-                    if (target.getName().equals(Component.literal(HixlePod.NAME))
-                            || target.getName().equals(Component.literal(AmbrosiaElf.NAME))
-                            || target.getName().equals(Component.literal(Blakpaw2244.NAME))
-                            || target.getName().equals(Component.literal(Folf_Gaming.NAME))
-                            || target.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+                    if (OriginPlayerUtils.isRobotPlayer((Player) target)) {
                         //Do nothing
                     } else {
                         ((Monster) attacker).setTarget(null);
@@ -470,11 +467,7 @@ public class ServerModEvents {
 
         if (event.getEntity() instanceof Player player) {
 
-            if (player.getName().equals(Component.literal(HixlePod.NAME))
-                    || player.getName().equals(Component.literal(AmbrosiaElf.NAME))
-                    || player.getName().equals(Component.literal(Blakpaw2244.NAME))
-                    || player.getName().equals(Component.literal(Folf_Gaming.NAME))
-                    || player.getName().equals(Component.literal(Kira_uwu69.NAME))) {
+            if (OriginPlayerUtils.isRobotPlayer(player)) {
 
                 int energon = player.getPersistentData().getInt(HixlePodsOrigins.MODID + "_Energon");
 

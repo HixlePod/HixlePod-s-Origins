@@ -15,11 +15,11 @@ public class DisableOriginsCommnad {
 
             Player player = source.getPlayer();
 
-            if (status.equals("ENABLE")) {
+            if (status.equals("ON")) {
                 OriginSettings.TRIGGER_ABILITIES_ENABLED = true;
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Origin trigger abilities have been enabled."));
 
-            } else if (status.equals("DISABLE")) {
+            } else if (status.equals("OFF")) {
                 OriginSettings.TRIGGER_ABILITIES_ENABLED = false;
                 player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Origin trigger abilities have been disabled."));
 
@@ -36,11 +36,11 @@ public class DisableOriginsCommnad {
 
             Player player = source.getPlayer();
 
-            if (status.equals("ENABLE")) {
+            if (status.equals("ON")) {
                 OriginSettings.PETS_ENABLED = true;
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Origin pets have been enabled."));
 
-            } else if (status.equals("DISABLE")) {
+            } else if (status.equals("OFF")) {
                 OriginSettings.PETS_ENABLED = false;
                 player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Origin pets have been disabled."));
 
@@ -61,11 +61,11 @@ public class DisableOriginsCommnad {
 
             Player player = source.getPlayer();
 
-            if (status.equals("ENABLE")) {
+            if (status.equals("ON")) {
                 OriginSettings.SITTING_ENABLED = true;
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Origin sitting have been enabled."));
 
-            } else if (status.equals("DISABLE")) {
+            } else if (status.equals("OFF")) {
                 OriginSettings.SITTING_ENABLED = false;
                 player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Origin sitting have been disabled."));
 
@@ -82,11 +82,11 @@ public class DisableOriginsCommnad {
 
             Player player = source.getPlayer();
 
-            if (status.equals("ENABLE")) {
+            if (status.equals("ON")) {
                 OriginSettings.GROUND_BRIDGE_ENABLED = true;
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ground bridges have been enabled."));
 
-            } else if (status.equals("DISABLE")) {
+            } else if (status.equals("OFF")) {
                 OriginSettings.GROUND_BRIDGE_ENABLED = false;
                 player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Ground bridges have been disabled."));
 
@@ -103,7 +103,7 @@ public class DisableOriginsCommnad {
 
             Player player = source.getPlayer();
 
-            if (status.equals("ENABLE")) {
+            if (status.equals("ON")) {
                 OriginSettings.TRIGGER_ABILITIES_ENABLED = true;
                 OriginSettings.PETS_ENABLED = true;
                 OriginSettings.SITTING_ENABLED = true;
@@ -111,7 +111,7 @@ public class DisableOriginsCommnad {
 
                 player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "All categories have been enabled."));
 
-            } else if (status.equals("DISABLE")) {
+            } else if (status.equals("OFF")) {
                 OriginSettings.TRIGGER_ABILITIES_ENABLED = false;
                 OriginSettings.PETS_ENABLED = false;
                 OriginSettings.SITTING_ENABLED = false;

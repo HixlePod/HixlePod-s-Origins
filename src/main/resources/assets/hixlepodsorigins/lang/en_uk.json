@@ -17,6 +17,8 @@
   "item.hixlepodsorigins.platinum_yarn": "Platinum Yarn",
   "item.hixlepodsorigins.diamond_yarn": "Diamond Yarn",
 
+  "item.hixlepodsorigins.magic_dust": "Magic Dust",
+
   "item.hixlepodsorigins.dragon_scale": "Dragon Scale",
   "item.hixlepodsorigins.blood_bone": "Blood bone",
   "item.hixlepodsorigins.battle_burrito": "Battle Burrito",
@@ -40,7 +42,7 @@
   "block.hixlepodsorigins.silver_trophy": "Silver Trophy",
   "block.hixlepodsorigins.gold_trophy": "Gold Trophy",
 
-  "block.hixlepodsorigins.red_energon_decoration_block": "Red Energon Decoration Block",
+  "block.hixlepodsorigins.voidstone_ore": "Voidstone Ore",
 
   "item.hixlepodsorigins.energon_ore_block": "Energon Ore",
   "item.hixlepodsorigins.synth_en_ore_block": "Synth-En Ore",
