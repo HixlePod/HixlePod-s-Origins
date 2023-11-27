@@ -6,6 +6,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.pro
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.proxy.CommonProxy;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.proxy.ServerProxy;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.xray.Controller;
+import com.hixlepod.hixlepodsorigins.common.NPCs.Quests.QuestsManager;
 import com.hixlepod.hixlepodsorigins.common.PotionRecipes.*;
 import com.hixlepod.hixlepodsorigins.common.events.*;
 import com.hixlepod.hixlepodsorigins.core.init.*;
@@ -93,6 +94,8 @@ public class HixlePodsOrigins {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             MinecraftForge.EVENT_BUS.register(new DingClientEvent());
         });
+
+        QuestsManager.register();
     }
 
 

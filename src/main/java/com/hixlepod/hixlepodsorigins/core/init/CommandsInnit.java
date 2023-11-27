@@ -73,6 +73,11 @@ public class CommandsInnit {
                                         .executes((context) -> { return com.hixlepod.hixlepodsorigins.core.commands.LoopCommand.Command(context.getSource(), StringArgumentType.getString(context, "AMOUNT"), StringArgumentType.getString(context, "DELAY"), MessageArgument.getMessage(context, "COMMAND")); }))))
         );
 
+        LiteralCommandNode<CommandSourceStack> GenerateTicket = dispatcher.register(Commands.literal("generateticket").requires((cs) -> { return cs.hasPermission(1); })
+                .then(Commands.argument("DIFFICULTY", StringArgumentType.string()).suggests((context, builder) -> returnTicketDifficulty(context, builder))
+                        .executes((context) -> { return GenerateQuestTicket.GenerateTicket(context.getSource(), StringArgumentType.getString(context, "DIFFICULTY")); }))
+        );
+
 
         LiteralCommandNode<CommandSourceStack> ORIGINS = dispatcher.register(Commands.literal("origins")
                 .then(Commands.literal("groundbridge").redirect(GroundbridgeCommand))
@@ -81,8 +86,20 @@ public class CommandsInnit {
                 .then(Commands.literal("kaboom").redirect(KaboomCommand))
                 .then(Commands.literal("zap").redirect(ZapCommand))
                 .then(Commands.literal("smite").redirect(SmiteCommand))
+                .then(Commands.literal("generateticket").redirect(GenerateTicket))
                 .then(Commands.literal("loop").redirect(LoopCommand))
         );
+    }
+
+    public static CompletableFuture<Suggestions> returnTicketDifficulty(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {
+
+        builder.suggest("EASY");
+        builder.suggest("MEDIUM");
+        builder.suggest("HARD");
+        builder.suggest("ENDGAME");
+
+
+        return builder.buildFuture();
     }
 
     public static CompletableFuture<Suggestions> returnBooleanValues(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {

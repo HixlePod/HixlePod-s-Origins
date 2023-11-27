@@ -127,7 +127,7 @@ public class OriginsManager {
             return 120 * ticks;
 
         } else if (player.getName().equals(Component.literal(GodOfFurrys.NAME))) {
-            return (2 * ticks) + 10;
+            return (3 * ticks);
 
         } else if (player.getName().equals(Component.literal(Blakpaw2244.NAME))) {
             return 100 * ticks;

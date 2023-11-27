@@ -102,13 +102,15 @@ public class Origins_Main {
 
                         output.accept(ItemInit.MYSTERY_BUNDLE.get());
 
-                        //Currency
+                        //Cat NPC
                         output.accept(ItemInit.BRONZE_YARN.get());
                         output.accept(ItemInit.SILVER_YARN.get());
                         output.accept(ItemInit.GOLD_YARN.get());
                         output.accept(ItemInit.PLATINUM_YARN.get());
                         output.accept(ItemInit.DIAMOND_YARN.get());
+                        output.accept(ItemInit.LASAGNA.get());
 
+                        //Trophy stuff
                         output.accept(ItemInit.BRONZE_TROPHY.get());
                         output.accept(ItemInit.SILVER_TROPHY.get());
                         output.accept(ItemInit.GOLD_TROPHY.get());
