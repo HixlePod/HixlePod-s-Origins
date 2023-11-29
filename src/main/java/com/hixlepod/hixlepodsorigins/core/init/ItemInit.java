@@ -186,6 +186,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> LASAGNA = ITEMS.register("lasagna", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> QUEST_TICKET = ITEMS.register("quest_ticket", () -> new QuestTicketItem(new Item.Properties()));
+
 
     //Trophy items
     public static final RegistryObject<BlockItem> BRONZE_TROPHY = ITEMS.register("bronze_trophy", () -> new BlockItem(BlockInit.BRONZE_TROPHY_BLOCK.get(), new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));

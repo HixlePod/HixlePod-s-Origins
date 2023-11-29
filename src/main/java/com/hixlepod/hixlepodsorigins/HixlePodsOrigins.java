@@ -95,7 +95,7 @@ public class HixlePodsOrigins {
             MinecraftForge.EVENT_BUS.register(new DingClientEvent());
         });
 
-        QuestsManager.register();
+
     }
 
 
@@ -133,6 +133,7 @@ public class HixlePodsOrigins {
 
 
             replaceAttributeValue((RangedAttribute) Attributes.MAX_HEALTH, 9999999); // 9,999,999
+            QuestsManager.register();
         });
     }
 
