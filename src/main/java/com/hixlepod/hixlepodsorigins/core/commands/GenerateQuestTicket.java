@@ -17,7 +17,7 @@ public class GenerateQuestTicket {
 
             switch (ticket_difficulty) {
                 case "EASY":
-                    player.getInventory().add(1, new ItemStack(QuestsManager.generateQuestTicket()));
+                    player.getInventory().add(QuestsManager.generateQuestTicket());
                     player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ticket generated! EASY"));
                     break;
 

@@ -43,11 +43,15 @@ public class QuestsManager {
     }
 
 
-    public static Item generateQuestTicket() {
+    public static ItemStack generateQuestTicket() {
         EasyQuestsPool quest = easyQuests.getRandom();
         ItemStack itemStack = new ItemStack(Items.PAPER);
         CompoundTag SaveData = new CompoundTag();
 
+
+
+
+        /*
         SaveData.putDouble("Weight", quest.getWeight());
         SaveData.putString("DisplayName", quest.getDisplayName());
         SaveData.putString("Description", quest.getDescription());
@@ -56,7 +60,12 @@ public class QuestsManager {
 
         itemStack.setTag(SaveData);
 
-        return ItemInit.QUEST_TICKET.get();
+
+         */
+
+
+
+        return itemStack;
     }
 
 
