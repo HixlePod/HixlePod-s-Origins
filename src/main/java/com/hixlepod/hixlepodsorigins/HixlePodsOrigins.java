@@ -133,6 +133,7 @@ public class HixlePodsOrigins {
 
 
             replaceAttributeValue((RangedAttribute) Attributes.MAX_HEALTH, 9999999); // 9,999,999
+            System.out.println("AMONGUS");
             QuestsManager.register();
         });
     }

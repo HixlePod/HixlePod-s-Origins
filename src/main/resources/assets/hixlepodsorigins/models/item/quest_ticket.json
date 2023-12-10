@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hixlepodsorigins:item/quest_ticket",
+    "particle": "hixlepodsorigins:item/quest_ticket"
+  }
+}

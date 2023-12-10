@@ -6,7 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-public enum EasyQuestsPool {
+public enum EasyQuestsPool implements QuestPools {
 
     SHEAR_SHEEP_HUNT(20,
             ChatFormatting.GREEN + "Shear Sheep Hunt",
@@ -40,7 +40,7 @@ public enum EasyQuestsPool {
         return description;
     }
 
-    public ItemStack getWantedItem() {
+    public ItemStack getWanted() {
         return wanted_item;
     }
 

@@ -186,7 +186,7 @@ public class ItemInit {
 
     public static final RegistryObject<Item> LASAGNA = ITEMS.register("lasagna", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> QUEST_TICKET = ITEMS.register("quest_ticket", () -> new QuestTicketItem(new Item.Properties()));
+    public static final RegistryObject<Item> QUEST_TICKET = ITEMS.register("quest_ticket", () -> new QuestTicketItem(new Item.Properties().stacksTo(1)));
 
 
     //Trophy items

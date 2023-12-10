@@ -17,19 +17,22 @@ public class GenerateQuestTicket {
 
             switch (ticket_difficulty) {
                 case "EASY":
-                    player.getInventory().add(QuestsManager.generateQuestTicket());
+                    player.getInventory().add(QuestsManager.generateQuestTicket(QuestsManager.QuestDifficulty.EASY));
                     player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ticket generated! EASY"));
                     break;
 
                 case "MEDIUM":
+                    player.getInventory().add(QuestsManager.generateQuestTicket(QuestsManager.QuestDifficulty.MEDIUM));
                     player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ticket generated! MEDIUM"));
                     break;
 
                 case "HARD":
+                    player.getInventory().add(QuestsManager.generateQuestTicket(QuestsManager.QuestDifficulty.HARD));
                     player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ticket generated! HARD"));
                     break;
 
                 case "ENDGAME":
+                    player.getInventory().add(QuestsManager.generateQuestTicket(QuestsManager.QuestDifficulty.ENDGAME));
                     player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Ticket generated! ENDGAME"));
                     break;
 

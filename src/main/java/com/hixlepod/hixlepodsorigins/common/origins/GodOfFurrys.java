@@ -17,7 +17,7 @@ public class GodOfFurrys {
 
     public static String NAME = "GodOfFurrys";
 
-    public static int laser_distance = 50;
+    public static int laser_distance = 40;
     public static boolean shield = false;
 
     public static void setStats(Player player) {
