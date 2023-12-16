@@ -8,14 +8,18 @@ public class OriginPlayerUtils {
 
     public static boolean isRobotPlayer(Player target) {
 
-        if (target.getName().equals(Component.literal(HixlePod.NAME))
+        return target.getName().equals(Component.literal(HixlePod.NAME))
                 || target.getName().equals(Component.literal(AmbrosiaElf.NAME))
                 || target.getName().equals(Component.literal(Blakpaw2244.NAME))
                 || target.getName().equals(Component.literal(Folf_Gaming.NAME))
-                || target.getName().equals(Component.literal(Kira_uwu69.NAME))) {
-            return true;
-        }
+                || target.getName().equals(Component.literal(Kira_uwu69.NAME))
+                || target.getName().equals(Component.literal(lordcrime.NAME));
+    }
 
-        return false;
+    public static boolean isSmallOrigin(Player target) {
+        return target.getName().equals(Component.literal(AmbrosiaElf.NAME))
+                || target.getName().equals(Component.literal(TricoFan.NAME))
+                || target.getName().equals(Component.literal(Stamce.NAME))
+                || target.getName().equals(Component.literal(lordcrime.NAME));
     }
 }

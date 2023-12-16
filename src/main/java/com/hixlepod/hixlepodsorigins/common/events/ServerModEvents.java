@@ -82,6 +82,7 @@ public class ServerModEvents {
         }
     }
 
+    /*
     @SubscribeEvent
     public static void PlayerChatEvent(ServerChatEvent event) {
         ServerPlayer player = event.getPlayer();
@@ -109,6 +110,8 @@ public class ServerModEvents {
         event.setMessage(Component.literal(message));
     }
 
+     */
+
     @SubscribeEvent
     public static void SmallOriginHeadHop(PlayerInteractEvent.EntityInteract event) {
 
@@ -123,9 +126,9 @@ public class ServerModEvents {
 
                     if (OriginSettings.SITTING_ENABLED) {
 
-                        if (player.getName().equals(Component.literal(AmbrosiaElf.NAME)) || player.getName().equals(Component.literal(TricoFan.NAME)) || player.getName().equals(Component.literal(Stamce.NAME))) {
+                        if (OriginPlayerUtils.isSmallOrigin(player)) {
 
-                            if (target.getName().equals(Component.literal(AmbrosiaElf.NAME)) || target.getName().equals(Component.literal(TricoFan.NAME)) || target.getName().equals(Component.literal(Stamce.NAME))) {
+                            if (OriginPlayerUtils.isSmallOrigin(target)) {
 
 
                             } else {
@@ -135,7 +138,7 @@ public class ServerModEvents {
                                 player.rideTick();
                                 target.rideTick();
 
-                                target.sendSystemMessage(Component.literal(ChatFormatting.GREEN + player.getName().getString() + " is sitting on your head!"));
+                                target.sendSystemMessage(Component.literal(ChatFormatting.GREEN + player.getName().getString() + " is sitting on your head! You won't be able to see it on your screen though."));
                             }
                         }
                     }
