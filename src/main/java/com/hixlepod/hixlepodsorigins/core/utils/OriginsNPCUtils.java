@@ -6,13 +6,13 @@ import net.minecraft.world.entity.player.Player;
 
 public class OriginsNPCUtils {
 
-    public static void SendMessageToAll(MinecraftServer server, String string) {
+    public static void SendMessageToAll(MinecraftServer server, Component component) {
         for (Player player : server.getPlayerList().getPlayers()) {
-            SendMessageToPlayer(player, string);
+            SendMessageToPlayer(player, component);
         }
     }
 
-    public static void SendMessageToPlayer(Player player, String string) {
-        player.sendSystemMessage(Component.literal(string));
+    public static void SendMessageToPlayer(Player player, Component component) {
+        player.sendSystemMessage(component);
     }
 }

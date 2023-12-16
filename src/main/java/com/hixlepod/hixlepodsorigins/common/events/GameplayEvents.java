@@ -3,6 +3,7 @@ package com.hixlepod.hixlepodsorigins.common.events;
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronZombie;
+import com.hixlepod.hixlepodsorigins.common.NPCs.NPCManager;
 import com.hixlepod.hixlepodsorigins.common.origins.*;
 import com.hixlepod.hixlepodsorigins.core.init.*;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
@@ -86,6 +87,7 @@ public class GameplayEvents {
         }
     }
 
+    /*
     @SubscribeEvent
     public static void PlayerChatEvent(ServerChatEvent event) {
         ServerPlayer player = event.getPlayer();
@@ -94,7 +96,6 @@ public class GameplayEvents {
 
         player.sendSystemMessage(Component.literal("MESSAGE: " + message));
 
-        /*
         message .re('a', '!').replace('n', 'G')
                 .replace('b', 'e').replace('o', '*')
                 .replace('c', '>').replace('p', 'j')
@@ -109,7 +110,6 @@ public class GameplayEvents {
                 .replace('l', 'c').replace('y', '1')
                 .replace('m', 'x').replace('z', 'Z');
 
-         */
 
         message.replace("abcdefghijklmopqrstuvwxyz", "e>@?x2/l,ucx*j]yꓵ|+r.=1z");
 
@@ -118,6 +118,7 @@ public class GameplayEvents {
         event.setMessage(Component.literal(message));
     }
 
+    */
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEatFinishEvent(LivingEntityUseItemEvent.Finish event) {
@@ -137,7 +138,7 @@ public class GameplayEvents {
     @SubscribeEvent
     public static void WorldTickEvent(TickEvent.LevelTickEvent event) {
         if (event.level != null && !event.level.isClientSide()) {
-            //NPCManager.CheckNPCIsSpawnable(event);
+            NPCManager.CheckNPCIsSpawnable(event);
         }
     }
 

@@ -1,6 +1,5 @@
 package com.hixlepod.hixlepodsorigins.common.NPCs;
 
-import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityBooNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityNimbusNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntitySmudgeNPC;
@@ -8,12 +7,8 @@ import com.hixlepod.hixlepodsorigins.common.NPCs.Dialogues.NimbusDialogue;
 import com.hixlepod.hixlepodsorigins.core.init.EntityInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 

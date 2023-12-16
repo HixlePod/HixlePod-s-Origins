@@ -42,7 +42,7 @@ public class EntityCybertronZombie extends Monster implements LaserbeakTarget {
                 .add(Attributes.MAX_HEALTH, 50.0)
                 .add(Attributes.ARMOR, 1.0)
                 .add(Attributes.ARMOR_TOUGHNESS, 1.0)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.3)
                 .add(Attributes.ATTACK_KNOCKBACK, 1.0)
                 .add(Attributes.ATTACK_DAMAGE, 15.0);
     }

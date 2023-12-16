@@ -2,6 +2,7 @@ package com.hixlepod.hixlepodsorigins.core.init;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
 import com.hixlepod.hixlepodsorigins.core.commands.*;
+import com.hixlepod.hixlepodsorigins.core.commands.NPC.NimbusReplyCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -49,6 +50,18 @@ public class CommandsInnit {
                 .then(Commands.argument("NAME", StringArgumentType.string()).executes((context) -> { return SetCustomNameCommand.SET_CUSTOM_NAME(context.getSource(), StringArgumentType.getString(context, "NAME")); }))
         );
 
+        LiteralCommandNode<CommandSourceStack> WebCommand = dispatcher.register(Commands.literal("web")
+                .executes((context) -> { return com.hixlepod.hixlepodsorigins.core.commands.WebCommand.WEBCOMMAND(context.getSource()); })
+        );
+
+        LiteralCommandNode<CommandSourceStack> NPC_REPLY = dispatcher.register(Commands.literal("npc_reply")
+                .then(Commands.literal("NIMBUS").then(Commands.argument("REPLY_ID", StringArgumentType.string()).executes(context -> { return NimbusReplyCommand.GiveQuests(context.getSource(), StringArgumentType.getString(context, "REPLY_ID")); })))
+        );
+
+        LiteralCommandNode<CommandSourceStack> GenerateTicket = dispatcher.register(Commands.literal("generateticket").requires((cs) -> { return cs.hasPermission(1); })
+                .then(Commands.argument("DIFFICULTY", StringArgumentType.string()).suggests((context, builder) -> returnTicketDifficulty(context, builder))
+                        .executes((context) -> { return GenerateQuestTicket.GenerateTicket(context.getSource(), StringArgumentType.getString(context, "DIFFICULTY")); }))
+        );
 
         //Goofy Commands
         LiteralCommandNode<CommandSourceStack> KaboomCommand = dispatcher.register(Commands.literal("kaboom").requires((cs) -> { return cs.hasPermission(1); })
@@ -73,10 +86,7 @@ public class CommandsInnit {
                                         .executes((context) -> { return com.hixlepod.hixlepodsorigins.core.commands.LoopCommand.Command(context.getSource(), StringArgumentType.getString(context, "AMOUNT"), StringArgumentType.getString(context, "DELAY"), MessageArgument.getMessage(context, "COMMAND")); }))))
         );
 
-        LiteralCommandNode<CommandSourceStack> GenerateTicket = dispatcher.register(Commands.literal("generateticket").requires((cs) -> { return cs.hasPermission(1); })
-                .then(Commands.argument("DIFFICULTY", StringArgumentType.string()).suggests((context, builder) -> returnTicketDifficulty(context, builder))
-                        .executes((context) -> { return GenerateQuestTicket.GenerateTicket(context.getSource(), StringArgumentType.getString(context, "DIFFICULTY")); }))
-        );
+
 
 
         LiteralCommandNode<CommandSourceStack> ORIGINS = dispatcher.register(Commands.literal("origins")
@@ -88,6 +98,8 @@ public class CommandsInnit {
                 .then(Commands.literal("smite").redirect(SmiteCommand))
                 .then(Commands.literal("generateticket").redirect(GenerateTicket))
                 .then(Commands.literal("loop").redirect(LoopCommand))
+                .then(Commands.literal("web").redirect(WebCommand))
+                .then(Commands.literal("npc_reply").redirect(NPC_REPLY))
         );
     }
 

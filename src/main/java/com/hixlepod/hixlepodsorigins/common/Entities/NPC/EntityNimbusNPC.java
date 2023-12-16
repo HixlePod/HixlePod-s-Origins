@@ -1,14 +1,24 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.NPC;
 
+import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.common.NPCs.Dialogues.NimbusDialogue;
+import com.hixlepod.hixlepodsorigins.core.init.ItemInit;
 import com.hixlepod.hixlepodsorigins.core.utils.OriginSettings;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -19,11 +29,13 @@ import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 import sereneseasons.api.season.Season;
 import sereneseasons.season.SeasonTime;
@@ -89,6 +101,64 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
         if (SeasonTime.ZERO.getSeason() == Season.WINTER) {
             this.setItemSlot(EquipmentSlot.FEET, new ItemStack(Items.LEATHER_BOOTS));
         }
+    }
+
+    @Override
+    protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+
+        ItemStack itemStack = player.getItemInHand(interactionHand);
+
+        if (!this.level().isClientSide) {
+            if (this.isTicket(itemStack)) {
+
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
+
+                CompoundTag wantedTag = itemStack.getOrCreateTagElement("Wanted");
+
+                ItemStack wanted = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(HixlePodsOrigins.MODID, wantedTag.getString("Item")
+                        .toLowerCase()
+                        .replace("[", "")
+                        .replace("]", "")
+                        .replace(" ", "_"))), wantedTag.getInt("Count"));
+
+                if (player.getInventory().contains(wanted)) {
+
+
+
+                    CompoundTag rewardTag = itemStack.getOrCreateTagElement("Reward");
+
+                    ItemStack reward = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(HixlePodsOrigins.MODID, rewardTag.getString("Item")
+                            .toLowerCase()
+                            .replace("[", "")
+                            .replace("]", "")
+                            .replace(" ", "_"))),
+
+                            rewardTag.getInt("Count"));
+
+                    player.getInventory().add(reward);
+
+                    return InteractionResult.SUCCESS;
+                } else {
+                    //TODO: Tell em u gotta do it
+
+                    return InteractionResult.FAIL;
+                }
+
+            } else {
+
+                NimbusDialogue.HelloThere(player);
+
+                return InteractionResult.PASS;
+            }
+
+        }
+        return super.mobInteract(player, interactionHand);
+    }
+
+    public boolean isTicket(ItemStack itemStack) {
+        return itemStack.is(ItemInit.QUEST_TICKET.get());
     }
 
     @Override
