@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-public class GodOfFurrys {
+public class GodOfFurrys extends Origin {
 
     public static String NAME = "GodOfFurrys";
 

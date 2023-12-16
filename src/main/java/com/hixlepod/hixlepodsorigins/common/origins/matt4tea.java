@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeMod;
 
-public class matt4tea {
+public class matt4tea extends Origin {
 
     public static String NAME = "matt4tea";
 

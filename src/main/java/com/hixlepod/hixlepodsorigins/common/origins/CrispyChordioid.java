@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeMod;
 import virtuoel.pehkui.api.ScaleTypes;
 
-public class CrispyChordioid {
+public class CrispyChordioid extends Origin {
 
     public static String NAME = "Crispioid";
     //Crispioid

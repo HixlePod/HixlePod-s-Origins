@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeMod;
 import virtuoel.pehkui.api.*;
 
-public class TricoFan {
+public class TricoFan extends Origin {
 
     public static String NAME = "TricoFan";
 

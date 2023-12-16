@@ -5,7 +5,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeMod;
 
-public class Toupster02 {
+public class Toupster02 extends Origin {
 
     public static String NAME = "Toupster02";
 

@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import virtuoel.pehkui.api.ScaleTypes;
 
-public class Kira_uwu69 {
+public class Kira_uwu69 extends Origin {
 
     public static String NAME = "kira_uwu69";
 

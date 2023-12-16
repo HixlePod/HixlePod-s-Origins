@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import top.theillusivec4.caelus.api.CaelusApi;
 
-public class gh0stlure {
+public class gh0stlure extends Origin {
 
 
     //gh0stlure

@@ -1,13 +1,14 @@
 package com.hixlepod.hixlepodsorigins.common.origins.AllyIsAngy;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.common.origins.Origin;
 import com.hixlepod.hixlepodsorigins.common.origins.OriginsManager;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
-public class AllyIsAngy {
+public class AllyIsAngy extends Origin {
 
     public static String NAME = "AllyIsAngy";
 

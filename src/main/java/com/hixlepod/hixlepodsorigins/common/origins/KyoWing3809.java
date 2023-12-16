@@ -24,7 +24,7 @@ import virtuoel.pehkui.api.ScaleTypes;
 
 import java.util.Arrays;
 
-public class KyoWing3809 {
+public class KyoWing3809 extends Origin {
 
     //KyoWing
     public static String NAME = "KyoWing";

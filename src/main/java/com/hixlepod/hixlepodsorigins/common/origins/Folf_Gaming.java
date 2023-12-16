@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-public class Folf_Gaming {
+public class Folf_Gaming extends Origin {
 
     public static String NAME = "Folf_Gaming";
 

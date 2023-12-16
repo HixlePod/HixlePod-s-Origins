@@ -12,7 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
-public class J_Curve {
+public class J_Curve extends Origin {
 
     public static String NAME = "J_Curve";
 

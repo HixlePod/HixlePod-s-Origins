@@ -10,7 +10,7 @@ import net.minecraftforge.common.ForgeMod;
 import top.theillusivec4.caelus.api.CaelusApi;
 import virtuoel.pehkui.api.ScaleTypes;
 
-public class Flo_Plays_ {
+public class Flo_Plays_ extends Origin {
 
     public static String NAME = "Flo_Plays_";
 

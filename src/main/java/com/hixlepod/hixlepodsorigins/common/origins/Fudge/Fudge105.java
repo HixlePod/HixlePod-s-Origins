@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.origins.Fudge;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.common.origins.Origin;
 import com.hixlepod.hixlepodsorigins.common.origins.OriginsManager;
 import com.hixlepod.hixlepodsorigins.core.networking.NetworkManager;
 import net.minecraft.core.BlockPos;
@@ -17,7 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 
-public class Fudge105 {
+public class Fudge105 extends Origin {
     //fudge105
     public static String NAME = "fudge105";
 

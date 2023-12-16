@@ -8,7 +8,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 
-public class CatGirlSeeka {
+public class CatGirlSeeka extends Origin {
 
     public static String NAME = "CatGirlSeeka";
 

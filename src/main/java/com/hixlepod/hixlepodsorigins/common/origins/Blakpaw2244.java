@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import virtuoel.pehkui.api.ScaleTypes;
 
-public class Blakpaw2244 {
+public class Blakpaw2244 extends Origin {
 
     //Blakpaw
     public static String NAME = "Blakpaw";

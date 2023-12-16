@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeMod;
 import top.theillusivec4.caelus.api.CaelusApi;
 import virtuoel.pehkui.api.ScaleTypes;
 
-public class Stamce {
+public class Stamce extends Origin {
 
     public static String NAME = "Stamce";
 
