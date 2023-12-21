@@ -1,7 +1,4 @@
 {
-  "itemGroup.hixlepodsOriginsTab": "HixlePod's Origins: General",
-  "itemGroup.hixlepodsOriginsComponentTab": "HixlePod's Origins: Tech",
-
   "item.hixlepodsorigins.example_item": "Example Item",
   "item.hixlepodsorigins.the_holy_lyre": "The Holy Lyre",
 
@@ -148,31 +145,37 @@
   "item.minecraft.potion.effect.ambergon_potion": "Ambergon Potion",
   "item.minecraft.splash_potion.effect.ambergon_potion": "Splash Potion of Ambergon",
   "item.minecraft.lingering_potion.effect.ambergon_potion": "Lingering Potion of Ambergon",
+  "item.minecraft.tipped_arrow.effect.ambergon_potion": "Arrow of Ambergon",
 
   "effect.hixlepodsorigins.malfunction": "Malfunction",
   "item.minecraft.potion.effect.malfunction_potion": "Malfunction Potion",
   "item.minecraft.splash_potion.effect.malfunction_potion": "Splash Potion of Malfunction",
   "item.minecraft.lingering_potion.effect.malfunction_potion": "Lingering Potion of Malfunction",
+  "item.minecraft.tipped_arrow.effect.malfunction_potion": "Arrow of Malfunction",
 
   "effect.hixlepodsorigins.lightning": "Lightning",
   "item.minecraft.potion.effect.lightning_potion": "Lightning Potion",
   "item.minecraft.splash_potion.effect.lightning_potion": "Splash Potion of Lightning",
   "item.minecraft.lingering_potion.effect.lightning_potion": "Lingering Potion of Lightning",
+  "item.minecraft.tipped_arrow.effect.lightning_potion": "Arrow of Lightning",
 
   "effect.hixlepodsorigins.freeze": "Freeze",
   "item.minecraft.potion.effect.freeze_potion": "Freeze Potion",
   "item.minecraft.splash_potion.effect.freeze_potion": "Splash Potion of Freeze",
   "item.minecraft.lingering_potion.effect.freeze_potion": "Lingering Potion of Freeze",
+  "item.minecraft.tipped_arrow.effect.freeze_potion": "Arrow of Freeze",
 
   "effect.hixlepodsorigins.chaos": "Chaos",
   "item.minecraft.potion.effect.chaos_potion": "Chaos Potion",
   "item.minecraft.splash_potion.effect.chaos_potion": "Splash Potion of Chaos",
   "item.minecraft.lingering_potion.effect.chaos_potion": "Lingering Potion of Chaos",
+  "item.minecraft.tipped_arrow.effect.chaos_potion": "Arrow of Chaos",
 
   "effect.hixlepodsorigins.rust": "Rust",
   "item.minecraft.potion.effect.rust_potion": "Rust Potion",
   "item.minecraft.splash_potion.effect.rust_potion": "Splash Potion of Rust",
   "item.minecraft.lingering_potion.effect.rust_potion": "Lingering Potion of Rust",
+  "item.minecraft.tipped_arrow.effect.rust_potion": "Arrow of Rust",
 
   "key.category.hixlepodsorigins": "HixlePod's Origins",
   "key.hixlepodsorigins.ability_1": "Ability 1",
