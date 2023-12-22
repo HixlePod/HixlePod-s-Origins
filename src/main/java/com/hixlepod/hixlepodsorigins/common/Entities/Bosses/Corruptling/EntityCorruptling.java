@@ -1,11 +1,17 @@
 package com.hixlepod.hixlepodsorigins.common.Entities.Bosses.Corruptling;
 
 import com.hixlepod.hixlepodsorigins.core.utils.OriginsUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -17,6 +23,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 public class EntityCorruptling extends Monster {
 
@@ -30,8 +37,11 @@ public class EntityCorruptling extends Monster {
     public final AnimationState screamingAnimationState = new AnimationState();
     private int screamingAnimationTimeout = 0;
 
+    private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS));
+
     public EntityCorruptling(EntityType<? extends EntityCorruptling> p_33002_, Level p_33003_) {
         super(p_33002_, p_33003_);
+        this.bossEvent.setName(Component.literal(ChatFormatting.DARK_PURPLE + "Corruptling"));
     }
 
     protected void registerGoals() {
@@ -138,8 +148,25 @@ public class EntityCorruptling extends Monster {
         this.entityData.define(SCREAMING, false);
     }
 
+    public void startSeenByPlayer(ServerPlayer p_31483_) {
+        super.startSeenByPlayer(p_31483_);
+        this.bossEvent.addPlayer(p_31483_);
+    }
+
+    public void stopSeenByPlayer(ServerPlayer p_31488_) {
+        super.stopSeenByPlayer(p_31488_);
+        this.bossEvent.removePlayer(p_31488_);
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
     public static class CorruptlingAttcks {
         public static void PushBack(EntityCorruptling corruptling) {
+
+            OriginsUtil.sendParticle((ServerLevel) corruptling.level(), new DustParticleOptions(new Vector3f(128,0,128), 0), corruptling.position(), new Vec3(1, 2, 1), 0, 75);
 
             for (Entity entity : corruptling.level().getServer().getLevel(corruptling.level().dimension()).getAllEntities()) {
                 if (entity instanceof LivingEntity) {

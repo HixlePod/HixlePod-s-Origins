@@ -25,7 +25,7 @@ public class TrumpetItem extends Item {
 
     public static void scare(Level world, LivingEntity user) {
         if (!world.isClientSide) {
-            List<LivingEntity> spooked = world.getEntitiesOfClass(LivingEntity.class, user.getBoundingBox().inflate(10.0D));
+            List<LivingEntity> spooked = world.getEntitiesOfClass(LivingEntity.class, user.getBoundingBox().inflate(8.0D));
             for (LivingEntity entity : spooked) {
                 if (entity == user) continue;
 

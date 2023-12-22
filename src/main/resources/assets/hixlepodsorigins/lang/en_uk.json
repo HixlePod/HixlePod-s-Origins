@@ -135,6 +135,8 @@
   "entity.hixlepodsorigins.scraplet_boss": "[BOSS] Airachnid Prime",
   "entity.hixlepodsorigins.beta_scraplet": "[BOSS-MINION] Beta Scraplet",
 
+  "entity.hixlepodsorigins.corruptling_boss": "[BOSS] Corruptling",
+
   "sounds.hixlepodsorigins.ninja": "Ninja",
   "sounds.hixlepodsorigins.za_warudo_activate": "Za Warudo Activate",
   "sounds.hixlepodsorigins.za_warudo_deactivate": "Za Warudo Deactivate",

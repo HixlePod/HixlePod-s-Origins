@@ -139,22 +139,19 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
 
                     player.getInventory().add(reward);
 
-                    return InteractionResult.SUCCESS;
                 } else {
                     //TODO: Tell em u gotta do it
 
-                    return InteractionResult.FAIL;
                 }
-            } else {
-                return InteractionResult.PASS;
             }
 
         } else {
 
             NimbusDialogue.HelloThere(player);
 
-            return super.mobInteract(player, interactionHand);
         }
+
+        return super.mobInteract(player, interactionHand);
     }
 
     public boolean isTicket(ItemStack itemStack) {

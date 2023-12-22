@@ -211,6 +211,9 @@ public class ServerModEvents {
         if (player.getServer().isDedicatedServer()) {
             if (ability1 != 0) {
                 player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown1", ability1 - 1);
+
+            } else if (ability1 <= -1) {
+                player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown1", 0);
             }
         }
 
@@ -219,6 +222,9 @@ public class ServerModEvents {
         if (player.getServer().isDedicatedServer()) {
             if (ability2 != 0) {
                 player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown2", ability2 - 1);
+
+            } else if (ability2 <= -1) {
+                player.getPersistentData().putInt(HixlePodsOrigins.MODID + "_AbilityCooldown2", 0);
             }
         }
 
