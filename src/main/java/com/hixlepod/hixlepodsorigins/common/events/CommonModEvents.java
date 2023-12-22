@@ -8,6 +8,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Bosses.ScrapletBoss.EntityS
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityBooNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityNimbusNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntitySmudgeNPC;
+import com.hixlepod.hixlepodsorigins.common.Entities.Other.Hostile.EntityTrumpetSkeleton;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.*;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronCow;
@@ -36,6 +37,9 @@ public class CommonModEvents {
 
         @SubscribeEvent
         public static void registerAttributes(EntityAttributeCreationEvent event) {
+            //Hostile
+            event.put(EntityInit.TRUMPET_SKELETON.get(), EntityTrumpetSkeleton.createAttributes().build());
+
             //Mobs
             event.put(EntityInit.BLUE_SLIME.get(), EntityBlueSlime.createAttributes().build());
 

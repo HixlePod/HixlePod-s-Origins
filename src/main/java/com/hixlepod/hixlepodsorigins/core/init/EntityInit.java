@@ -8,6 +8,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Bosses.ScrapletBoss.EntityS
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityBooNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntityNimbusNPC;
 import com.hixlepod.hixlepodsorigins.common.Entities.NPC.EntitySmudgeNPC;
+import com.hixlepod.hixlepodsorigins.common.Entities.Other.Hostile.EntityTrumpetSkeleton;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.*;
 import com.hixlepod.hixlepodsorigins.common.Entities.Projectile.EntityLaserProjectile;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.animal.EntityCybertronChicken;
@@ -27,6 +28,11 @@ import net.minecraftforge.registries.RegistryObject;
 public class EntityInit {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, HixlePodsOrigins.MODID);
+
+    //Hostile
+    public static final RegistryObject<EntityType<EntityTrumpetSkeleton>> TRUMPET_SKELETON = ENTITIES.register("trumpet_skeleton",
+            () -> EntityType.Builder.of(EntityTrumpetSkeleton::new, MobCategory.MONSTER).sized(0.6F, 1.99F).
+                    build(new ResourceLocation(HixlePodsOrigins.MODID, "trumpet_skeleton").toString()));
 
     //Mobs
     public static final RegistryObject<EntityType<EntityBlueSlime>> BLUE_SLIME = ENTITIES.register("blue_slime",

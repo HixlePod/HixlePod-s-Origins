@@ -108,8 +108,9 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
 
         ItemStack itemStack = player.getItemInHand(interactionHand);
 
-        if (!this.level().isClientSide) {
-            if (this.isTicket(itemStack)) {
+        if (this.isTicket(itemStack)) {
+
+            if (!this.level().isClientSide) {
 
                 if (!player.getAbilities().instabuild) {
                     itemStack.shrink(1);
@@ -123,9 +124,8 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
                         .replace("]", "")
                         .replace(" ", "_"))), wantedTag.getInt("Count"));
 
+
                 if (player.getInventory().contains(wanted)) {
-
-
 
                     CompoundTag rewardTag = itemStack.getOrCreateTagElement("Reward");
 
@@ -145,16 +145,16 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
 
                     return InteractionResult.FAIL;
                 }
-
             } else {
-
-                NimbusDialogue.HelloThere(player);
-
                 return InteractionResult.PASS;
             }
 
+        } else {
+
+            NimbusDialogue.HelloThere(player);
+
+            return super.mobInteract(player, interactionHand);
         }
-        return super.mobInteract(player, interactionHand);
     }
 
     public boolean isTicket(ItemStack itemStack) {

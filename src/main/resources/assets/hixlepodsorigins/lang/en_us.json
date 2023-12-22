@@ -97,6 +97,7 @@
   "item.hixlepodsorigins.betsy_battle_axe": "Betsy Battle Axe",
   "item.hixlepodsorigins.whispers_hammer": "Whisper's Hammer",
   "item.hixlepodsorigins.dragon_bone_dagger": "Dragon Bone Dagger",
+  "item.hixlepodsorigins.trumpet": "Trumpet",
 
   "Comment_": "Component Items",
   "item.hixlepodsorigins.electronic_scrap": "Electronic Scrap",
@@ -120,6 +121,7 @@
   "entity.hixlepodsorigins.cybertron_horse": "Cybertron Horse",
 
   "entity.hixlepodsorigins.ten": "Ten",
+  "entity.hixlepodsorigins.trumpet_skeleton": "Trumpet Skeleton",
 
   "entity.hixlepodsorigins.scraplet": "Scraplet",
   "entity.hixlepodsorigins.cybertron_creeper": "Cybertron Creeper",
@@ -140,6 +142,8 @@
 
   "sounds.hixlepodsorigins.cyber_bullying": "Cyber Bullying",
   "sounds.hixlepodsorigins.laser_shoot": "Laser Shoot",
+
+  "sounds.hixlepodsorigins.doot_doot": "Doot Doot",
 
   "effect.hixlepodsorigins.ambergon": "Ambergon",
   "item.minecraft.potion.effect.ambergon_potion": "Ambergon Potion",

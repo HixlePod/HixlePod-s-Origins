@@ -32,6 +32,7 @@ import com.hixlepod.hixlepodsorigins.core.networking.packet.Ability2C2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -362,6 +363,9 @@ public class ClientModEvents {
 
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            //Hostile
+            event.registerEntityRenderer(EntityInit.TRUMPET_SKELETON.get(), SkeletonRenderer::new);
+
             //Mobs
             event.registerEntityRenderer(EntityInit.BLUE_SLIME.get(), BlueSlimeRenderer::new);
 

@@ -1,6 +1,7 @@
 package com.hixlepod.hixlepodsorigins.common.events;
 
 import com.hixlepod.hixlepodsorigins.HixlePodsOrigins;
+import com.hixlepod.hixlepodsorigins.common.Entities.Other.Hostile.EntityTrumpetSkeleton;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronCreeper;
 import com.hixlepod.hixlepodsorigins.common.Entities.cybertron_entities.hostiles.EntityCybertronZombie;
 import com.hixlepod.hixlepodsorigins.common.NPCs.NPCManager;
@@ -20,6 +21,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.ServerChatEvent;
@@ -32,6 +34,8 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
 
@@ -158,6 +162,15 @@ public class GameplayEvents {
                    event.getEntity().position().x(),
                    event.getEntity().position().y(),
                    event.getEntity().position().z(), new ItemStack(ItemInit.RUST.get())));
+       }
+
+       if (event.getEntity() instanceof EntityTrumpetSkeleton) {
+           if (OriginsUtil.didChance(5)) {
+               event.getDrops().add(new ItemEntity(event.getEntity().level(),
+                       event.getEntity().position().x(),
+                       event.getEntity().position().y(),
+                       event.getEntity().position().z(), new ItemStack(ItemInit.TRUMPET.get())));
+           }
        }
     }
 

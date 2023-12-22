@@ -89,6 +89,7 @@ public class Origins_Main {
                         output.accept(ItemInit.BETSY_BATTLE_AXE.get());
                         output.accept(ItemInit.WHISPERS_HAMMER.get());
                         output.accept(ItemInit.DRAGON_BONE_DAGGER.get());
+                        output.accept(ItemInit.TRUMPET.get());
 
                         output.accept(ItemInit.DRAGON_SCALE.get());
 

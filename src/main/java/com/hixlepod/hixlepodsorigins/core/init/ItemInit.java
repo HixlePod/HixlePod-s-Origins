@@ -142,6 +142,8 @@ public class ItemInit {
     public static final RegistryObject<Item> WHISPERS_HAMMER = ITEMS.register("whispers_hammer", () -> new WhispersHammerItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DRAGON_BONE_DAGGER = ITEMS.register("dragon_bone_dagger", () -> new DragonBoneDagger(new Item.Properties().stacksTo(2)));
 
+    public static final RegistryObject<Item> TRUMPET = ITEMS.register("trumpet", () -> new TrumpetItem(new Item.Properties().stacksTo(1)));
+
 
     //Meme items
     public static final RegistryObject<Item> NINJA = ITEMS.register("ninja", () -> new Ninja(new Item.Properties()));

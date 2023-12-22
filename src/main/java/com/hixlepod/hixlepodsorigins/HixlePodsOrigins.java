@@ -16,6 +16,7 @@ import com.simibubi.create.content.trains.track.AllPortalTracks;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.item.ItemStack;
@@ -141,7 +142,6 @@ public class HixlePodsOrigins {
     private void onClientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(BlockInit.CYBERTRON_PORTAL.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockInit.STEEL_LEAVES.get(), RenderType.translucent());
-
     }
 
 

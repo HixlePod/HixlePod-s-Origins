@@ -53,5 +53,12 @@
     "sounds": [
       "hixlepodsorigins:laser_shoot"
     ]
+  },
+
+  "doot_doot": {
+    "subtitle": "sounds.hixlepodsorigins.doot_doot",
+    "sounds": [
+      "hixlepodsorigins:doot_doot"
+    ]
   }
 }
