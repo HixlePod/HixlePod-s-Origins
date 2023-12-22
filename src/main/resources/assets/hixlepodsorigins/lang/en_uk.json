@@ -37,6 +37,9 @@
   "block.hixlepodsorigins.dark_energon_ore_block": "Dark Energon Ore Block",
   "block.hixlepodsorigins.red_energon_ore_block": "Red Energon Ore Block",
 
+  "block.hixlepodsorigins.steelwood": "Steel Wood Block",
+  "block.hixlepodsorigins.steel_leaves": "Steel Leaves Block",
+
   "block.hixlepodsorigins.bronze_trophy": "Bronze Trophy",
   "block.hixlepodsorigins.silver_trophy": "Silver Trophy",
   "block.hixlepodsorigins.gold_trophy": "Gold Trophy",
@@ -180,6 +183,24 @@
   "item.minecraft.splash_potion.effect.rust_potion": "Splash Potion of Rust",
   "item.minecraft.lingering_potion.effect.rust_potion": "Lingering Potion of Rust",
   "item.minecraft.tipped_arrow.effect.rust_potion": "Arrow of Rust",
+
+  "effect.hixlepodsorigins.dwarf": "Dwarf",
+  "item.minecraft.potion.effect.dwarf_potion": "Dwarf Potion",
+  "item.minecraft.splash_potion.effect.dwarf_potion": "Splash Potion of Dwarf",
+  "item.minecraft.lingering_potion.effect.dwarf_potion": "Lingering Potion of Dwarf",
+  "item.minecraft.tipped_arrow.effect.dwarf_potion": "Arrow of Dwarf",
+
+  "effect.hixlepodsorigins.giant": "Giant",
+  "item.minecraft.potion.effect.giant_potion": "Giant Potion",
+  "item.minecraft.splash_potion.effect.giant_potion": "Splash Potion of Giant",
+  "item.minecraft.lingering_potion.effect.giant_potion": "Lingering Potion of Giant",
+  "item.minecraft.tipped_arrow.effect.giant_potion": "Arrow of Giant",
+
+  "effect.hixlepodsorigins.blindness": "Blindness",
+  "item.minecraft.potion.effect.blindness_potion": "Blindness Potion",
+  "item.minecraft.splash_potion.effect.blindness_potion": "Splash Potion of Blindness",
+  "item.minecraft.lingering_potion.effect.blindness_potion": "Lingering Potion of Blindness",
+  "item.minecraft.tipped_arrow.effect.blindness_potion": "Arrow of Blindness",
 
   "key.category.hixlepodsorigins": "HixlePod's Origins",
   "key.hixlepodsorigins.ability_1": "Ability 1",

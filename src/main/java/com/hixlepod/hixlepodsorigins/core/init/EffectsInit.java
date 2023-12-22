@@ -37,4 +37,7 @@ public class EffectsInit {
 
     public static final RegistryObject<MobEffect> DWARF = MOB_EFFECTS.register("dwarf",
             () -> new DwarfEffect(MobEffectCategory.NEUTRAL, 16711680));
+
+    public static final RegistryObject<MobEffect> ABILITY_REGENERATION = MOB_EFFECTS.register("ability_regeneration",
+            () -> new DwarfEffect(MobEffectCategory.NEUTRAL, 10079232));
 }

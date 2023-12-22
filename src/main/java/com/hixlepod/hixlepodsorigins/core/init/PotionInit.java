@@ -39,4 +39,7 @@ public class PotionInit {
 
     public static final RegistryObject<Potion> DWARF_POTION = POTIONS.register("dwarf_potion",
             () -> new Potion(new MobEffectInstance(EffectsInit.DWARF.get(), 2 * 60 * 20, 0)));
+
+    public static final RegistryObject<Potion> ABILITY_REGENERATION_POTION = POTIONS.register("ability_regeneration_potion",
+            () -> new Potion(new MobEffectInstance(EffectsInit.ABILITY_REGENERATION.get(), 30 * 20, 1)));
 }
