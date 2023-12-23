@@ -123,11 +123,14 @@ public class HixlePodsOrigins {
             BrewingRecipeRegistry.addRecipe(new FreezePotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.SLOWNESS)), Ingredient.of(Items.BLUE_ICE), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.FREEZE_POTION.get())));
             BrewingRecipeRegistry.addRecipe(new BlindnessPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.NIGHT_VISION)), Ingredient.of(Items.INK_SAC), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.BLINDNESS_POTION.get())));
 
+
             //CYBERTRON RELATED POTIONS
             BrewingRecipeRegistry.addRecipe(new AmbergonPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)), Ingredient.of(ItemInit.AMBERGON_BUCKET.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())));
 
             BrewingRecipeRegistry.addRecipe(new RustPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())), Ingredient.of(ItemInit.RUST.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.RUST_POTION.get())));
             BrewingRecipeRegistry.addRecipe(new MalfunctionPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())), Ingredient.of(ItemInit.DARK_HIGH_GRADE_DRINK.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.MALFUNCTION_POTION.get())));
+
+            BrewingRecipeRegistry.addRecipe(new AbilityRegenPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())), Ingredient.of(ItemInit.ORIGINS_CORE.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.ABILITY_REGENERATION_POTION.get())));
 
             //Goofy potions
             BrewingRecipeRegistry.addRecipe(new ChaosPotionRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.AMBERGON_POTION.get())), Ingredient.of(Items.BEDROCK), PotionUtils.setPotion(new ItemStack(Items.POTION), PotionInit.CHAOS_POTION.get())));

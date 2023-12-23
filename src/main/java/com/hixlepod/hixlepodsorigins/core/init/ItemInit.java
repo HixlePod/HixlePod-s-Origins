@@ -117,6 +117,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> RUST = ITEMS.register("rust", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> ORIGINS_CORE = ITEMS.register("origins_core", () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> BLOOD_BONE = ITEMS.register("blood_bone", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(6).saturationMod(4).effect(new MobEffectInstance(MobEffects.HUNGER, 10 * 20, 2), 1).build())));
     public static final RegistryObject<Item> BATTLE_BURRITO = ITEMS.register("battle_burrito", () -> new Item(new Item.Properties().stacksTo(16).food(new FoodProperties.Builder().alwaysEat().nutrition(10).saturationMod(10)
             .effect(new MobEffectInstance(MobEffects.GLOWING,         60 * 20, 1), 1)

@@ -91,6 +91,8 @@ public class Origins_Main {
                         output.accept(ItemInit.DRAGON_BONE_DAGGER.get());
                         output.accept(ItemInit.TRUMPET.get());
 
+                        output.accept(ItemInit.ORIGINS_CORE.get());
+
                         output.accept(ItemInit.DRAGON_SCALE.get());
 
                         output.accept(ItemInit.ORE_TRACKER.get());
