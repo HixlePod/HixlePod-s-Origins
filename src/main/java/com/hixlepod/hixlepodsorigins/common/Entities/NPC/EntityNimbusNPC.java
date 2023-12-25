@@ -103,60 +103,7 @@ public class EntityNimbusNPC extends PathfinderMob implements NeutralMob {
         }
     }
 
-    @Override
-    protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
 
-        ItemStack itemStack = player.getItemInHand(interactionHand);
-
-        if (this.isTicket(itemStack)) {
-
-            if (!this.level().isClientSide) {
-
-                if (!player.getAbilities().instabuild) {
-                    itemStack.shrink(1);
-                }
-
-                CompoundTag wantedTag = itemStack.getOrCreateTagElement("Wanted");
-
-                ItemStack wanted = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(HixlePodsOrigins.MODID, wantedTag.getString("Item")
-                        .toLowerCase()
-                        .replace("[", "")
-                        .replace("]", "")
-                        .replace(" ", "_"))), wantedTag.getInt("Count"));
-
-
-                if (player.getInventory().contains(wanted)) {
-
-                    CompoundTag rewardTag = itemStack.getOrCreateTagElement("Reward");
-
-                    ItemStack reward = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(HixlePodsOrigins.MODID, rewardTag.getString("Item")
-                            .toLowerCase()
-                            .replace("[", "")
-                            .replace("]", "")
-                            .replace(" ", "_"))),
-
-                            rewardTag.getInt("Count"));
-
-                    player.getInventory().add(reward);
-
-                } else {
-                    //TODO: Tell em u gotta do it
-
-                }
-            }
-
-        } else {
-
-            NimbusDialogue.HelloThere(player);
-
-        }
-
-        return super.mobInteract(player, interactionHand);
-    }
-
-    public boolean isTicket(ItemStack itemStack) {
-        return itemStack.is(ItemInit.QUEST_TICKET.get());
-    }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType p_146748_, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag p_146750_) {

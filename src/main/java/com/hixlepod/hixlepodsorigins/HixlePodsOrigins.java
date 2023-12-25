@@ -6,6 +6,7 @@ import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.pro
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.proxy.CommonProxy;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.proxy.ServerProxy;
 import com.hixlepod.hixlepodsorigins.common.Entities.Pets.CompassOreTracking.xray.Controller;
+import com.hixlepod.hixlepodsorigins.common.NPCs.NPCInteract;
 import com.hixlepod.hixlepodsorigins.common.NPCs.Quests.QuestsManager;
 import com.hixlepod.hixlepodsorigins.common.PotionRecipes.*;
 import com.hixlepod.hixlepodsorigins.common.events.*;
@@ -42,7 +43,7 @@ public class HixlePodsOrigins {
     public static final String MODID = "hixlepodsorigins";
 
     private static final String ORIGINS_VERSION = "1.0";
-    private static final String ORIGINS_BUILD_VERSION = "BUILD-179";
+    private static final String ORIGINS_BUILD_VERSION = "BUILD-228";
 
     public static final String MOD_VER = ORIGINS_VERSION + " - " + ORIGINS_BUILD_VERSION;
 
@@ -88,6 +89,7 @@ public class HixlePodsOrigins {
         MinecraftForge.EVENT_BUS.register(new ServerModEvents());
         MinecraftForge.EVENT_BUS.register(new CommonModEvents());
         MinecraftForge.EVENT_BUS.register(new GameplayEvents());
+        MinecraftForge.EVENT_BUS.register(new NPCInteract());
         MinecraftForge.EVENT_BUS.register(PlayerEvents.class);
         MinecraftForge.EVENT_BUS.register(CompassTracking.class);
 
