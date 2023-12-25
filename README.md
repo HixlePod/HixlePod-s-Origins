@@ -26,10 +26,10 @@ The HixlePod's Origins mod uses a wide range of API's in order to get most of th
 
 Thanks to everyone who has contributed to this project in big or small ways, their credits and links are found below. Many thanks!
 
-+ Anxiety-Elf
++ [Anxiety-Elf](https://anxietyelf.wixsite.com/elfshobbithut)
 + [FloDraws](https://flodrawsalot.wixsite.com/flo-draws-portfolio)
 + gh0stlure
-+ TricoFan
++ [TricoFan](https://tricofan.carrd.co/)
 + stam
 
 #### Let me know if I missed any credits or links!
